@@ -2,13 +2,31 @@
 <html>
 
 <head>
-	<title>Methods - CZ Pollution</title>
+	<title>Methods</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+	<style>
+		/* Fix per mostrare correttamente il contenuto */
+		#main {
+			position: relative;
+			z-index: 2;
+			min-height: 80vh;
+			padding: 2em;
+			background: rgba(255, 255, 255, 0.85);
+			border-radius: 1em;
+		}
+
+		#content {
+			background: rgba(255, 255, 255, 0.1);
+			padding: 2em;
+			border-radius: 1em;
+			margin-top: 2em;
+		}
+	</style>
 </head>
 
 <body class="is-preload">
@@ -30,8 +48,7 @@
 			</header>
 
 			<!-- Main content -->
-			<section id="content"
-				style="background: rgba(255,255,255,0.1); padding: 2em; border-radius: 1em; margin-top: 2em;">
+			<section id="content">
 				<h2>1. Introduction</h2>
 				<p>This section describes the methodology adopted in our GIS project focused on CZ Pollution monitoring.
 					It includes data collection, preprocessing and spatial analysis techniques.</p>
