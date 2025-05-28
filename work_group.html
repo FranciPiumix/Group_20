@@ -3,17 +3,21 @@
 
 <head>
 	<title>Work Team</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
 	<style>
-		body {
-			font-family: Arial, sans-serif;
+		.team-container {
 			text-align: center;
 			padding: 2em;
-			background: white;
 		}
 
 		.team-member {
 			display: inline-block;
-			margin: 1em;
+			margin: 1.5em;
 		}
 
 		.team-member img {
@@ -29,16 +33,35 @@
 	</style>
 </head>
 
-<body>
-	<h1>Our Team</h1>
-	<div class="team-member">
-		<p>Federica</p>
-		<img src="images/federica.jpg" alt="Federica">
+<body class="is-preload">
+	<div id="wrapper">
+		<div id="main">
+			<header id="header">
+				<h1>Our Team</h1>
+			</header>
+
+			<div class="team-container">
+				<div class="team-member">
+					<p>Federica</p>
+					<img src="images/federica.jpg" alt="Federica">
+				</div>
+				<div class="team-member">
+					<p>Matilde</p>
+					<img src="images/matilde.jpg" alt="Matilde">
+				</div>
+			</div>
+
+			<footer id="footer">
+				<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+			</footer>
+		</div>
 	</div>
-	<div class="team-member">
-		<p>Matilde</p>
-		<img src="images/matilde.jpg" alt="Matilde">
-	</div>
+
+	<script>
+		window.onload = function () { document.body.classList.remove('is-preload'); }
+		window.ontouchmove = function () { return false; }
+		window.onorientationchange = function () { document.body.scrollTop = 0; }
+	</script>
 </body>
 
 </html>
