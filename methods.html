@@ -2,71 +2,70 @@
 <html>
 
 <head>
-	<title>Methods - CZ Pollution</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+    <title>Methods - CZ Pollution</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="assets/css/noscript.css" />
+    </noscript>
 </head>
 
 <body class="is-preload">
 
-	<div id="wrapper">
-		<div id="bg"></div>
-		<div id="overlay"></div>
-		<div id="main">
+    <div id="wrapper">
+        <div id="bg"></div>
+        <div id="overlay"></div>
+        <div id="main">
 
-			<!-- Header -->
-			<header id="header">
-				<h1>Methods</h1>
-				<p>Explaining data sources and processing steps used in our GIS project</p>
-				<nav>
-					<ul>
-						<li><a href="index.html" class="icon solid fa-home"><span class="label">Home</span></a></li>
-					</ul>
-				</nav>
-			</header>
+            <!-- Header -->
+            <header id="header">
+                <h1>Methods</h1>
+                <p>Explaining data sources and processing steps used in our GIS project</p>
+                <nav>
+                    <ul>
+                        <li><a href="index.html" class="icon solid fa-home"><span class="label">Home</span></a></li>
+                    </ul>
+                </nav>
+            </header>
 
-			<!-- Main content -->
-			<section id="content"
-				style="background: rgba(255,255,255,0.1); padding: 2em; border-radius: 1em; margin-top: 2em;">
-				<h2>1. Introduction</h2>
-				<p>This section describes the methodology adopted in our GIS project focused on CZ Pollution monitoring.
-					It includes data collection, preprocessing and spatial analysis techniques.</p>
+            <!-- Main content -->
+            <section id="content">
+                <h2>1. Introduction</h2>
+                <p>This section describes the methodology adopted in our GIS project focused on CZ Pollution monitoring.
+                    It includes data collection, preprocessing and spatial analysis techniques.</p>
 
-				<h2>2. Data Used</h2>
-				<ul>
-					<li>Satellite imagery from Sentinel-2 (Copernicus Programme)</li>
-					<li>Air quality monitoring data from ARPA</li>
-					<li>OpenStreetMap for roads and land use</li>
-					<li>Digital Elevation Model (DEM)</li>
-				</ul>
+                <h2>2. Data Used</h2>
+                <ul>
+                    <li>Satellite imagery from Sentinel-2 (Copernicus Programme)</li>
+                    <li>Air quality monitoring data from ARPA</li>
+                    <li>OpenStreetMap for roads and land use</li>
+                    <li>Digital Elevation Model (DEM)</li>
+                </ul>
 
-				<h2>3. Processing Steps</h2>
-				<ol>
-					<li>Download and preprocess satellite data (atmospheric correction, clipping)</li>
-					<li>Convert raster data to NDVI for vegetation analysis</li>
-					<li>Overlay pollution data with land use layers</li>
-					<li>Identify high-risk zones using spatial interpolation</li>
-					<li>Generate maps and summary statistics</li>
-				</ol>
-			</section>
+                <h2>3. Processing Steps</h2>
+                <ol>
+                    <li>Download and preprocess satellite data (atmospheric correction, clipping)</li>
+                    <li>Convert raster data to NDVI for vegetation analysis</li>
+                    <li>Overlay pollution data with land use layers</li>
+                    <li>Identify high-risk zones using spatial interpolation</li>
+                    <li>Generate maps and summary statistics</li>
+                </ol>
+            </section>
 
-			<!-- Footer -->
-			<footer id="footer">
-				<span class="copyright">&copy; CZ Project. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-			</footer>
+            <!-- Footer -->
+            <footer id="footer">
+                <span class="copyright">&copy; CZ Project. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+            </footer>
 
-		</div>
-	</div>
+        </div>
+    </div>
 
-	<script>
-		window.onload = function () { document.body.classList.remove('is-preload'); }
-		window.ontouchmove = function () { return false; }
-		window.onorientationchange = function () { document.body.scrollTop = 0; }
-	</script>
+    <script>
+        window.onload = function () { document.body.classList.remove('is-preload'); }
+        window.ontouchmove = function () { return false; }
+        window.onorientationchange = function () { document.body.scrollTop = 0; }
+    </script>
 
 </body>
 
