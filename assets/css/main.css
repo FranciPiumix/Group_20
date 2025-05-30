@@ -442,47 +442,34 @@ a:hover {
 }
 
 #overlay {
-  background-image: url("images/overlay.svg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  left: 0;
-  opacity: 0.3; /* esempio */
-  position: fixed;
-  top: 0;
-  width: 100%;
-  pointer-events: none;
-  z-index: 0;
-}
-
-#main {
-  position: relative;
-  z-index: 10;
-}
-html, body {
-  overflow: auto;
-}
-/* Main */
-
-#main {
+	background-image: url("images/overlay.svg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
 	height: 100%;
 	left: 0;
+	opacity: 0.3;
 	position: fixed;
-	text-align: center;
 	top: 0;
 	width: 100%;
+	pointer-events: none;
+	z-index: 0;
 }
 
-#main:before {
-	content: '';
-	display: inline-block;
-	height: 100%;
-	margin-right: 0;
-	vertical-align: middle;
-	width: 1px;
+#main {
+	position: relative;
+	z-index: 10;
+	padding: 2em;
+	min-height: 100vh;
+	background: rgba(255, 255, 255, 0.9);
+	text-align: left;
 }
 
+html,
+body {
+	overflow: auto;
+	height: auto;
+}
 
 /* Header */
 
