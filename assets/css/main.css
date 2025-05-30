@@ -461,30 +461,23 @@ a:hover {
 
 /* Main */
 
-/* Main */
 #main {
-	height: 100%;
-	left: 0;
-	position: fixed;
-	text-align: center;
-	top: 0;
-	width: 100%;
-	overflow-y: auto;
-	/* ✅ Aggiunto per scroll interno se il contenuto è lungo */
-	padding: 2em;
-	/* ✅ Puoi mantenerlo se serve spazio attorno */
-	background: none;
-	/* ✅ Rimuove il bianco opaco, se non lo vuoi */
-}
+		height: 100%;
+		left: 0;
+		position: fixed;
+		text-align: center;
+		top: 0;
+		width: 100%;
+	}
 
-#main:before {
-	content: '';
-	display: inline-block;
-	height: 100%;
-	margin-right: 0;
-	vertical-align: middle;
-	width: 1px;
-}
+		#main:before {
+			content: '';
+			display: inline-block;
+			height: 100%;
+			margin-right: 0;
+			vertical-align: middle;
+			width: 1px;
+		}
 
 
 /* Header */
