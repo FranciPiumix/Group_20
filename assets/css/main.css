@@ -461,15 +461,20 @@ a:hover {
 
 /* Main */
 
+/* Main */
 #main {
-	position: relative;
-	/* era: fixed */
+	height: 100%;
+	left: 0;
+	position: fixed;
+	text-align: center;
+	top: 0;
 	width: 100%;
+	overflow-y: auto;
+	/* ✅ Aggiunto per scroll interno se il contenuto è lungo */
 	padding: 2em;
-	min-height: 100vh;
-	background: rgba(255, 255, 255, 0.9);
-	z-index: 10;
-	text-align: left;
+	/* ✅ Puoi mantenerlo se serve spazio attorno */
+	background: none;
+	/* ✅ Rimuove il bianco opaco, se non lo vuoi */
 }
 
 #main:before {
@@ -480,6 +485,7 @@ a:hover {
 	vertical-align: middle;
 	width: 1px;
 }
+
 
 /* Header */
 
