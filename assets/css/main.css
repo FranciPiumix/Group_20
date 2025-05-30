@@ -471,13 +471,18 @@ body {
 }
 
 #main {
-	position: relative;
-	z-index: 10;
-	padding: 2em;
-	min-height: 100vh;
-	background: rgba(255, 255, 255, 0.9);
-	text-align: left;
+  position: relative;
+  z-index: 10;
+  padding: 4em 2em;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent; /* 🔥 qui il cambiamento */
 }
+
 
 /* Header */
 
