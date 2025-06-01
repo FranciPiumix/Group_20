@@ -62,9 +62,11 @@
             </header>
 
             <!-- Main content -->
-            <section id="content">
-                <h2>1. Project Overview</h2>
-                <p>
+            <section id="content"
+                style="text-align: left; max-width: 900px; margin: auto; font-family: Arial, sans-serif; line-height: 1.6;">
+
+                <h2 style="font-weight: bold; margin-top: 30px;">1. Project Overview</h2>
+                <p style="margin-bottom: 20px;">
                     This GIS laboratory project focused on analyzing air quality in Europe by integrating
                     satellite-based air pollution data,
                     land cover classifications, and population distributions. The goal was to assess the spatial and
@@ -74,11 +76,10 @@
                     using open-access geospatial datasets.
                 </p>
 
-                <h2>2. Workflow and Methodology</h2>
-                <p>The work was structured in the following steps:</p>
-                <ol>
-                    <li><strong>Data Acquisition:</strong> CAMS reanalysis data (NO<sub>2</sub>, PM<sub>2.5</sub>,
-                        PM<sub>10</sub>), ESA CCI Land Cover (2022), WorldPop population data (2020).</li>
+                <h2 style="font-weight: bold; margin-top: 30px;">2. Workflow and Methodology</h2>
+                <p style="margin-bottom: 10px;">The work was structured in the following steps:</p>
+                <ol style="margin-left: 20px; margin-bottom: 20px;">
+                    <li><strong>Data Acquisition:</strong> CAMS reanalysis data (NO<sub>2</sub>, PM<sub>2.5</sub>), ESA CCI Land Cover (2022), WorldPop population data (2020).</li>
                     <li><strong>Preprocessing:</strong> Clipping to area of interest, reclassification of land cover
                         types, projection harmonization.</li>
                     <li><strong>Analysis:</strong> Time-series statistics (2013–2022) for pollutant levels by land cover
@@ -87,24 +88,24 @@
                         publication through a WebGIS interface.</li>
                 </ol>
 
-                <h2>3. Tools Used</h2>
-                <ul>
+                <h2 style="font-weight: bold; margin-top: 30px;">3. Tools Used</h2>
+                <ul style="margin-left: 20px; margin-bottom: 20px;">
                     <li>QGIS with GRASS/SAGA Processing Toolbox</li>
                     <li>GeoServer and OpenLayers for WebGIS</li>
                     <li>Copernicus Climate Data Store (CDS)</li>
                     <li>Python (xarray, matplotlib) or Panoply (optional)</li>
                 </ul>
 
-                <h2>4. Key Outputs</h2>
-                <ul>
+                <h2 style="font-weight: bold; margin-top: 30px;">4. Key Outputs</h2>
+                <ul style="margin-left: 20px;">
                     <li>Annual pollutant maps (2013–2022)</li>
                     <li>Land cover correlation analysis</li>
                     <li>Population exposure estimation</li>
                     <li>Bivariate pollution-population maps</li>
                     <li>Interactive WebGIS and project website</li>
                 </ul>
-            </section>
 
+            </section>
 
             <!-- Footer -->
             <footer id="footer">
