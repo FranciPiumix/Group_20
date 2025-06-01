@@ -456,19 +456,20 @@ body {
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	opacity: 1; /* oppure animato via keyframe */
+	opacity: 1; /* oppure 0 se lo animi */
 	pointer-events: none;
-	z-index: 5; /* sopra #bg ma sotto #main */
+	z-index: 0;
 }
 
 #wrapper {
 	position: relative;
 	z-index: 1;
+	min-height: 100%;
 }
 
 #main {
