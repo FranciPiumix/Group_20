@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 
 <head>
 	<title>Work Team</title>
@@ -7,7 +7,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-		integrity="sha512-dU9k1LtqKLhFZn9Xt3fCGXcfRyRZAzYjfrLbB0+uThn2oqvmNHuVf3fAKCqvAK+x2cKP7CvHzdU0lsYh6uZQWw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
@@ -34,7 +33,19 @@
 			margin-bottom: 0.5em;
 		}
 
-		/* Posizionamento dell'icona Home in alto a destra */
+		.team-member .role {
+			font-weight: normal;
+			font-style: italic;
+			margin-top: 0.2em;
+		}
+
+		.team-member .email {
+			font-size: 0.95em;
+			margin-top: 0.3em;
+			color: #003366;
+		}
+
+		/* Home icon top-right */
 		#top-right-nav {
 			position: absolute;
 			top: 1em;
@@ -65,7 +76,7 @@
 		<div id="overlay"></div>
 		<div id="main">
 
-			<!-- Icona Home in alto a destra -->
+			<!-- Home Icon -->
 			<nav id="top-right-nav">
 				<ul>
 					<li>
@@ -76,25 +87,29 @@
 				</ul>
 			</nav>
 
-			<!-- Intestazione -->
+			<!-- Header -->
 			<header id="header">
 				<h1>Our Team</h1>
-				<p>Federica Tedeschi e Matilde Monti</p>
+				<p>Get to know the work team and contacts</p>
 			</header>
 
-			<!-- Contenuto principale -->
+			<!-- Team Section -->
 			<div class="team-container">
 				<div class="team-member">
 					<p>Federica Tedeschi</p>
 					<img src="images/federica.jpg" alt="Federica">
+					<div class="role">Urban planner and policy designer</div>
+					<div class="email">federica.tedeschi@mail.polimi.it</div>
 				</div>
 				<div class="team-member">
 					<p>Matilde Monti</p>
 					<img src="images/matilde.jpg" alt="Matilde">
+					<div class="role">Urban planner and policy designer</div>
+					<div class="email">matilde.monti@mail.polimi.it</div>
 				</div>
 			</div>
 
-			<!-- Piè di pagina -->
+			<!-- Footer -->
 			<footer id="footer">
 				<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
 			</footer>
