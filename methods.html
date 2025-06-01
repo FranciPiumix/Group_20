@@ -64,69 +64,78 @@
 
             <!-- Main content -->
             <section id="content"
-                style="text-align: left; max-width: 900px; margin: auto; font-family: Arial, sans-serif; line-height: 1.6;">
+                style="max-width: 900px; margin: auto; font-family: Arial, sans-serif; line-height: 1.6;">
 
-                <!-- Section 1 -->
-                <div style="margin-bottom: 30px;">
-                    <h2 style="display: flex; align-items: center; font-weight: bold;">
-                        <i class="fas fa-project-diagram" style="margin-right: 10px; color: black;"></i>
-                        1. Project Overview
-                    </h2>
-                    <p style="margin-left: 28px;">
-                        This GIS laboratory project focused on analyzing air quality in Europe by integrating
-                        satellite-based air pollution data,
-                        land cover classifications, and population distributions. The goal was to assess the spatial and
-                        temporal patterns
-                        of pollutants (NO<sub>2</sub>, PM<sub>2.5</sub>, PM<sub>10</sub>) in relation to land use and
-                        human exposure,
-                        using open-access geospatial datasets.
-                    </p>
-                </div>
+                <div class="boxes-container" style="display: flex; flex-direction: column; gap: 20px;">
 
-                <!-- Section 2 -->
-                <div style="margin-bottom: 30px;">
-                    <h2 style="display: flex; align-items: center; font-weight: bold;">
-                        <i class="fas fa-cogs" style="margin-right: 10px; color: black;"></i>
-                        2. Workflow and Methodology
-                    </h2>
-                    <ol style="margin-left: 28px;">
-                        <li><strong>Data Acquisition:</strong> CAMS reanalysis data (NO<sub>2</sub>, PM<sub>2.5</sub>,
-                            PM<sub>10</sub>), ESA CCI Land Cover (2022), WorldPop population data (2020).</li>
-                        <li><strong>Preprocessing:</strong> Clipping to area of interest, reclassification of land cover
-                            types, projection harmonization.</li>
-                        <li><strong>Analysis:</strong> Time-series statistics (2013–2022) for pollutant levels by land
-                            cover class; population exposure calculation against WHO thresholds.</li>
-                        <li><strong>Visualization:</strong> Bivariate maps combining pollution and population data;
-                            publication through a WebGIS interface.</li>
-                    </ol>
-                </div>
+                    <div class="box"
+                        style="border: 1px solid #ccc; padding: 20px; box-shadow: 2px 2px 6px rgba(0,0,0,0.1); background: white; border-radius: 8px;">
+                        <h2 style="display: flex; align-items: center; font-weight: bold;">
+                            <i class="fas fa-project-diagram" style="margin-right: 10px; color: black;"></i>
+                            1. Project Overview
+                        </h2>
+                        <p>
+                            This GIS laboratory project focused on analyzing air quality in Europe by integrating
+                            satellite-based air pollution data,
+                            land cover classifications, and population distributions. The goal was to assess the spatial
+                            and
+                            temporal patterns
+                            of pollutants (NO<sub>2</sub>, PM<sub>2.5</sub>, PM<sub>10</sub>) in relation to land use
+                            and
+                            human exposure,
+                            using open-access geospatial datasets.
+                        </p>
+                    </div>
 
-                <!-- Section 3 -->
-                <div style="margin-bottom: 30px;">
-                    <h2 style="display: flex; align-items: center; font-weight: bold;">
-                        <i class="fas fa-wrench" style="margin-right: 10px; color: black;"></i>
-                        3. Tools Used
-                    </h2>
-                    <ul style="margin-left: 28px;">
-                        <li>QGIS with GRASS/SAGA Processing Toolbox</li>
-                        <li>GeoServer and OpenLayers for WebGIS</li>
-                        <li>Copernicus Climate Data Store (CDS)</li>
-                    </ul>
-                </div>
+                    <div class="box"
+                        style="border: 1px solid #ccc; padding: 20px; box-shadow: 2px 2px 6px rgba(0,0,0,0.1); background: white; border-radius: 8px;">
+                        <h2 style="display: flex; align-items: center; font-weight: bold;">
+                            <i class="fas fa-cogs" style="margin-right: 10px; color: black;"></i>
+                            2. Workflow and Methodology
+                        </h2>
+                        <ol>
+                            <li><strong>Data Acquisition:</strong> CAMS reanalysis data (NO<sub>2</sub>,
+                                PM<sub>2.5</sub>,
+                                PM<sub>10</sub>), ESA CCI Land Cover (2022), WorldPop population data (2020).</li>
+                            <li><strong>Preprocessing:</strong> Clipping to area of interest, reclassification of land
+                                cover
+                                types, projection harmonization.</li>
+                            <li><strong>Analysis:</strong> Time-series statistics (2013–2022) for pollutant levels by
+                                land
+                                cover class; population exposure calculation against WHO thresholds.</li>
+                            <li><strong>Visualization:</strong> Bivariate maps combining pollution and population data;
+                                publication through a WebGIS interface.</li>
+                        </ol>
+                    </div>
 
-                <!-- Section 4 -->
-                <div>
-                    <h2 style="display: flex; align-items: center; font-weight: bold;">
-                        <i class="fas fa-map" style="margin-right: 10px; color: black;"></i>
-                        4. Key Outputs
-                    </h2>
-                    <ul style="margin-left: 28px;">
-                        <li>Annual pollutant maps (2013–2022)</li>
-                        <li>Land cover correlation analysis</li>
-                        <li>Population exposure estimation</li>
-                        <li>Bivariate pollution-population maps</li>
-                        <li>Interactive WebGIS and project website</li>
-                    </ul>
+                    <div class="box"
+                        style="border: 1px solid #ccc; padding: 20px; box-shadow: 2px 2px 6px rgba(0,0,0,0.1); background: white; border-radius: 8px;">
+                        <h2 style="display: flex; align-items: center; font-weight: bold;">
+                            <i class="fas fa-wrench" style="margin-right: 10px; color: black;"></i>
+                            3. Tools Used
+                        </h2>
+                        <ul>
+                            <li>QGIS with GRASS/SAGA Processing Toolbox</li>
+                            <li>GeoServer and OpenLayers for WebGIS</li>
+                            <li>Copernicus Climate Data Store (CDS)</li>
+                        </ul>
+                    </div>
+
+                    <div class="box"
+                        style="border: 1px solid #ccc; padding: 20px; box-shadow: 2px 2px 6px rgba(0,0,0,0.1); background: white; border-radius: 8px;">
+                        <h2 style="display: flex; align-items: center; font-weight: bold;">
+                            <i class="fas fa-map" style="margin-right: 10px; color: black;"></i>
+                            4. Key Outputs
+                        </h2>
+                        <ul>
+                            <li>Annual pollutant maps (2013–2022)</li>
+                            <li>Land cover correlation analysis</li>
+                            <li>Population exposure estimation</li>
+                            <li>Bivariate pollution-population maps</li>
+                            <li>Interactive WebGIS and project website</li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </section>
