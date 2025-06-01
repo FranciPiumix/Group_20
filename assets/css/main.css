@@ -452,19 +452,19 @@ body {
 }
 
 #overlay {
-	background-image: url("images/overlay.svg");
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	opacity: 1; /* oppure 0 se lo animi */
+	background-image: url("images/overlay.svg");
+	background-position: center center;
+	background-repeat: repeat; /* o repeat-x / y / no-repeat */
+	background-size: cover;
 	pointer-events: none;
-	z-index: 0;
+	z-index: 5;
 }
+
 
 #wrapper {
 	position: relative;
