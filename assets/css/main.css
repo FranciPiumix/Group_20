@@ -400,6 +400,9 @@ a:hover {
 	width: 6750px;
 }
 
+#overlay {
+	display: none !important;
+}
 /* Overlay */
 
 @-moz-keyframes overlay {
