@@ -401,6 +401,7 @@ a:hover {
 	width: 6750px;
 }
 
+/* per togliere overlay */
 #overlay {
 	display: none !important;
 }
