@@ -5,22 +5,48 @@
 	<title>Results</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-		integrity="sha512-dU9k1LtqKLhFZn9Xt3fCGXcfRyRZAzYjfrLbB0+uThn2oqvmNHuVf3fAKCqvAK+x2cKP7CvHzdU0lsYh6uZQWw=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+
 	<style>
 		body {
-			background-color: white !important;
-			/* Rimuove immagine di sfondo */
+			background-color: white;
+			/* rimuove sfondo immagine */
 		}
 
-		#bg,
-		#overlay {
-			display: none !important;
+		.boxes-container {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+			max-width: 900px;
+			margin: auto;
+			font-family: Arial, sans-serif;
+			line-height: 1.6;
+		}
+
+		.box {
+			border: 1px solid #ccc;
+			padding: 20px;
+			box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+			background: rgba(255, 255, 255, 0.95);
+			border-radius: 8px;
+			color: #003366;
+			text-align: left;
+		}
+
+		.box h2 {
+			display: flex;
+			align-items: center;
+			font-weight: 900;
+			color: #003366;
+		}
+
+		.box h2 i {
+			margin-right: 10px;
+			color: #003366;
 		}
 
 		#top-right-nav {
@@ -41,81 +67,74 @@
 		}
 
 		#top-right-nav a {
-			color: black;
+			color: white;
 			font-size: 1.5em;
-		}
-
-		#main {
-			display: flex;
-			flex-direction: row;
-			gap: 2em;
-			padding: 2em;
-		}
-
-		.left-column {
-			flex: 1;
-			min-height: 400px;
-			border: 2px dashed #ccc;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			color: #888;
-			font-style: italic;
-		}
-
-		.right-column {
-			flex: 1;
-			color: black;
-			font-family: 'Raleway', sans-serif;
-		}
-
-		.right-column h2 {
-			font-size: 1.5em;
-			margin-top: 0;
-		}
-
-		.right-column p {
-			font-size: 1em;
 		}
 	</style>
 </head>
 
 <body class="is-preload">
 	<div id="wrapper">
-		<!-- Top-right Home Icon -->
-		<nav id="top-right-nav">
-			<ul>
-				<li>
-					<a href="index.html" class="icon solid fa-home" title="Back to Home">
-						<span class="label">Home</span>
-					</a>
-				</li>
-			</ul>
-		</nav>
-
-		<!-- Header -->
-		<header id="header">
-			<h1>Results</h1>
-		</header>
-
-		<!-- Main content area -->
 		<div id="main">
-			<div class="left-column">
-				Map and charts area (placeholder)
-			</div>
-			<div class="right-column">
-				<h2>Average Pollutant Map</h2>
-				<p>This section provides an overview of average pollution levels across the study area.</p>
 
-				<h2>Population Exposure Assessment</h2>
-				<p>This part evaluates how pollution impacts the population distribution and exposure intensity.</p>
-			</div>
+			<!-- Top-right Home Icon -->
+			<nav id="top-right-nav">
+				<ul>
+					<li>
+						<a href="index.html" class="icon solid fa-home" title="Back to Home">
+							<span class="label">Home</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
+
+			<!-- Header -->
+			<header id="header">
+				<h1>Results</h1>
+				<p>This section presents the outcomes of our spatial analysis, focusing on pollutant distribution and
+					human exposure.</p>
+			</header>
+
+			<!-- Main content -->
+			<section id="content">
+				<div class="boxes-container">
+
+					<div class="box">
+						<h2>
+							<i class="fas fa-map-marked-alt"></i>
+							1. Average Pollutant Map
+						</h2>
+						<p>
+							This section displays spatial representations of average pollutant concentrations across the
+							Czech Republic.
+							The maps are derived from CAMS data and highlight regional variations in air quality over
+							the study period.
+							These visualizations help identify pollution hotspots and patterns over time.
+						</p>
+					</div>
+
+					<div class="box">
+						<h2>
+							<i class="fas fa-users"></i>
+							2. Population Exposure Assessment
+						</h2>
+						<p>
+							This part evaluates how pollutant concentrations intersect with population distribution.
+							Using WorldPop data, we estimated how many people are exposed to pollutant levels above WHO
+							thresholds,
+							providing insights into environmental justice and public health risks.
+						</p>
+					</div>
+
+				</div>
+			</section>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<span class="copyright">&copy; CZ Project. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+			</footer>
+
 		</div>
-
-		<!-- Footer -->
-		<footer id="footer">
-			<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-		</footer>
 	</div>
 
 	<script>
@@ -123,7 +142,9 @@
 		window.ontouchmove = function () { return false; }
 		window.onorientationchange = function () { document.body.scrollTop = 0; }
 	</script>
+
 	<script src="assets/js/custom.js"></script>
+
 </body>
 
 </html>
