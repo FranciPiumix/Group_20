@@ -1,36 +1,24 @@
-// assets/js/map.js
-
-let osm = new Tile({
-    title: "Open Street Map",
-    type: "base",
-    visible: true,
-    source: new OSM()
-});
-// Add the layer groups code here:
-let basemapLayers = new Group({
-    title: 'Base Maps',
-    layers: [osm]
-});
-let overlayLayers = new Group({
-    title: 'Overlay Layers',
-    layers: [
- ]
+// Base layer
+const osm = new ol.layer.Tile({
+    source: new ol.source.OSM()
 });
 
-// Add the map controls here:
-map.addControl(new ScaleLine());
-map.addControl(new FullScreen());
-map.addControl(
-    new MousePosition({
-        coordinateFormat: createStringXY(4),
-        projection: 'EPSG:4326',
-        className: 'custom-control',
-        placeholder: '0.0000, 0.0000'
-    })
-);
-
-
-// Coordinate centro della Repubblica Ceca
-const czechCenter = [49.8175, 15.4730];
-
-const map = L.map('map').setView(czechCenter, 7);
+// Mappa
+const map = new ol.Map({
+    target: 'map',
+    layers: [osm],
+    view: new ol.View({
+        center: ol.proj.fromLonLat([15.4730, 49.8175]), // Repubblica Ceca in EPSG:4326
+        zoom: 7
+    }),
+    controls: ol.control.defaults().extend([
+        new ol.control.ScaleLine(),
+        new ol.control.FullScreen(),
+        new ol.control.MousePosition({
+            coordinateFormat: ol.coordinate.createStringXY(4),
+            projection: 'EPSG:4326',
+            className: 'custom-control',
+            placeholder: '0.0000, 0.0000'
+        })
+    ])
+});
