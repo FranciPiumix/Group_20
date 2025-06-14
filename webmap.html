@@ -1,24 +1,25 @@
 <!DOCTYPE HTML>
-<!--
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
-	<title>Web Map</title>
+	<title>Webmap</title>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-		integrity="sha512-dU9k1LtqKLhFZn9Xt3fCGXcfRyRZAzYjfrLbB0+uThn2oqvmNHuVf3fAKCqvAK+x2cKP7CvHzdU0lsYh6uZQWw=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
 	<style>
-		/* Posizionamento icona home in alto a destra */
+		body {
+			background-color: #ffffff !important;
+		}
+
+		#bg,
+		#overlay {
+			display: none !important;
+		}
+
 		#top-right-nav {
 			position: absolute;
 			top: 1em;
@@ -26,64 +27,56 @@
 			z-index: 1000;
 		}
 
-		#top-right-nav ul {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-		}
-
-		#top-right-nav li {
-			display: inline-block;
-		}
-
 		#top-right-nav a {
-			color: white;
+			color: #003366;
 			font-size: 1.5em;
+		}
+
+		#header {
+			text-align: center;
+			padding: 2em 0 1em 0;
+		}
+
+		#header h1 {
+			color: #003366 !important;
+		}
+
+		#map {
+			height: 80vh;
+			width: 100%;
+			margin: 0 auto;
 		}
 	</style>
 </head>
 
 <body class="is-preload">
 	<div id="wrapper">
-		<div id="bg"></div>
-		<div id="overlay"></div>
-		<div id="main">
 
-			<!-- Top-right Home Icon -->
-			<nav id="top-right-nav">
-				<ul>
-					<li>
-						<a href="index.html" class="icon solid fa-home" title="Back to Home">
-							<span class="label">Home</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
+		<!-- Home Icon -->
+		<nav id="top-right-nav">
+			<ul>
+				<li>
+					<a href="index.html" class="icon solid fa-home" title="Back to Home">
+						<span class="label">Home</span>
+					</a>
+				</li>
+			</ul>
+		</nav>
 
-			<!-- Header -->
-			<header id="header">
-				<h1>CZ pollution</h1>
-				<p>Security Chief &nbsp;&bull;&nbsp; Cyborg &nbsp;&bull;&nbsp; Never asked for this</p>
-				<nav>
-					<ul>
-					</ul>
-				</nav>
-			</header>
+		<!-- Header -->
+		<header id="header">
+			<h1>Webmap</h1>
+		</header>
 
-			<!-- Footer -->
-			<footer id="footer">
-				<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-			</footer>
+		<!-- Map container -->
+		<div id="map"></div>
 
-		</div>
 	</div>
-	<script>
-		window.onload = function () { document.body.classList.remove('is-preload'); }
-		window.ontouchmove = function () { return false; }
-		window.onorientationchange = function () { document.body.scrollTop = 0; }
-	</script>
 
-	<script src="assets/js/custom.js"></script>
+	<!-- Leaflet JS -->
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+	<!-- Your custom JS -->
+	<script src="assets/js/map.js"></script>
 
 </body>
 
