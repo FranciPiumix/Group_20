@@ -79,7 +79,6 @@ var map = new ol.Map({
 
 // Controls
 map.addControl(new ol.control.ScaleLine());
-map.addControl(new ol.control.FullScreen());
 map.addControl(new ol.control.MousePosition({
     coordinateFormat: ol.coordinate.createStringXY(4),
     projection: 'EPSG:4326',
