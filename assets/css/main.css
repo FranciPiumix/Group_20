@@ -334,22 +334,27 @@ body {
 	padding: 0;
 	overflow-y: auto;
 	font-family: sans-serif;
+	text-align: center;
 }
 
 #wrapper {
 	position: relative;
 	z-index: 1;
 	min-height: 100%;
+	text-align: center;
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
 #main {
-    position: relative;
-    z-index: 10;
-    padding: 2em;
-    min-height: auto; /* o rimuovi questa proprietà */
-    background: transparent;
-    text-align: center;
-    overflow: visible; /* se serve */
+	position: relative;
+	z-index: 10;
+	padding: 2em;
+	background: transparent;
+	text-align: center;
+	overflow: visible;
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
 /* Header */
@@ -642,7 +647,7 @@ opacity: 1;
 	-ms-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	display: inline-block;
-	vertical-align: middle; 
+	vertical-align: middle;
 	height: 5.35em;
 	line-height: 5.885em;
 	opacity: 0;
@@ -892,9 +897,10 @@ opacity: 1;
 	color: black;
 	/* <-- aggiunto per testo nero */
 }
-	/* Header */
 
-	#header nav {
-		padding: 0 1em;
-	}
+/* Header */
+
+#header nav {
+	padding: 0 1em;
+}
 }
