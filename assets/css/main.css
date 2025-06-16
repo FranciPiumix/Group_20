@@ -423,11 +423,6 @@ a:hover {
 	}
 }
 
-#bg {
-	background-size: 2250px auto;
-	width: 6750px;
-}
-
 /* per togliere overlay */
 #overlay {
 	display: none !important;
