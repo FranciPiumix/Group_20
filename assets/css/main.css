@@ -328,53 +328,6 @@ a:hover {
 	transform: none !important;
 }
 
-/* per togliere overlay */
-#overlay {
-	display: none !important;
-}
-
-/* Overlay */
-
-@-moz-keyframes overlay {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-@-webkit-keyframes overlay {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-@-ms-keyframes overlay {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-@keyframes overlay {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
 html,
 body {
 	height: 100%;
@@ -382,22 +335,6 @@ body {
 	padding: 0;
 	overflow-y: auto;
 	font-family: sans-serif;
-}
-
-#overlay {
-	background-image: url("images/overlay.svg");
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	opacity: 1;
-	/* oppure 0 se lo animi */
-	pointer-events: none;
-	z-index: 0;
 }
 
 #wrapper {
