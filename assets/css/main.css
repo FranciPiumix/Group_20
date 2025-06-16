@@ -927,7 +927,7 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,0.2);
   position: absolute;
   top: 10px;            /* Posizionalo in alto */
-  left: 10px;           /* Spostalo un po’ a sinistra */
+  left: 20px;           /* Spostalo un po’ a sinistra */
   z-index: 1002;        /* Sopra altri elementi */
   color: black; /* <-- aggiunto per testo nero */
 }
