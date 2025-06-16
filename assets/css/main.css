@@ -226,7 +226,7 @@ a:hover {
 .icon:before {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	display: block;
+	display: inline-block;
 	font-style: normal;
 	font-variant: normal;
 	text-rendering: auto;
@@ -625,6 +625,7 @@ opacity: 1;
 
 #header nav {
 	margin: 1.5em 0 0 0;
+	text-align: center;
 }
 
 #header nav li {
@@ -640,7 +641,8 @@ opacity: 1;
 	-webkit-transform: translate3d(0, 0, 0);
 	-ms-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
-	display: block;
+	display: inline-block;
+	vertical-align: middle; 
 	height: 5.35em;
 	line-height: 5.885em;
 	opacity: 0;
