@@ -1,84 +1,122 @@
-<!DOCTYPE HTML>
-<html>
-
+<!DOCTYPE html>
+<html lang="it">
 <head>
-	<title>Webmap</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Webmap</title>
 
-	<!-- Stili principali -->
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.5.0/dist/ol.css" />
+  <!-- Stili -->
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.5.0/ol.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol-layerswitcher@4.1.1/dist/ol-layerswitcher.css" />
 
-	<!-- OpenLayers JS -->
-	<script src="https://cdn.jsdelivr.net/npm/ol@v10.5.0/dist/ol.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      font-family: Arial, sans-serif;
+    }
 
-	<style>
-		body {
-			background-color: #ffffff !important;
-		}
+    #map {
+      height: 80vh;
+      width: 100%;
+    }
 
-		#bg,
-		#overlay {
-			display: none !important;
-		}
+    .ol-popup {
+      position: absolute;
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #cccccc;
+      bottom: 12px;
+      left: -50px;
+      min-width: 200px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
 
-		#top-right-nav {
-			position: absolute;
-			top: 1em;
-			right: 1em;
-			z-index: 1000;
-		}
+    .ol-popup:after,
+    .ol-popup:before {
+      top: 100%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
 
-		#top-right-nav a {
-			color: #003366;
-			font-size: 1.5em;
-		}
+    .ol-popup-closer {
+      text-decoration: none;
+      position: absolute;
+      top: 2px;
+      right: 8px;
+    }
 
-		#header {
-			text-align: center;
-			padding: 2em 0 1em 0;
-		}
+    #legend-content {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: white;
+      padding: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      z-index: 999;
+    }
 
-		#header h1 {
-			color: #003366 !important;
-		}
+    .legend-color {
+      display: inline-block;
+      width: 20px;
+      height: 10px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
 
-		#map {
-			height: 80vh;
-			width: 100%;
-			margin: 0 auto;
-		}
-	</style>
+    #popup {
+      z-index: 1001;
+    }
+
+    #header {
+      text-align: center;
+      padding: 1em 0;
+    }
+
+    #top-right-nav {
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      z-index: 1000;
+    }
+
+    #top-right-nav a {
+      font-size: 1.5em;
+      color: #003366;
+    }
+  </style>
 </head>
+<body>
+  <div id="top-right-nav">
+    <a href="index.html" title="Back to Home">&#8962;</a>
+  </div>
 
-<body class="is-preload">
-	<div id="wrapper">
+  <header id="header">
+    <h1>Webmap</h1>
+  </header>
 
-		<!-- Home Icon -->
-		<nav id="top-right-nav">
-			<ul>
-				<li>
-					<a href="index.html" class="icon solid fa-home" title="Back to Home">
-						<span class="label">Home</span>
-					</a>
-				</li>
-			</ul>
-		</nav>
+  <div id="map"></div>
 
-		<!-- Header -->
-		<header id="header">
-			<h1>Webmap</h1>
-		</header>
+  <!-- Popup -->
+  <div id="popup" class="ol-popup">
+    <a href="#" id="popup-closer" class="ol-popup-closer">✖</a>
+    <div id="popup-content"></div>
+  </div>
 
-		<!-- Mappa -->
-		<div id="map"></div>
+  <!-- Legenda -->
+  <div id="legend-content"></div>
 
-	</div>
-
-	<!-- Tuo script caricato DOPO che tutta la pagina è pronta -->
-	<script src="assets/js/map fede.js"></script>
-
+  <!-- Script -->
+  <script src="https://cdn.jsdelivr.net/npm/ol@v10.5.0/dist/ol.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ol-layerswitcher@4.1.1/dist/ol-layerswitcher.js"></script>
+  <script type="module" src="assets/js/map-fede.js"></script>
 </body>
-
 </html>
