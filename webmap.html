@@ -12,16 +12,28 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol-layerswitcher@4.1.1/dist/ol-layerswitcher.css" />
 
 	<style>
-		html,
-		body {
+		* {
 			margin: 0;
 			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
 			height: 100%;
+			width: 100%;
 			font-family: Arial, sans-serif;
+			overflow: hidden;
+		}
+
+		body {
+			display: flex;
+			flex-direction: column;
+			background-color: #fff;
 		}
 
 		#map {
-			height: 100vh;
+			flex: 1;
 			width: 100%;
 		}
 
@@ -35,7 +47,6 @@
 			left: -50px;
 			min-width: 200px;
 			box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-			z-index: 1001;
 		}
 
 		.ol-popup:after,
@@ -75,6 +86,10 @@
 			vertical-align: middle;
 		}
 
+		#popup {
+			z-index: 1001;
+		}
+
 		#top-right-nav {
 			position: absolute;
 			top: 1em;
@@ -85,16 +100,20 @@
 		#top-right-nav a {
 			font-size: 1.5em;
 			color: #003366;
+			margin-left: 10px;
 			text-decoration: none;
 		}
 	</style>
 </head>
 
 <body>
+	<!-- Pulsanti in alto a destra -->
 	<div id="top-right-nav">
-		<a href="index.html" title="Back to Home">&#8962;</a>
+		<a href="#" id="fullscreen-toggle" title="Schermo intero">⛶</a>
+		<a href="index.html" title="Torna alla home">&#8962;</a>
 	</div>
 
+	<!-- Mappa -->
 	<div id="map"></div>
 
 	<!-- Popup -->
@@ -106,10 +125,22 @@
 	<!-- Legenda -->
 	<div id="legend-content"></div>
 
-	<!-- Script -->
+	<!-- Script OpenLayers + LayerSwitcher -->
 	<script src="https://cdn.jsdelivr.net/npm/ol@v10.5.0/dist/ol.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/ol-layerswitcher@4.1.1/dist/ol-layerswitcher.js"></script>
 	<script src="assets/js/map-fede.js"></script>
+
+	<!-- Script fullscreen -->
+	<script>
+		document.getElementById('fullscreen-toggle').addEventListener('click', function (e) {
+			e.preventDefault();
+			if (!document.fullscreenElement) {
+				document.documentElement.requestFullscreen();
+			} else {
+				document.exitFullscreen();
+			}
+		});
+	</script>
 </body>
 
 </html>

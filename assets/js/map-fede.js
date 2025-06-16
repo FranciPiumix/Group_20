@@ -65,8 +65,8 @@ var overlayLayers = new ol.layer.Group({
 });
 
 // Map initialization
-var mapOrigin = ol.proj.fromLonLat([-74, 4.6]);
-var zoomLevel = 5;
+var mapOrigin = ol.proj.fromLonLat([15.4730, 49.8175]); // Centro della Repubblica Ceca
+var zoomLevel = 7;
 var map = new ol.Map({
     target: 'map',
     layers: [basemapLayers, overlayLayers],
