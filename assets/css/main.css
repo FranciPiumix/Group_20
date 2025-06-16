@@ -226,7 +226,7 @@ a:hover {
 .icon:before {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	display: inline-block;
+	display: block;
 	font-style: normal;
 	font-variant: normal;
 	text-rendering: auto;
@@ -343,12 +343,13 @@ body {
 }
 
 #main {
-	position: relative;
-	z-index: 10;
-	padding: 2em;
-	min-height: 100vh;
-	background: transparent;
-	text-align: center;
+    position: relative;
+    z-index: 10;
+    padding: 2em;
+    min-height: auto; /* o rimuovi questa proprietà */
+    background: transparent;
+    text-align: center;
+    overflow: visible; /* se serve */
 }
 
 /* Header */
@@ -593,7 +594,7 @@ opacity: 1;
 	-ms-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
 	cursor: default;
-	display: inline-block;
+	display: block;
 	opacity: 0;
 	position: relative;
 	text-align: center;
@@ -612,7 +613,7 @@ opacity: 1;
 #header h1 {
 	margin: 0 auto;
 	display: block;
-	width: fit-content;
+	width: auto;
 	text-align: center;
 }
 
@@ -639,7 +640,7 @@ opacity: 1;
 	-webkit-transform: translate3d(0, 0, 0);
 	-ms-transform: translate3d(0, 0, 0);
 	transform: translate3d(0, 0, 0);
-	display: inline-block;
+	display: block;
 	height: 5.35em;
 	line-height: 5.885em;
 	opacity: 0;
@@ -722,7 +723,7 @@ opacity: 1;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	-webkit-touch-callout: none;
 	border: 0;
-	display: inline-block;
+	display: block;
 }
 
 #header nav a:before {
