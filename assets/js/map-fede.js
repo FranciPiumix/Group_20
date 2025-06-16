@@ -49,7 +49,7 @@ var colombiaRivers = new ol.layer.Image({
     maxResolution: 5000
 });
 
-// Layer groups
+// Base and overlay layer groups
 var basemapLayers = new ol.layer.Group({
     title: 'Base Maps',
     layers: [osm]
@@ -64,7 +64,7 @@ var overlayLayers = new ol.layer.Group({
     ]
 });
 
-// Map Initialization
+// Map initialization
 var mapOrigin = ol.proj.fromLonLat([-74, 4.6]);
 var zoomLevel = 5;
 var map = new ol.Map({
@@ -77,7 +77,7 @@ var map = new ol.Map({
     projection: 'EPSG:3857'
 });
 
-// Add controls manually (no ol.control.defaults)
+// Controls
 map.addControl(new ol.control.ScaleLine());
 map.addControl(new ol.control.FullScreen());
 map.addControl(new ol.control.MousePosition({
@@ -87,11 +87,11 @@ map.addControl(new ol.control.MousePosition({
     placeholder: '0.0000, 0.0000'
 }));
 
-// Add LayerSwitcher control (version globale)
+// LayerSwitcher control
 var layerSwitcher = new ol.control.LayerSwitcher();
 map.addControl(layerSwitcher);
 
-// Stadia Basemaps
+// Stadia basemaps
 var stamenWatercolor = new ol.layer.Tile({
     title: 'Stamen Watercolor',
     type: 'base',
@@ -170,6 +170,7 @@ fetch(wfsUrl)
     .catch(function (error) {
         console.error('WFS fetch error:', error);
     });
+
 overlayLayers.getLayers().extend([wfsLayer]);
 
 // Static GeoJSON layer: Colombia Municipalities
@@ -193,7 +194,11 @@ var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
 
 var popup = new ol.Overlay({
-    element: container
+    element: container,
+    autoPan: true,
+    autoPanAnimation: {
+        duration: 250
+    }
 });
 map.addOverlay(popup);
 
@@ -221,13 +226,13 @@ map.on('singleclick', function (event) {
     }
 });
 
-// Pointer move to change cursor
+// Change mouse cursor when hovering features
 map.on('pointermove', function (event) {
     var hit = map.hasFeatureAtPixel(event.pixel);
     map.getTargetElement().style.cursor = hit ? 'pointer' : '';
 });
 
-// Legend code - simplified (without async fetch of legend graphics)
+// Legend generation
 var legendHTMLString = '<ul>';
 function getLegendElement(title, color) {
     return '<li><span class="legend-color" style="background-color:' + color + '"></span>' + title + '</li>';
@@ -238,7 +243,7 @@ overlayLayers.getLayers().forEach(function (layer) {
     var title = layer.get('title');
     var color = null;
     if (source instanceof ol.source.ImageWMS) {
-        // For simplicity, skip dynamic legend fetch here
+        // For simplicity, no legend graphic fetching here
         color = '#cccccc';
     } else if (layer.getStyle && layer.getStyle()) {
         var style = layer.getStyle();
