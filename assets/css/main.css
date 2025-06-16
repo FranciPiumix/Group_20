@@ -664,6 +664,13 @@ body {
 	line-height: 1em;
 }
 
+#header h1 {
+	margin: 0 auto;
+	display: block;
+	width: fit-content;
+	text-align: center;
+}
+
 #header p {
 	font-size: 1.25em;
 	margin: 0.75em 0 0.25em 0;
@@ -917,19 +924,25 @@ body {
 
 /* Mouse coordinates display */
 .custom-control {
-  background: rgba(255, 255, 255, 0.8);
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  width: auto;          /* Lascia che la larghezza si adatti al contenuto */
-  max-width: fit-content;
-  white-space: nowrap;  /* Non va a capo */
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-  position: absolute;
-  top: 10px;            /* Posizionalo in alto */
-  left: 20px;           /* Spostalo un po’ a sinistra */
-  z-index: 1002;        /* Sopra altri elementi */
-  color: black; /* <-- aggiunto per testo nero */
+	background: rgba(255, 255, 255, 0.8);
+	padding: 4px 8px;
+	border-radius: 4px;
+	font-size: 12px;
+	width: auto;
+	/* Lascia che la larghezza si adatti al contenuto */
+	max-width: fit-content;
+	white-space: nowrap;
+	/* Non va a capo */
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+	position: absolute;
+	top: 10px;
+	/* Posizionalo in alto */
+	left: 20px;
+	/* Spostalo un po’ a sinistra */
+	z-index: 1002;
+	/* Sopra altri elementi */
+	color: black;
+	/* <-- aggiunto per testo nero */
 }
 
 /* Wide */
