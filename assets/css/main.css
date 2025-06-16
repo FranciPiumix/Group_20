@@ -634,6 +634,66 @@ body {
 	}
 }
 
+@keyframes fadeUp {
+	0% {
+		transform: translateY(1em);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+: translateY(0);
+opacity: 1;
+}
+}
+
+✅ B. Anima in ordine: css Copia Modifica
+
+/* Header title */
+#header h1 {
+	animation: fadeUp 1s ease-out forwards;
+	animation-delay: 0.5s;
+	opacity: 0;
+}
+
+/* Sottotitolo */
+#header .subtitle {
+	animation: fadeUp 1s ease-out forwards;
+	animation-delay: 1.2s;
+	opacity: 0;
+}
+
+/* Ogni sezione (a cascata) */
+.result-section {
+	opacity: 0;
+	animation: fadeUp 1s ease-out forwards;
+}
+
+/* Ritardo per ogni sezione */
+.result-section:nth-of-type(1) {
+	animation-delay: 2s;
+}
+
+.result-section:nth-of-type(2) {
+	animation-delay: 2.4s;
+}
+
+.result-section:nth-of-type(3) {
+	animation-delay: 2.8s;
+}
+
+.result-section:nth-of-type(4) {
+	animation-delay: 3.2s;
+}
+
+.result-section:nth-of-type(5) {
+	animation-delay: 3.6s;
+}
+
 .boxes-container .box {
 	opacity: 0;
 	transform: translate3d(0, 1em, 0);
