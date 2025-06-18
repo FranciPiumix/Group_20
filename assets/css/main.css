@@ -583,6 +583,31 @@ opacity: 1;
 	animation-delay: 3.9s;
 }
 
+.cascade-item {
+	opacity: 0;
+	animation: fadeUp 0.8s ease-out forwards;
+}
+
+.cascade-item:nth-child(1) {
+	animation-delay: 0.3s;
+}
+
+.cascade-item:nth-child(2) {
+	animation-delay: 0.6s;
+}
+
+.cascade-item:nth-child(3) {
+	animation-delay: 0.9s;
+}
+
+.cascade-item:nth-child(4) {
+	animation-delay: 1.2s;
+}
+
+.cascade-item:nth-child(5) {
+	animation-delay: 1.5s;
+}
+
 #header {
 	-moz-animation: header 1s 2.25s forwards;
 	-webkit-animation: header 1s 2.25s forwards;
