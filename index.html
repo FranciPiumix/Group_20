@@ -17,28 +17,64 @@
 	</noscript>
 
 	<style>
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			overflow: hidden;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		#wrapper {
+			text-align: center;
+			max-width: 960px;
+			width: 100%;
+			padding: 2em;
+		}
+
+		#bg,
+		#overlay {
+			display: none;
+		}
+
 		#header h1 {
 			color: #f6b26b;
 		}
 
+		#header nav ul {
+			display: flex;
+			gap: 1.5em;
+			justify-content: center;
+			padding: 0;
+			margin-top: 1.5em;
+		}
+
+		#header nav ul li {
+			list-style: none;
+		}
+
 		#header nav ul li a {
 			color: #003366;
-			border: 2px solid #003366;
-			border-radius: 100%;
-			padding: 0.75em;
-			display: inline-block;
-			transition: background-color 0.3s ease;
+			font-size: 1.5em;
+			transition: color 0.3s ease;
 		}
 
 		#header nav ul li a:hover {
-			background-color: #003366;
-			color: white;
+			color: #f6b26b;
+		}
+
+		#header>p:first-of-type {
+			color: #003366;
+			font-weight: bold;
 		}
 
 		#header p.description {
-			color: #f6b26b;
+			color: #003366;
 		}
 	</style>
+
 
 </head>
 
