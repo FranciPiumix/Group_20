@@ -15,6 +15,31 @@
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
+
+	<style>
+		#header h1 {
+			color: #f6b26b;
+		}
+
+		#header nav ul li a {
+			color: #003366;
+			border: 2px solid #003366;
+			border-radius: 100%;
+			padding: 0.75em;
+			display: inline-block;
+			transition: background-color 0.3s ease;
+		}
+
+		#header nav ul li a:hover {
+			background-color: #003366;
+			color: white;
+		}
+
+		#header p.description {
+			color: #f6b26b;
+		}
+	</style>
+
 </head>
 
 <body class="is-preload">
@@ -39,7 +64,8 @@
 					</ul>
 				</nav>
 
-				<p style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto;">
+				<p class="description"
+					style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto;">
 					Mapping air quality in Czech Republic and explore how it relates to land cover and population
 					exposure.
 				</p>
