@@ -141,17 +141,6 @@
 
 	<!-- Script fullscreen -->
 	<script>
-		document.getElementById('fullscreen-toggle').addEventListener('click', function (e) {
-			e.preventDefault();
-			if (!document.fullscreenElement) {
-				document.documentElement.requestFullscreen();
-			} else {
-				document.exitFullscreen();
-			}
-		});
-	</script>
-
-	<script>
 		const fullscreenToggle = document.getElementById('fullscreen-toggle');
 		const header = document.getElementById('header');
 
@@ -168,13 +157,14 @@
 			}
 		});
 
-		// In caso di uscita fullscreen manuale (es. ESC), rimetti l'header visibile
+		// Se esci da fullscreen con ESC o altro, mostra di nuovo header
 		document.addEventListener('fullscreenchange', () => {
 			if (!document.fullscreenElement) {
 				header.style.display = 'block';
 			}
 		});
 	</script>
+
 
 </body>
 
