@@ -59,6 +59,11 @@
 			flex-direction: column;
 			gap: 2em;
 			padding: 2em;
+
+
+			/*  Imposta una larghezza massima centrata senza sfondo */
+			max-width: 1200px;
+			margin: 0 auto;
 		}
 
 		.left-column {
@@ -94,6 +99,26 @@
 		.right-column p {
 			font-size: 1em;
 		}
+
+
+		/* Nuovo stile per contenitore mappa */
+		.map-container {
+			width: 800px;
+			height: 400px;
+			overflow: hidden;
+			position: relative;
+			margin: 0 auto;
+		}
+
+		.map-container img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			object-fit: none;
+			width: auto;
+			height: auto;
+		}
 	</style>
 </head>
 
@@ -126,72 +151,74 @@
 					</p>
 				</div>
 				<div class="left-column" style="border: none;">
-					<img src="images/primamappa.png" alt="Average Pollutant Map" style="max-width:100%; height:auto;">
+					<div class="map-container">
+						<img src="images/primamappa.png" alt="Average Pollutant Map">
+					</div>
 				</div>
-			</div>
 
-			<!-- Section 2 -->
-			<div class="result-section">
-				<div class="right-column">
-					<h2>Yearly Concentration Maps</h2>
-					<p>
-						Maps reclassified pollutant values into five categories, enabling visual temporal comparisons.
-					</p>
+				<!-- Section 2 -->
+				<div class="result-section">
+					<div class="right-column">
+						<h2>Yearly Concentration Maps</h2>
+						<p>
+							Maps reclassified pollutant values into five categories, enabling visual temporal
+							comparisons.
+						</p>
+					</div>
+					<div class="left-column">Map placeholder for: Yearly Concentration Maps</div>
 				</div>
-				<div class="left-column">Map placeholder for: Yearly Concentration Maps</div>
-			</div>
 
-			<!-- Section 3 -->
-			<div class="result-section">
-				<div class="right-column">
-					<h2>Annual Average Difference</h2>
-					<p>
-						Maps show pollutant differences compared to 2017–2021 mean to assess changes in air quality.
-					</p>
+				<!-- Section 3 -->
+				<div class="result-section">
+					<div class="right-column">
+						<h2>Annual Average Difference</h2>
+						<p>
+							Maps show pollutant differences compared to 2017–2021 mean to assess changes in air quality.
+						</p>
+					</div>
+					<div class="left-column">Map placeholder for: Annual Average Difference</div>
 				</div>
-				<div class="left-column">Map placeholder for: Annual Average Difference</div>
-			</div>
 
-			<!-- Section 4 -->
-			<div class="result-section">
-				<div class="right-column">
-					<h2>Urban Settlements</h2>
-					<p>Time-series statistics per urban land cover class.</p>
+				<!-- Section 4 -->
+				<div class="result-section">
+					<div class="right-column">
+						<h2>Urban Settlements</h2>
+						<p>Time-series statistics per urban land cover class.</p>
+					</div>
+					<div class="left-column" style="border: none;">
+						<img src="images/mean_trends_pm2p5.png" alt="Urban mean trends"
+							style="max-width:100%; height:auto;">
+					</div>
 				</div>
-				<div class="left-column" style="border: none;">
-					<img src="images/mean_trends_pm2p5.png" alt="Urban mean trends"
-						style="max-width:100%; height:auto;">
-				</div>
-			</div>
 
-			<!-- Section 5 -->
-			<div class="result-section">
-				<div class="right-column">
-					<h2>Population Exposure</h2>
-					<p>
-						Overlay of pollution and population data to estimate exposure to levels above WHO limits.
-					</p>
+				<!-- Section 5 -->
+				<div class="result-section">
+					<div class="right-column">
+						<h2>Population Exposure</h2>
+						<p>
+							Overlay of pollution and population data to estimate exposure to levels above WHO limits.
+						</p>
+					</div>
+					<div class="left-column" style="border: none;">
+						<img src="images/population_exposure_pm2p5.png" alt="Population Exposure"
+							style="max-width:100%; height:auto;">
+					</div>
 				</div>
-				<div class="left-column" style="border: none;">
-					<img src="images/population_exposure_pm2p5.png" alt="Population Exposure"
-						style="max-width:100%; height:auto;">
-				</div>
-			</div>
 
+			</div>
 		</div>
-	</div>
 
-	<!-- Footer -->
-	<footer id="footer">
-		<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-	</footer>
+		<!-- Footer -->
+		<footer id="footer">
+			<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+		</footer>
 
-	<script>
-		window.onload = function () { document.body.classList.remove('is-preload'); }
-		window.ontouchmove = function () { return false; }
-		window.onorientationchange = function () { document.body.scrollTop = 0; }
-	</script>
-	<script src="assets/js/main.js"></script>
+		<script>
+			window.onload = function () { document.body.classList.remove('is-preload'); }
+			window.ontouchmove = function () { return false; }
+			window.onorientationchange = function () { document.body.scrollTop = 0; }
+		</script>
+		<script src="assets/js/main.js"></script>
 </body>
 
 </html>
