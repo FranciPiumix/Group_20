@@ -150,6 +150,32 @@
 			}
 		});
 	</script>
+
+	<script>
+		const fullscreenToggle = document.getElementById('fullscreen-toggle');
+		const header = document.getElementById('header');
+
+		fullscreenToggle.addEventListener('click', function (e) {
+			e.preventDefault();
+			if (!document.fullscreenElement) {
+				document.documentElement.requestFullscreen().then(() => {
+					header.style.display = 'none';  // Nascondi header in fullscreen
+				});
+			} else {
+				document.exitFullscreen().then(() => {
+					header.style.display = 'block'; // Mostra header quando esci da fullscreen
+				});
+			}
+		});
+
+		// In caso di uscita fullscreen manuale (es. ESC), rimetti l'header visibile
+		document.addEventListener('fullscreenchange', () => {
+			if (!document.fullscreenElement) {
+				header.style.display = 'block';
+			}
+		});
+	</script>
+
 </body>
 
 </html>
