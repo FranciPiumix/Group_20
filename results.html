@@ -112,10 +112,13 @@
 
 		.map-container img {
 			position: absolute;
-			top: 0;
-			left: 0;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 			width: auto;
 			height: auto;
+			max-width: none;
+			max-height: none;
 		}
 	</style>
 </head>
@@ -150,81 +153,82 @@
 				</div>
 				<div class="left-column" style="border: none;">
 					<div class="map-container">
-						<img src="images/primamappa.png" alt="Average Pollutant Map">
+						<img src="images/primamappa.png" alt="Yearly average Maps">
 					</div>
-				</div>
-
-				<!-- Section 2 -->
-				<div class="result-section">
-					<div class="right-column">
-						<h2>Yearly Concentration Maps 2022</h2>
-						<p>
-							Maps reclassified pollutant values into five categories according to WHO guidelines
-						</p>
-					</div>
-					<div class="left-column" style="border: none;">
-						<div class="map-container">
-							<img src="images/secondamappa.png" alt="Yearly Concentration Maps">
-						</div>
-					</div>
-
 				</div>
 			</div>
 
-			<!-- Section 3 -->
+			<!-- Section 2 -->
 			<div class="result-section">
 				<div class="right-column">
-					<h2>Annual Average Difference</h2>
+					<h2>Yearly Concentration Maps 2022</h2>
 					<p>
-						Maps show pollutant differences compared to 2017–2021 mean to assess changes in air quality.
+						Maps reclassified pollutant values into five categories according to WHO guidelines
 					</p>
-					<div class="left-column" style="border: none;">
-						<div class="map-container">
-							<img src="images/terzamappa.png" alt="Yearly Concentration Maps">
-						</div>
-					</div>
 				</div>
-
-				<!-- Section 4 -->
-				<div class="result-section">
-					<div class="right-column">
-						<h2>Urban Settlements</h2>
-						<p>Time-series statistics per urban land cover class.</p>
-					</div>
-					<div class="left-column" style="border: none;">
-						<img src="images/mean_trends_pm2p5.png" alt="Urban mean trends"
-							style="max-width:100%; height:auto;">
-					</div>
-				</div>
-
-				<!-- Section 5 -->
-				<div class="result-section">
-					<div class="right-column">
-						<h2>Population Exposure</h2>
-						<p>
-							Overlay of pollution and population data to estimate exposure to levels above WHO limits.
-						</p>
-					</div>
-					<div class="left-column" style="border: none;">
-						<img src="images/population_exposure_pm2p5.png" alt="Population Exposure"
-							style="max-width:100%; height:auto;">
+				<div class="left-column" style="border: none;">
+					<div class="map-container">
+						<img src="images/secondamappa.png" alt="Yearly Concentration Maps">
 					</div>
 				</div>
 
 			</div>
 		</div>
 
-		<!-- Footer -->
-		<footer id="footer">
-			<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-		</footer>
+		<!-- Section 3 -->
+		<div class="result-section">
+			<div class="right-column">
+				<h2>Annual Average Difference</h2>
+				<p>
+					Maps show pollutant differences compared to 2017–2021 mean to assess changes in air quality.
+				</p>
+				<div class="left-column" style="border: none;">
+					<div class="map-container">
+						<img src="images/terzamappa.png" alt="Annual average Maps">
+					</div>
+				</div>
+			</div>
 
-		<script>
-			window.onload = function () { document.body.classList.remove('is-preload'); }
-			window.ontouchmove = function () { return false; }
-			window.onorientationchange = function () { document.body.scrollTop = 0; }
-		</script>
-		<script src="assets/js/main.js"></script>
+			<!-- Section 4 -->
+			<div class="result-section">
+				<div class="right-column">
+					<h2>Urban Settlements</h2>
+					<p>Time-series statistics per urban land cover class.</p>
+				</div>
+				<div class="left-column" style="border: none;">
+					<img src="images/mean_trends_pm2p5.png" alt="Urban mean trends"
+						style="max-width:100%; height:auto;">
+				</div>
+			</div>
+
+			<!-- Section 5 -->
+			<div class="result-section">
+				<div class="right-column">
+					<h2>Population Exposure</h2>
+					<p>
+						Overlay of pollution and population data to estimate exposure to levels above WHO limits.
+					</p>
+				</div>
+				<div class="left-column" style="border: none;">
+					<img src="images/population_exposure_pm2p5.png" alt="Population Exposure"
+						style="max-width:100%; height:auto;">
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+	</footer>
+
+	<script>
+		window.onload = function () { document.body.classList.remove('is-preload'); }
+		window.ontouchmove = function () { return false; }
+		window.onorientationchange = function () { document.body.scrollTop = 0; }
+	</script>
+	<script src="assets/js/main.js"></script>
 </body>
 
 </html>
