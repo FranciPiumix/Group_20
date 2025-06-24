@@ -59,17 +59,11 @@
 			flex-direction: column;
 			gap: 2em;
 			padding: 2em;
+
+
 			/*  Imposta una larghezza massima centrata senza sfondo */
 			max-width: 1200px;
 			margin: 0 auto;
-		}
-
-		.result-section {
-			display: flex;
-			flex-direction: row;
-			gap: 2em;
-			margin-bottom: 3em;
-			/* Aggiunge spazio tra le sezioni */
 		}
 
 		.left-column {
@@ -259,36 +253,38 @@
 								style="width: 100%; height: auto;">
 						</div>
 					</div>
-				</div>
 
 
-				<!-- Section 5 -->
-				<div class="result-section">
-					<div class="right-column">
-						<h2>Population Exposure</h2>
-						<p>
-							Overlay of pollution and population data to estimate exposure to levels above WHO limits.
-						</p>
-					</div>
-					<div class="left-column" style="border: none;">
-						<div class="map-container">
-							<img src="images/population_exposure_pm2p5.png" alt="Population Exposure" </div>
+					<!-- Section 5 -->
+					<div class="result-section">
+						<div class="right-column">
+							<h2>Population Exposure</h2>
+							<p>
+								Overlay of pollution and population data to estimate exposure to levels above WHO
+								limits.
+							</p>
 						</div>
+						<div class="left-column" style="border: none;">
+							<div class="map-container">
+								<img src="images/population_exposure_pm2p5.png" alt="Population Exposure" </div>
+							</div>
 
+						</div>
 					</div>
-				</div>
 
-				<!-- Footer -->
-				<footer id="footer">
-					<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-				</footer>
+					<!-- Footer -->
+					<footer id="footer">
+						<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5
+								UP</a>.</span>
+					</footer>
 
-				<script>
-					window.onload = function () { document.body.classList.remove('is-preload'); }
-					window.ontouchmove = function () { return false; }
-					window.onorientationchange = function () { document.body.scrollTop = 0; }
-				</script>
-				<script src="assets/js/main.js"></script>
+					<script>
+						window.onload = function () { document.body.classList.remove('is-preload'); }
+						window.ontouchmove = function () { return false; }
+						window.onorientationchange = function () { document.body.scrollTop = 0; }
+					</script>
+					<script src="assets/js/main.js"></script>
 </body>
+
 
 </html>
