@@ -59,11 +59,17 @@
 			flex-direction: column;
 			gap: 2em;
 			padding: 2em;
-
-
 			/*  Imposta una larghezza massima centrata senza sfondo */
 			max-width: 1200px;
 			margin: 0 auto;
+		}
+
+		.result-section {
+			display: flex;
+			flex-direction: row;
+			gap: 2em;
+			margin-bottom: 3em;
+			/* Aggiunge spazio tra le sezioni */
 		}
 
 		.left-column {
@@ -184,65 +190,74 @@
 						<img src="images/secondamappa.png" alt="Yearly Concentration Maps">
 					</div>
 				</div>
-
-			</div>
-		</div>
-
-		<!-- Section 3 -->
-		<div class="result-section">
-			<div class="right-column">
-				<h2>Annual Average Difference</h2>
-				<p>
-					How much the air quality in 2022 deviates from the recent 5 years average?
-					<br>
-					<br> As the maps tend to red, the higher the value compared to the 2017–2021 mean, on the contrary
-					blue areas indicate lower values, suggesting an improvement in air quality. No2 shows a general
-					improvement in 2022, with the exception of some areas in the capital region, Ostrava and the
-					south-wester border with Germany.
-					PM2.5 shows a sharper improvement, bigger improvements are displayes in in the easter part of the
-					region and around the main urban areas.
-					This could be related to the 2020-2021 Covid pandemic and reconnected to a global consistent annual
-					reduction trend.
-					Considering nitrogen dioxide is primarily emitted by combustion processes in industry and energy
-					supply and road traffic,
-					the effects of the lockdown might no be that meaningful.
-					Moreover, changes in energy use due to the war in Ukraine might have altered the use of coal or
-					other fuels in certain areas.
-				</p>
-				<div class="left-column" style="border: none;">
-					<div class="map-container">
-						<img src="images/terzamappa.png" alt="Annual average Maps">
-					</div>
-				</div>
 			</div>
 
-			<!-- Section 4 -->
+			<!-- Section 3 -->
 			<div class="result-section">
 				<div class="right-column">
-					<h2>Urban Settlements</h2>
-					<p>Time-series statistics per land cover (class 5: settlments).
+					<h2>Annual Average Difference</h2>
+					<p>
+						How much the air quality in 2022 deviates from the recent 5 years average?
 						<br>
-						<br> Urban settlements results from the classification of the land cover layer of 2022 according
-						to the IPCC Land Use Classification.
-						<br> Without conextualisation, looking at the graphs showing the mean trend values of NO₂ and
-						PM2.5 concentrations in urban areas, might be effortless.
-						Firstly as seen globaly, from 2013 to 2018 we find non-significant changes in fine particulate
-						matter and nitrogen dioxide, which mean values are almost
-						stable over the years, or at least they do not show clear patterns. No2 graphreveals a
-						significant drop in 2019 that can be attributed to the cumulative
-						effect of these air quality policies,
-						as well as a possible reduction in traffic, consistently with observed trends in other European
-						countries.
-						In both graphs the further decrease in 2020 corresponds with the onset of the COVID-19 pandemic,
-						when lockdowns and restrictions drastically reduced road traffic and
-						industrial activity, leading to a sharp, temporary reduction in pulliting emissions. The slight
-						rebound in 2021 and 2022 likely reflects the gradual resumption of activities
-						as pandemic restrictions eased.
+						<br> As the maps tend to red, the higher the value compared to the 2017–2021 mean, on the
+						contrary
+						blue areas indicate lower values, suggesting an improvement in air quality. No2 shows a general
+						improvement in 2022, with the exception of some areas in the capital region, Ostrava and the
+						south-wester border with Germany.
+						PM2.5 shows a sharper improvement, bigger improvements are displayes in in the easter part of
+						the
+						region and around the main urban areas.
+						This could be related to the 2020-2021 Covid pandemic and reconnected to a global consistent
+						annual
+						reduction trend.
+						Considering nitrogen dioxide is primarily emitted by combustion processes in industry and energy
+						supply and road traffic,
+						the effects of the lockdown might no be that meaningful.
+						Moreover, changes in energy use due to the war in Ukraine might have altered the use of coal or
+						other fuels in certain areas.
 					</p>
+					<div class="left-column" style="border: none;">
+						<div class="map-container">
+							<img src="images/terzamappa.png" alt="Annual average Maps">
+						</div>
+					</div>
 				</div>
-				<div class="left-column" style="border: none;">
-					<div class="map-container">
-						<img src="images/mean_trends.png" alt="Urban mean trends">
+
+				<!-- Section 4 -->
+				<div class="result-section">
+					<div class="right-column">
+						<h2>Urban Settlements</h2>
+						<p>Time-series statistics per land cover (class 5: settlments).
+							<br>
+							<br> Urban settlements results from the classification of the land cover layer of 2022
+							according
+							to the IPCC Land Use Classification.
+							<br> Without conextualisation, looking at the graphs showing the mean trend values of NO₂
+							and
+							PM2.5 concentrations in urban areas, might be effortless.
+							Firstly as seen globaly, from 2013 to 2018 we find non-significant changes in fine
+							particulate
+							matter and nitrogen dioxide, which mean values are almost
+							stable over the years, or at least they do not show clear patterns. No2 graphreveals a
+							significant drop in 2019 that can be attributed to the cumulative
+							effect of these air quality policies,
+							as well as a possible reduction in traffic, consistently with observed trends in other
+							European
+							countries.
+							In both graphs the further decrease in 2020 corresponds with the onset of the COVID-19
+							pandemic,
+							when lockdowns and restrictions drastically reduced road traffic and
+							industrial activity, leading to a sharp, temporary reduction in pulliting emissions. The
+							slight
+							rebound in 2021 and 2022 likely reflects the gradual resumption of activities
+							as pandemic restrictions eased.
+						</p>
+					</div>
+					<div class="left-column" style="border: none;">
+						<div class="map-container">
+							<img src="images/mean_trends.png" alt="Urban mean trends"
+								style="width: 100%; height: auto;">
+						</div>
 					</div>
 				</div>
 
