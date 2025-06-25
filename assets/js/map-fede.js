@@ -123,48 +123,6 @@ const layerSwitcher = new LayerSwitcher({
 });
 map.addControl(layerSwitcher);
 
-// ==============================
-// STYLE DINAMICO SUL LAYER SWITCHER
-// ==============================
-
-setTimeout(() => {
-    const ls = document.querySelector('.layer-switcher');
-    if (ls) {
-        ls.style.position = 'absolute';
-        ls.style.top = '3.5em';
-        ls.style.right = '0.5em';
-        ls.style.backgroundColor = 'white';
-        ls.style.color = 'black';
-        ls.style.border = '2px solid red';
-        ls.style.maxWidth = '250px';
-        ls.style.padding = '10px';
-        ls.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
-        ls.style.zIndex = '1000';
-
-        const uls = ls.querySelectorAll('ul');
-        uls.forEach(ul => {
-            ul.style.listStyle = 'none';
-            ul.style.paddingLeft = '0';
-            ul.style.margin = '0';
-        });
-
-        const lis = ls.querySelectorAll('li');
-        lis.forEach(li => {
-            li.style.marginTop = '0.3em';
-            li.style.color = 'black';
-        });
-
-        const labels = ls.querySelectorAll('label');
-        labels.forEach(label => {
-            label.style.color = 'black';
-        });
-
-        const inputs = ls.querySelectorAll('input[type="radio"], input[type="checkbox"]');
-        inputs.forEach(input => {
-            input.style.marginRight = '6px';
-        });
-    }
-}, 500);
 
 // ==============================
 // LEGENDA
