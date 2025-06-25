@@ -83,6 +83,9 @@ const overlayLayerList = [
     createWMSLayer('NO₂ – Concentration map 2020', 'gisgeoserver_20:CZ_no2_concentration_map_2020')
 ];
 
+// disattiva visibilità all’inizio per tutti
+overlayLayerList.forEach(layer => layer.setVisible(false));
+
 // **Raggruppiamo gli overlay in un gruppo con titolo**
 
 const overlayLayers = new ol.layer.Group({
