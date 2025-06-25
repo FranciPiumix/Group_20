@@ -93,7 +93,7 @@ const overlayLayers = new ol.layer.Group({
     title: 'Dati GeoServer',
     layers: geoLayers.map(layerInfo => new ol.layer.Image({
         title: layerInfo.title,
-        visible: false,
+        visible: true,
         source: new ol.source.ImageWMS({
             url: geoServerURL,
             params: {
