@@ -10,38 +10,32 @@
 	<title>Czech Republic analysis</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-
-	<noscript>
-
-	</noscript>
 	<link rel="stylesheet" crossorigin href="/assets/index-DXdMlppE.css">
+
 	<style>
-		/* Cambia il colore del bordo delle icone del menu */
-		#header nav a {
-			border-color: #003366 !important;
-		}
-	</style>
-	<style>
-		/* Disattiva layout fisso del tema Aerial */
-		#main {
-			position: static !important;
-			transform: none !important;
-			top: auto !important;
-			left: auto !important;
-			margin: 0 auto !important;
+		body {
+			overflow-y: auto !important;
+			height: auto !important;
 		}
 
 		#wrapper {
 			height: auto !important;
+			min-height: 100vh;
 		}
 
-		body,
-		html {
-			overflow-y: auto !important;
-			height: auto !important;
+		#main {
+			position: relative !important;
+			top: 0 !important;
+			transform: none !important;
+		}
+
+		#content {
+			background-color: white;
+			padding: 5em 2em;
 		}
 	</style>
 </head>
+
 
 <body class="is-preload">
 	<div id="wrapper">
@@ -52,7 +46,7 @@
 			<!-- Header -->
 			<header id="header">
 				<h1>Air Quality Analysis</h1>
-				<p>Methods &nbsp;&bull;&nbsp; Webmap &nbsp;&bull;&nbsp; Results &nbsp;&bull;&nbsp; Work Group</p>
+				<p>Methods &nbsp;&bull;&nbsp; Webmap &nbsp;&bull;&nbsp; Results &nbsp;&bull;&nbsp; Work team</p>
 				<nav>
 					<ul>
 						<li><a href="methods.html" class="icon solid fa-cogs"><span class="label">Methods</span></a>
@@ -66,7 +60,7 @@
 				</nav>
 
 				<p style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto;">
-					Mapping air quality in Czech Republic and exploring how it relates to land cover and population
+					Mapping air quality in Czech Republic and explore how it relates to land cover and population
 					exposure.
 				</p>
 			</header>
