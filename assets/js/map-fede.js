@@ -130,16 +130,30 @@ map.addControl(layerSwitcher);
 // LEGENDA
 // ==============================
 
-let legendHTMLString = '<ul>';
 function getLegendElement(title, color) {
     return `<li><span class="legend-color" style="background-color:${color}"></span>${title}</li>`;
 }
+
+function updateLegend() {
+    let legendHTML = '<ul>';
+    overlayLayerList.forEach(layer => {
+        if (layer.getVisible()) {
+            const title = layer.get('title');
+            legendHTML += getLegendElement(title, '#cccccc');
+        }
+    });
+    legendHTML += '</ul>';
+    document.getElementById('legend-content').innerHTML = legendHTML;
+}
+
+// Inizializza legenda al caricamento
+updateLegend();
+
+// Aggiorna legenda ogni volta che cambia la visibilità di un layer
 overlayLayerList.forEach(layer => {
-    const title = layer.get('title');
-    legendHTMLString += getLegendElement(title, '#cccccc');
+    layer.on('change:visible', updateLegend);
 });
-legendHTMLString += '</ul>';
-document.getElementById('legend-content').innerHTML = legendHTMLString;
+
 
 // ==============================
 // FULLSCREEN
