@@ -50,7 +50,7 @@ const basemapLayers = new ol.layer.Group({
 });
 
 // ==============================
-// WMS LAYERS (SEPARATED)
+// WMS LAYERS
 // ==============================
 
 const geoServerURL = 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_20/wms';
@@ -58,7 +58,7 @@ const geoServerURL = 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver
 function createWMSLayer(title, layerName) {
     return new ol.layer.Image({
         title: title,
-        visible: true,
+        visible: false,
         source: new ol.source.ImageWMS({
             url: geoServerURL,
             params: {
@@ -83,11 +83,6 @@ const overlayLayerList = [
     createWMSLayer('NO₂ – Concentration map 2020', 'gisgeoserver_20:CZ_no2_concentration_map_2020')
 ];
 
-// disattiva visibilità all’inizio per tutti
-overlayLayerList.forEach(layer => layer.setVisible(false));
-
-// **Raggruppiamo gli overlay in un gruppo con titolo**
-
 const overlayLayers = new ol.layer.Group({
     title: 'Overlay Layers',
     fold: 'open',
@@ -95,7 +90,7 @@ const overlayLayers = new ol.layer.Group({
 });
 
 // ==============================
-// MAP INITIALIZATION
+// MAP
 // ==============================
 
 const map = new ol.Map({
@@ -128,41 +123,57 @@ const layerSwitcher = new LayerSwitcher({
 });
 map.addControl(layerSwitcher);
 
-// seleziona il container
-const ls = document.querySelector('.layer-switcher');
+// ==============================
+// STYLE DINAMICO SUL LAYER SWITCHER
+// ==============================
 
-if (ls) {
-    // aggiungi style inline a UL dentro layer-switcher
-    const uls = ls.querySelectorAll('ul');
-    uls.forEach(ul => {
-        ul.style.listStyle = 'none';
-        ul.style.paddingLeft = '0';
-        ul.style.margin = '0';
-    });
+setTimeout(() => {
+    const ls = document.querySelector('.layer-switcher');
+    if (ls) {
+        ls.style.position = 'absolute';
+        ls.style.top = '3.5em';
+        ls.style.right = '0.5em';
+        ls.style.backgroundColor = 'white';
+        ls.style.color = 'black';
+        ls.style.border = '2px solid red';
+        ls.style.maxWidth = '250px';
+        ls.style.padding = '10px';
+        ls.style.boxShadow = '0 2px 6px rgba(0,0,0,0.2)';
+        ls.style.zIndex = '1000';
 
-    // aggiungi style inline a LI dentro layer-switcher
-    const lis = ls.querySelectorAll('li');
-    lis.forEach(li => {
-        li.style.marginTop = '0.3em';
-        li.style.color = 'black';
-    });
+        const uls = ls.querySelectorAll('ul');
+        uls.forEach(ul => {
+            ul.style.listStyle = 'none';
+            ul.style.paddingLeft = '0';
+            ul.style.margin = '0';
+        });
 
-    // aggiungi style inline a LABEL dentro layer-switcher
-    const labels = ls.querySelectorAll('label');
-    labels.forEach(label => {
-        label.style.color = 'black';
-    });
-}
+        const lis = ls.querySelectorAll('li');
+        lis.forEach(li => {
+            li.style.marginTop = '0.3em';
+            li.style.color = 'black';
+        });
+
+        const labels = ls.querySelectorAll('label');
+        labels.forEach(label => {
+            label.style.color = 'black';
+        });
+
+        const inputs = ls.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+        inputs.forEach(input => {
+            input.style.marginRight = '6px';
+        });
+    }
+}, 500);
 
 // ==============================
-// SIMPLE LEGEND
+// LEGENDA
 // ==============================
 
 let legendHTMLString = '<ul>';
 function getLegendElement(title, color) {
     return `<li><span class="legend-color" style="background-color:${color}"></span>${title}</li>`;
 }
-
 overlayLayerList.forEach(layer => {
     const title = layer.get('title');
     legendHTMLString += getLegendElement(title, '#cccccc');
@@ -171,7 +182,30 @@ legendHTMLString += '</ul>';
 document.getElementById('legend-content').innerHTML = legendHTMLString;
 
 // ==============================
-// INTERACTIVE CURSOR
+// FULLSCREEN
+// ==============================
+
+document.getElementById('fullscreen-toggle').addEventListener('click', function (e) {
+    e.preventDefault();
+    const header = document.getElementById('header');
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().then(() => {
+            header.style.display = 'none';
+        });
+    } else {
+        document.exitFullscreen().then(() => {
+            header.style.display = 'block';
+        });
+    }
+});
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+        document.getElementById('header').style.display = 'block';
+    }
+});
+
+// ==============================
+// CURSORE INTERATTIVO
 // ==============================
 
 map.on('pointermove', function (event) {
