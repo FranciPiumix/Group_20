@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" xmlns:sld="http://www.opengis.net/sld" version="1.0.0">
+<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:gml="http://www.opengis.net/gml" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" version="1.0.0">
   <UserLayer>
     <sld:LayerFeatureConstraints>
       <sld:FeatureTypeConstraint/>
@@ -15,12 +15,12 @@
               </sld:GrayChannel>
             </sld:ChannelSelection>
             <sld:ColorMap type="intervals">
-              <sld:ColorMapEntry label="&lt;= -5,0000" quantity="-5" color="#003366"/>
-              <sld:ColorMapEntry label="-5,0000 - -2,0000" quantity="-2" color="#6f8ead"/>
-              <sld:ColorMapEntry label="-2,0000 - 0,0000" quantity="0" color="#abd0e3"/>
-              <sld:ColorMapEntry label="0,0000 - 2,0000" quantity="2" color="#dcb8b4"/>
-              <sld:ColorMapEntry label="2,0000 - 5,0000" quantity="5" color="#ca6f7d"/>
-              <sld:ColorMapEntry label="> 5,0000" quantity="inf" color="#ca0020"/>
+              <sld:ColorMapEntry color="#003366" label="&lt;= -5,0000" quantity="-5"/>
+              <sld:ColorMapEntry color="#6f8ead" label="-5,0000 - -2,0000" quantity="-2"/>
+              <sld:ColorMapEntry color="#abd0e3" label="-2,0000 - 0,0000" quantity="0"/>
+              <sld:ColorMapEntry color="#dcb8b4" label="0,0000 - 2,0000" quantity="2"/>
+              <sld:ColorMapEntry color="#ca6f7d" label="2,0000 - 5,0000" quantity="5"/>
+              <sld:ColorMapEntry color="#ca0020" label="> 5,0000" quantity="inf"/>
             </sld:ColorMap>
           </sld:RasterSymbolizer>
         </sld:Rule>
