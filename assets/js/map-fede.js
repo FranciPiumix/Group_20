@@ -15,6 +15,7 @@ const stamenWatercolor = new ol.layer.Tile({
     visible: false,
     source: new ol.source.StadiaMaps({ layer: 'stamen_watercolor' })
 });
+
 const stamenToner = new ol.layer.Tile({
     title: 'Stamen Toner',
     type: 'base',
@@ -31,6 +32,7 @@ const esriTopoBasemap = new ol.layer.Tile({
         url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
     })
 });
+
 const esriWorldImagery = new ol.layer.Tile({
     title: 'ESRI World Imagery',
     type: 'base',
@@ -46,7 +48,6 @@ const basemapLayers = new ol.layer.Group({
     fold: 'open',
     layers: [osm, stamenWatercolor, stamenToner, esriTopoBasemap, esriWorldImagery]
 });
-
 
 // ==============================
 // WMS LAYERS (SEPARATED)
@@ -82,6 +83,13 @@ const overlayLayerList = [
     createWMSLayer('NO₂ – Concentration map 2020', 'gisgeoserver_20:CZ_no2_concentration_map_2020')
 ];
 
+// **Raggruppiamo gli overlay in un gruppo con titolo**
+
+const overlayLayers = new ol.layer.Group({
+    title: 'Overlay Layers',
+    fold: 'open',
+    layers: overlayLayerList
+});
 
 // ==============================
 // MAP INITIALIZATION
@@ -89,19 +97,19 @@ const overlayLayerList = [
 
 const map = new ol.Map({
     target: 'map',
-    layers: [basemapLayers, ...overlayLayerList],
+    layers: [basemapLayers, overlayLayers],
     view: new ol.View({
         center: ol.proj.fromLonLat([15.4730, 49.8175]),
         zoom: 7
     })
 });
 
-
 // ==============================
 // CONTROLS
 // ==============================
 
 map.addControl(new ol.control.ScaleLine());
+
 map.addControl(new ol.control.MousePosition({
     coordinateFormat: ol.coordinate.createStringXY(4),
     projection: 'EPSG:4326',
@@ -109,7 +117,6 @@ map.addControl(new ol.control.MousePosition({
     placeholder: '0.0000, 0.0000'
 }));
 
-// Invece di ol.control.LayerSwitcher:
 const layerSwitcher = new LayerSwitcher({
     activationMode: 'click',
     startActive: true,
@@ -133,7 +140,6 @@ overlayLayerList.forEach(layer => {
 });
 legendHTMLString += '</ul>';
 document.getElementById('legend-content').innerHTML = legendHTMLString;
-
 
 // ==============================
 // INTERACTIVE CURSOR
