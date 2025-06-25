@@ -78,11 +78,11 @@ const overlayLayerList = [
     createWMSLayer('NO₂ – Annual average 2022', 'gisgeoserver_20:CzechRepublic_average_no2_2022'),
     createWMSLayer('PM2.5 – Annual average 2022', 'gisgeoserver_20:CzechRepublic_average_pm2p5_2022'),
     createWMSLayer('NO₂ – Concentration map 2022', 'gisgeoserver_20:CZ_no2_concentration_map_2022'),
-    createWMSLayer('PM2.5 – Concentration map 2020', 'gisgeoserver_20:CZ_pm2p5_concentration_map_2020'),
     createWMSLayer('PM2.5 – Concentration map 2022', 'gisgeoserver_20:CZ_pm2p5_concentration_map_2022'),
-    createWMSLayer('NO₂ – Concentration map 2020', 'gisgeoserver_20:CZ_no2_concentration_map_2020'),
     createWMSLayer('PM2.5 AAD', 'gisgeoserver_20:pm2p5_AAD'),
     createWMSLayer('NO₂ AAD', 'gisgeoserver_20:no2_AAD')
+    createWMSLayer('NO₂ – Concentration map 2020', 'gisgeoserver_20:CZ_no2_concentration_map_2020'),
+    createWMSLayer('PM2.5 – Concentration map 2020', 'gisgeoserver_20:CZ_pm2p5_concentration_map_2020'),
 ];
 
 const overlayLayers = new ol.layer.Group({
@@ -103,6 +103,85 @@ const map = new ol.Map({
         zoom: 7
     })
 });
+
+// ==============================
+// POPUP
+// ==============================
+
+// Elementi popup dal DOM
+const container = document.getElementById('popup');
+const content = document.getElementById('popup-content');
+const closer = document.getElementById('popup-closer');
+
+// Crea overlay popup
+const popup = new ol.Overlay({
+    element: container,
+    autoPan: {
+        animation: {
+            duration: 250,
+        },
+    },
+});
+map.addOverlay(popup);
+
+// Chiudi popup cliccando la "x"
+closer.onclick = function () {
+    popup.setPosition(undefined);
+    closer.blur();
+    return false;
+};
+
+// Evento click mappa per GetFeatureInfo
+map.on('singleclick', function (evt) {
+    const coordinate = evt.coordinate;
+    const view = map.getView();
+    const viewResolution = view.getResolution();
+
+    // Trova il primo layer visibile tra gli overlay che supporta GetFeatureInfo
+    let url = null;
+    overlayLayerList.some(layer => {
+        if (layer.getVisible()) {
+            const source = layer.getSource();
+            url = source.getFeatureInfoUrl(
+                coordinate,
+                viewResolution,
+                'EPSG:3857', // proiezione mappa (modifica se usi altra)
+                { 'INFO_FORMAT': 'application/json' }
+            );
+            return !!url; // ferma il ciclo se url valido
+        }
+        return false;
+    });
+
+    if (url) {
+        fetch(url)
+            .then(response => response.json())
+            .then(data => {
+                let info = '';
+                if (data.features && data.features.length > 0) {
+                    // Prendi proprietà della prima feature (puoi personalizzare)
+                    const props = data.features[0].properties;
+                    info = '<ul>';
+                    for (const key in props) {
+                        info += `<li><strong>${key}:</strong> ${props[key]}</li>`;
+                    }
+                    info += '</ul>';
+                } else {
+                    info = '<p>No feature info found at this location.</p>';
+                }
+                content.innerHTML = info;
+                popup.setPosition(coordinate);
+            })
+            .catch(() => {
+                content.innerHTML = '<p>Error fetching feature info.</p>';
+                popup.setPosition(coordinate);
+            });
+    } else {
+        // Se nessun layer WMS visibile o nessuna info disponibile
+        popup.setPosition(undefined);
+    }
+});
+
 
 // ==============================
 // CONTROLS
