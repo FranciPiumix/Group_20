@@ -128,6 +128,32 @@ const layerSwitcher = new LayerSwitcher({
 });
 map.addControl(layerSwitcher);
 
+// seleziona il container
+const ls = document.querySelector('.layer-switcher');
+
+if (ls) {
+    // aggiungi style inline a UL dentro layer-switcher
+    const uls = ls.querySelectorAll('ul');
+    uls.forEach(ul => {
+        ul.style.listStyle = 'none';
+        ul.style.paddingLeft = '0';
+        ul.style.margin = '0';
+    });
+
+    // aggiungi style inline a LI dentro layer-switcher
+    const lis = ls.querySelectorAll('li');
+    lis.forEach(li => {
+        li.style.marginTop = '0.3em';
+        li.style.color = 'black';
+    });
+
+    // aggiungi style inline a LABEL dentro layer-switcher
+    const labels = ls.querySelectorAll('label');
+    labels.forEach(label => {
+        label.style.color = 'black';
+    });
+}
+
 // ==============================
 // SIMPLE LEGEND
 // ==============================

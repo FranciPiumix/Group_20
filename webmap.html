@@ -107,25 +107,6 @@
 		}
 	</style>
 
-	<style>
-		.ol-layerswitcher {
-			background-color: white !important;
-			color: black !important;
-			border: 2px solid red !important;
-			/* bordo rosso per evidenziare */
-			max-width: 300px !important;
-			font-size: 14px !important;
-			padding: 10px !important;
-			z-index: 2000 !important;
-		}
-
-		.ol-layerswitcher label {
-			color: black !important;
-			font-weight: bold !important;
-		}
-	</style>
-
-
 </head>
 
 <body>
@@ -153,6 +134,23 @@
 
 	<!-- Legenda -->
 	<div id="legend-content"></div>
+
+	<div class="layer-switcher" style="
+  position: absolute;
+  top: 3.5em;
+  right: 0.5em;
+  background-color: white !important;
+  color: black !important;
+  border: 2px solid red !important;
+  max-width: 250px !important;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2) !important;
+  z-index: 1000 !important;
+">
+		<!-- contenuto -->
+	</div>
+
+
 
 	<!-- Script OpenLayers + LayerSwitcher -->
 	<script src="https://cdn.jsdelivr.net/npm/ol@v10.5.0/dist/ol.js"></script>
