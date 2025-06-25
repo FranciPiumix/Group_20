@@ -47,6 +47,7 @@ const esriWorldImagery = new ol.layer.Tile({
 // Gruppo basemaps
 const basemapLayers = new ol.layer.Group({
     title: 'Basemaps',
+    fold: 'open',
     layers: [osm, stamenWatercolor, stamenToner, esriTopoBasemap, esriWorldImagery]
 });
 
@@ -91,6 +92,7 @@ const geoLayers = [
 // Creo i layer WMS
 const overlayLayers = new ol.layer.Group({
     title: 'Dati GeoServer',
+    fold: 'open',
     layers: geoLayers.map(layerInfo => new ol.layer.Image({
         title: layerInfo.title,
         visible: true,
