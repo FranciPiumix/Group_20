@@ -109,9 +109,14 @@ map.addControl(new ol.control.MousePosition({
     placeholder: '0.0000, 0.0000'
 }));
 
-const layerSwitcher = new ol.control.LayerSwitcher();
+// Invece di ol.control.LayerSwitcher:
+const layerSwitcher = new LayerSwitcher({
+    activationMode: 'click',
+    startActive: true,
+    tipLabel: 'Layers',
+    groupSelectStyle: 'children'
+});
 map.addControl(layerSwitcher);
-
 
 // ==============================
 // SIMPLE LEGEND
