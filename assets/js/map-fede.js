@@ -52,7 +52,7 @@ const basemapLayers = new ol.layer.Group({
 // ==============================
 // WMS LAYERS
 // ==============================
-
+// URL base GeoServer
 const geoServerURL = 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_20/wms';
 
 function createWMSLayer(title, layerName) {
@@ -80,7 +80,9 @@ const overlayLayerList = [
     createWMSLayer('NO₂ – Concentration map 2022', 'gisgeoserver_20:CZ_no2_concentration_map_2022'),
     createWMSLayer('PM2.5 – Concentration map 2020', 'gisgeoserver_20:CZ_pm2p5_concentration_map_2020'),
     createWMSLayer('PM2.5 – Concentration map 2022', 'gisgeoserver_20:CZ_pm2p5_concentration_map_2022'),
-    createWMSLayer('NO₂ – Concentration map 2020', 'gisgeoserver_20:CZ_no2_concentration_map_2020')
+    createWMSLayer('NO₂ – Concentration map 2020', 'gisgeoserver_20:CZ_no2_concentration_map_2020'),
+    createWMSLayer('PM2.5 AAD', 'gisgeoserver_20:pm2p5_AAD'),
+    createWMSLayer('NO₂ AAD', 'gisgeoserver_20:no2_AAD')
 ];
 
 const overlayLayers = new ol.layer.Group({
