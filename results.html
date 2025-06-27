@@ -140,6 +140,25 @@
 			max-width: none;
 			max-height: none;
 		}
+
+		.map-container-tiny {
+			width: 300px;
+			height: 450px;
+			overflow: hidden;
+			position: relative;
+			margin: 0 auto;
+		}
+
+		.map-container-tiny img {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: auto;
+			height: auto;
+			max-width: none;
+			max-height: none;
+		}
 	</style>
 </head>
 
@@ -280,17 +299,26 @@
 					<div class="result-section">
 						<div class="right-column">
 							<h2>Population Exposure</h2>
-							<p>
-								Overlay of pollution and population data to estimate exposure to levels above WHO
-								limits.
-							</p>
 						</div>
 						<div class="left-column" style="border: none;">
 							<div class="map-container-small">
 								<img src="images/primabavariate.png" alt="Population Exposure"
 									style="width: 100%; height: auto;">
 							</div>
+						</div>
+						<div class="left-column" style="border: none;">
+							<div class="map-container-tiny">
+								<img src="images/piechart.png" alt="graficotorta" style="width: 100%; height: auto;">
+							</div>
+						</div>
 
+						<!-- Right column: Testo -->
+						<div class="right-column">
+							<p>
+								Overlay of pollution and population data to estimate exposure to levels above WHO
+								limits.
+								<!-- Inserisci qui il testo che desideri -->
+							</p>
 						</div>
 					</div>
 
