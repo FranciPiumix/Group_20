@@ -141,12 +141,22 @@
 			max-height: none;
 		}
 
+		.image-text-pair {
+			display: flex;
+			align-items: flex-start;
+			justify-content: center;
+			gap: 2em;
+			margin-top: 2em;
+			flex-wrap: wrap;
+			/* per adattarsi su schermi piccoli */
+		}
+
 		.map-container-tiny {
 			width: 300px;
 			height: 450px;
-			overflow: hidden;
 			position: relative;
-			margin: 0 auto;
+			overflow: hidden;
+			flex-shrink: 0;
 		}
 
 		.map-container-tiny img {
@@ -154,10 +164,14 @@
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-			width: auto;
-			height: auto;
 			max-width: none;
 			max-height: none;
+		}
+
+		.text-container {
+			max-width: 600px;
+			text-align: left;
+			flex: 1;
 		}
 	</style>
 </head>
