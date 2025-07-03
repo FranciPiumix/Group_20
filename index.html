@@ -65,26 +65,6 @@
 			color: #003366;
 		}
 
-		#overlay {
-			position: fixed;
-			/* rimane fisso, copre lo sfondo */
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: rgba(255, 255, 255, 0.7);
-			z-index: 2;
-			/* meno di main:10 */
-			pointer-events: none;
-			opacity: 0;
-			transition: opacity 0.3s ease;
-		}
-
-		#overlay.active {
-			opacity: 1;
-			pointer-events: none;
-			/* così non blocca click */
-		}
 	</style>
 
 </head>
@@ -128,21 +108,6 @@
 
 		</div>
 	</div>
-
-	<script>
-		window.addEventListener('scroll', function () {
-			const overlay = document.getElementById('overlay');
-			const trigger = document.querySelector('.description');
-			const triggerBottom = trigger.getBoundingClientRect().bottom;
-
-			if (triggerBottom < 0) {
-				overlay.classList.add('active');
-			} else {
-				overlay.classList.remove('active');
-			}
-		});
-
-	</script>
 
 	<script src="assets/js/main.js"></script>
 </body>
