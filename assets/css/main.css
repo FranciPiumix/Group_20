@@ -601,7 +601,7 @@ body {
 	animation-delay: 1.5s;
 }
 
-.infobox {
+.info-box {
   opacity: 0;
   animation: fadeUp 1s ease-out forwards;
   animation-delay: 4.8s;
