@@ -6,6 +6,7 @@
     <title>Methods</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" />
     </noscript>
@@ -75,23 +76,25 @@
         <div id="overlay"></div>
         <div id="main">
 
-            <!-- Top-right Home Icon -->
             <nav id="top-right-nav">
                 <ul>
                     <li>
-                        <a href="index.html" title="Back to Home">
-                            <span class="label">Home</span>
+                        <a href="index.html" title="Back to Home" style="color: white; font-size: 1.5em;">
+                            <i class="fas fa-home"></i> <!-- Icona Home -->
+                            <span class="label" style="margin-left: 5px;">Home</span>
                         </a>
                     </li>
                 </ul>
             </nav>
+
 
             <!-- Header -->
             <header id="header">
                 <h1>Methods</h1>
                 <p>This section describes the <b>methodology</b> adopted in our GIS project focused on <b>air
                         quality</b> monitoring in the Czech Republic. It includes data <b>collection</b>,
-                    <b>preprocessing</b>, and spatial <b>analysis</b> techniques.</p>
+                    <b>preprocessing</b>, and spatial <b>analysis</b> techniques.
+                </p>
             </header>
 
             <!-- Main content -->
@@ -115,10 +118,12 @@
                             <li><b>Data Acquisition:</b> We used CAMS reanalysis data for <b>NO₂</b> and <b>PM2.5</b>,
                                 ESA CCI Land Cover (2022), and WorldPop population data (2020).</li>
                             <li><b>Preprocessing:</b> Data were <b>clipped</b> to the Czech Republic, land cover was
-                                <b>reclassified</b>, and all layers were <b>harmonized</b> to the same projection.</li>
+                                <b>reclassified</b>, and all layers were <b>harmonized</b> to the same projection.
+                            </li>
                             <li><b>Analysis:</b> We performed <b>time-series</b> statistics from 2013 to 2022, examined
                                 <b>land use</b> correlations, and calculated <b>population exposure</b> based on WHO
-                                thresholds.</li>
+                                thresholds.
+                            </li>
                             <li><b>Visualization:</b> Outputs included <b>bivariate maps</b>, annual average maps, and
                                 interactive <b>WebGIS</b> tools.</li>
                         </ol>

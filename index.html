@@ -6,7 +6,7 @@
 	<title>Czech Republic Analysis</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
 	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -18,6 +18,9 @@
 			padding: 0;
 			height: 100%;
 			overflow-y: auto !important;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background-color: #003366;
+			color: #003366;
 		}
 
 		#wrapper {
@@ -25,26 +28,81 @@
 			width: 100%;
 			padding: 2em;
 			margin: 0 auto;
+			position: relative;
+			z-index: 10;
+			background: transparent;
 		}
 
 		#main {
 			position: relative;
-			z-index: 1;
+			z-index: 10;
 		}
 
-		#bg,
+		/* Sfondo mappa */
+		#bg {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 0;
+			pointer-events: none;
+			background-color: #003366;
+			/* qui potresti mettere la mappa come background-image se vuoi */
+		}
+
+		/* Overlay bianco sopra bg */
 		#overlay {
 			position: fixed;
 			top: 0;
 			left: 0;
 			width: 100%;
 			height: 100%;
-			z-index: -1;
+			background: transparent;
+			transition: background 0.5s ease;
 			pointer-events: none;
+			z-index: 5;
+		}
+
+		#overlay.active {
+			background: rgba(255, 255, 255, 0.95);
+			pointer-events: auto;
+			z-index: 1000;
+		}
+
+		/* Testo sopra l'overlay */
+		#overlay-content {
+			position: fixed;
+			top: 60px;
+			left: 50%;
+			transform: translateX(-50%);
+			max-width: 800px;
+			padding: 2rem 3rem;
+			background: rgba(255, 255, 255, 0.98);
+			border-radius: 12px;
+			box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+			font-size: 1.1rem;
+			line-height: 1.6;
+			color: #003366;
+			font-weight: 600;
+			display: none;
+			z-index: 1010;
+			text-align: left;
+			user-select: text;
+		}
+
+		#overlay-content.active {
+			display: block;
+		}
+
+		#overlay-content strong {
+			color: #0055aa;
+			font-weight: 900;
 		}
 
 		#header h1 {
 			color: #f6b26b;
+			text-align: center;
 		}
 
 		#header nav ul {
@@ -66,10 +124,12 @@
 			display: flex;
 			align-items: center;
 			gap: 0.5em;
+			transition: transform 0.3s ease, color 0.3s ease;
 		}
 
 		#header nav ul li a:hover {
 			color: #0055aa;
+			transform: scale(1.2);
 		}
 
 		#header p.description {
@@ -77,39 +137,7 @@
 			font-weight: bold;
 			max-width: 600px;
 			margin: 1.5em auto 0 auto;
-		}
-
-		/* Testo sopra l'overlay bianco */
-		#overlay {
-			background: transparent;
-			transition: background 0.5s ease;
-			pointer-events: none;
-			z-index: -1;
-		}
-
-		#overlay.active {
-			background: rgba(255, 255, 255, 0.9);
-			pointer-events: auto;
-			z-index: 1000;
-		}
-
-		#overlay-content {
-			position: fixed;
-			top: 150px;
-			left: 50%;
-			transform: translateX(-50%);
-			color: #003366;
-			font-size: 1.5em;
-			font-weight: bold;
-			z-index: 1010;
-			display: none;
-			max-width: 90%;
 			text-align: center;
-			pointer-events: none;
-		}
-
-		#overlay-content.active {
-			display: block;
 		}
 	</style>
 </head>
@@ -118,7 +146,29 @@
 
 	<div id="bg"></div>
 	<div id="overlay"></div>
-	<div id="overlay-content">Questo è un testo blu che appare dopo lo scroll.</div>
+
+	<div id="overlay-content">
+		<p><strong>Why study the air quality?</strong><br />
+			Air pollution is a major global health issue, responsible for millions of premature deaths each year. While
+			national governments play a key role in implementing regulations and policies to address pollution, the
+			problem
+			is urban in nature. In recent years, air quality has gained increased attention and become a key component
+			of
+			governments’ agenda, as cities recognise its critical role in shaping public health, livability, and
+			environmental justice.
+		</p>
+		<p><strong>Where does air pollution come from?</strong><br />
+			The main sources include human activities such as <strong>industrial emissions</strong>, <strong>vehicle
+				exhaust</strong>, burning of fossil fuels, agricultural activities, and natural events like wildfires
+			and volcanic eruptions. Consequently, environmental variables such as <strong>land cover</strong> directly
+			influence the pollution.
+		</p>
+		<p><strong>Which pollutants?</strong><br />
+			Pollutants with the strongest evidence for public health concern include particulate matter (<strong>PM
+				2.5</strong>), nitrogen dioxide (<strong>NO2</strong>), and carbon monoxide (<strong>CO</strong>).
+			Particulate matter with a diameter of 2.5µm or less is referred to as <strong>PM2.5</strong>.
+		</p>
+	</div>
 
 	<div id="wrapper">
 		<div id="main">
