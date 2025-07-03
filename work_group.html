@@ -7,12 +7,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
 	<style>
-		/* Testo e icone blu */
+		.section-links {
+			margin-top: 1em;
+			letter-spacing: 0.02em;
+			font-size: 0.95em;
+			color: white;
+			font-weight: 500;
+		}
+
+		/* Testi bianchi in tutta la pagina */
+		#main,
+		#main * {
+			color: white !important;
+		}
+
+		/* Sfondo sfocato e opacizzato */
+		body.workgroup #bg {
+			filter: blur(6px);
+			opacity: 0.6;
+		}
+
 		body,
 		h1,
 		h2,
@@ -24,8 +42,9 @@
 		a,
 		span,
 		div {
-			color:white !important;
+			color: white !important;
 		}
+
 
 		/* Link nella top-right icon (home) */
 		#top-right-nav a {
@@ -36,14 +55,6 @@
 		.team-member .email a {
 			color: white;
 			text-decoration: underline;
-		}
-
-		.section-links {
-			margin-top: 1em;
-			letter-spacing: 0.02em;
-			font-size: 0.95em;
-			color: white;
-			font-weight: 500;
 		}
 
 		.team-container {
