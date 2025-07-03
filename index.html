@@ -1,160 +1,135 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="it">
 
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Czech Republic analysis</title>
-
-	<!-- Font Awesome per le icone -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-		integrity="sha512-dyZt0r1OYs1RHJ/9dq0hXHO0k5DYRJld6r0bRTFY27YB4bb00P7z8mX2mKl0tjY4t+Un3UcXZp2fS3tMj/kGvA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
 
 	<style>
-		/* Reset e base */
 		html,
 		body {
-			margin: 0;
-			padding: 0;
 			height: 100%;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			background: #fff;
-			color: #003366;
+			margin: 0;
 			overflow-y: auto;
-			/* abilita scroll verticale */
+			display: block;
+			position: relative;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
 
 		#wrapper {
-			max-width: 960px;
-			margin: 0 auto;
-			padding: 2em 1em;
 			text-align: center;
+			max-width: 960px;
+			width: 100%;
+			padding: 2em;
 		}
 
-		/* Titolo principale */
-		h1 {
+		#header h1 {
 			color: #f6b26b;
 			margin-bottom: 0.2em;
 		}
 
-		/* Sottotitoli testuali separati da pallini */
-		#subtitles {
-			font-weight: bold;
-			margin-bottom: 1em;
-			font-size: 1.1em;
+		/* Primo paragrafo (Methods • Results ...) */
+		#header>p:first-of-type {
 			color: #003366;
+			font-weight: bold;
+			font-size: 1.1em;
+			margin-bottom: 1.5em;
 		}
 
-		/* Navigazione con icone e testo */
-		nav ul {
-			list-style: none;
+		#header nav ul {
+			display: flex;
+			gap: 1.5em;
+			justify-content: center;
 			padding: 0;
 			margin: 0 0 2em 0;
-			display: flex;
-			justify-content: center;
-			gap: 2.5em;
 		}
 
-		nav ul li {
+		#header nav ul li {
+			list-style: none;
 			text-align: center;
 		}
 
-		nav ul li a {
+		#header nav ul li a {
 			color: #003366;
-			font-size: 1.8em;
+			font-size: 1.5em;
+			transition: color 0.3s ease;
 			text-decoration: none;
 			display: inline-block;
-			transition: color 0.3s ease;
 		}
 
-		nav ul li a:hover {
+		#header nav ul li a:hover {
 			color: #0055aa;
 		}
 
-		/* Testo sotto le icone */
-		nav ul li a .label {
+		/* Label sotto icone */
+		#header nav ul li a .label,
+		#header nav ul li a .results,
+		#header nav ul li a .webmap,
+		#header nav ul li a .workgroup {
 			display: block;
 			font-size: 0.9em;
 			margin-top: 0.3em;
 			font-weight: 600;
 		}
 
-		/* Paragrafo descrittivo */
-		p.description {
+		#header p.description {
+			color: #003366;
+			margin-top: 1.5em;
 			max-width: 600px;
-			margin: 0 auto 3em auto;
+			margin-left: auto;
+			margin-right: auto;
 			font-weight: bold;
 			font-size: 1.1em;
 			line-height: 1.4;
-			color: #003366;
-		}
-
-		/* Footer semplice */
-		footer {
-			font-size: 0.9em;
-			color: #666;
-			margin-bottom: 2em;
-		}
-
-		footer a {
-			color: #666;
-			text-decoration: none;
-		}
-
-		footer a:hover {
-			text-decoration: underline;
 		}
 	</style>
 </head>
 
-<body>
+<body class="is-preload">
 	<div id="wrapper">
-		<header>
-			<h1>Air quality analysis</h1>
+		<div id="bg"></div>
+		<div id="main">
 
-			<p id="subtitles">Methods &bull; Results &bull; Webmap &bull; Work team</p>
+			<!-- Header -->
+			<header id="header">
+				<h1>Air quality analysis</h1>
 
-			<nav>
-				<ul>
-					<li>
-						<a href="methods.html" title="Methods">
-							<i class="fas fa-cogs"></i>
-							<span class="label">Methods</span>
-						</a>
-					</li>
-					<li>
-						<a href="results.html" title="Results">
-							<i class="fas fa-chart-bar"></i>
-							<span class="label">Results</span>
-						</a>
-					</li>
-					<li>
-						<a href="webmap.html" title="Webmap">
-							<i class="fas fa-map"></i>
-							<span class="label">Webmap</span>
-						</a>
-					</li>
-					<li>
-						<a href="work_group.html" title="Work team">
-							<i class="fas fa-user"></i>
-							<span class="label">Work team</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
+				<p>Methods &nbsp;&bull;&nbsp; Results &nbsp;&bull;&nbsp; Webmap &nbsp;&bull;&nbsp; Work team</p>
 
-			<p class="description">
-				Mapping air quality in Czech Republic and exploring how it relates to land cover and population
-				exposure.
-			</p>
-		</header>
+				<nav>
+					<ul>
+						<li><a href="methods.html" class="icon solid fa-cogs" title="Methods"><span
+									class="label">Methods</span></a></li>
+						<li><a href="results.html" class="icon fa-chart-bar" title="Results"><span
+									class="results">Results</span></a></li>
+						<li><a href="webmap.html" class="icon fa-map" title="Webmap"><span
+									class="webmap">Webmap</span></a></li>
+						<li><a href="work_group.html" class="icon fa-user" title="Work team"><span
+									class="workgroup">Work team</span></a></li>
+					</ul>
+				</nav>
 
-		<footer>
-			<span>&copy; Untitled. Design: <a href="http://html5up.net" target="_blank" rel="noopener">HTML5
-					UP</a>.</span>
-		</footer>
+				<p class="description">
+					Mapping air quality in Czech Republic and exploring how it relates to land cover and population
+					exposure.
+				</p>
+			</header>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+			</footer>
+
+		</div>
 	</div>
+
+	<script src="assets/js/main.js"></script>
 </body>
 
 </html>
