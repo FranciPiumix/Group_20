@@ -100,6 +100,14 @@
 			font-size: 1em;
 		}
 
+		.section-links {
+			margin-top: 1em;
+			letter-spacing: 0.02em;
+			font-size: 0.95em;
+			color: #003366;
+			/* colore leggibile su sfondo bianco */
+			font-weight: 500;
+		}
 
 		/* Nuovo stile per contenitore mappa */
 		.map-container {
@@ -190,7 +198,7 @@
 	<!-- Header -->
 	<header id="header">
 		<h1>Results</h1>
-		<p style="color: black;">What has been found out: main takeaways</p>
+		<p class="section-links">What has been found out: main takeaways</p>
 	</header>
 
 	<!-- Wrapper -->
@@ -331,46 +339,60 @@
 
 							<div class="text-container">
 								<p>
-									The assessment of population exposure to air pollutants in the Czech Republic 
-									for 2020 reveals a differentiated distribution across five exposure classes, with class 
-									1 representing the lowest exposure (below 58,669 inhabitants) and class 5 the highest 
-									(up to 65,965 inhabitants). The pie charts indicate that for PM2.5, 57.1% of the population 
-									is exposed to lower pollutant classes, while 42.9% experience higher exposure levels. For NO2, 
-									the population is almost evenly split, with 50.8% in higher exposure classes and 49.2% in lower ones.
+									The assessment of population exposure to air pollutants in the Czech Republic
+									for 2020 reveals a differentiated distribution across five exposure classes, with
+									class
+									1 representing the lowest exposure (below 58,669 inhabitants) and class 5 the
+									highest
+									(up to 65,965 inhabitants). The pie charts indicate that for PM2.5, 57.1% of the
+									population
+									is exposed to lower pollutant classes, while 42.9% experience higher exposure
+									levels. For NO2,
+									the population is almost evenly split, with 50.8% in higher exposure classes and
+									49.2% in lower ones.
 									<br>
-									The spatial maps show that most inhabitants reside in areas with medium PM2.5 concentrations, 
-									suggesting that while extreme exposures are limited, a significant portion of the population is still 
-									subject to non-negligible pollution levels. The population class map further highlights that higher population 
-									densities tend to coincide with higher pollutant concentrations, especially in urban and industrial regions.
-									<br> The bivariate maps provide additional insight by overlaying pollutant concentrations with population density. 
-									The NO2 bivariate map shows that high concentrations of NO2 are strongly associated with densely populated urban areas, 
-									indicating that city dwellers are more likely to be exposed to elevated NO2 levels. In contrast, the PM2.5 bivariate 
-									map displays a broader spatial spread, with medium to high concentrations affecting both urban and some peri-urban areas,
-									 suggesting a more diffuse source profile for PM2.5, possibly including regional transport and secondary formation processes.
+									The spatial maps show that most inhabitants reside in areas with medium PM2.5
+									concentrations,
+									suggesting that while extreme exposures are limited, a significant portion of the
+									population is still
+									subject to non-negligible pollution levels. The population class map further
+									highlights that higher population
+									densities tend to coincide with higher pollutant concentrations, especially in urban
+									and industrial regions.
+									<br> The bivariate maps provide additional insight by overlaying pollutant
+									concentrations with population density.
+									The NO2 bivariate map shows that high concentrations of NO2 are strongly associated
+									with densely populated urban areas,
+									indicating that city dwellers are more likely to be exposed to elevated NO2 levels.
+									In contrast, the PM2.5 bivariate
+									map displays a broader spatial spread, with medium to high concentrations affecting
+									both urban and some peri-urban areas,
+									suggesting a more diffuse source profile for PM2.5, possibly including regional
+									transport and secondary formation processes.
 								</p>
 							</div>
-						<div class="left-column" style="border: none;">
-							<div class="map-container-small">
-								<img src="images/bivariate.png" alt="bivariate map"
-									style="width: 100%; height: auto;">
+							<div class="left-column" style="border: none;">
+								<div class="map-container-small">
+									<img src="images/bivariate.png" alt="bivariate map"
+										style="width: 100%; height: auto;">
+								</div>
 							</div>
 						</div>
-					</div>
 
 
 
-					<!-- Footer -->
-					<footer id="footer">
-						<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5
-								UP</a>.</span>
-					</footer>
+						<!-- Footer -->
+						<footer id="footer">
+							<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5
+									UP</a>.</span>
+						</footer>
 
-					<script>
-						window.onload = function () { document.body.classList.remove('is-preload'); }
-						window.ontouchmove = function () { return false; }
-						window.onorientationchange = function () { document.body.scrollTop = 0; }
-					</script>
-					<script src="assets/js/main.js"></script>
+						<script>
+							window.onload = function () { document.body.classList.remove('is-preload'); }
+							window.ontouchmove = function () { return false; }
+							window.onorientationchange = function () { document.body.scrollTop = 0; }
+						</script>
+						<script src="assets/js/main.js"></script>
 </body>
 
 
