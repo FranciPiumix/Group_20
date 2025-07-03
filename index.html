@@ -1,114 +1,160 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="it">
 
 <head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Czech Republic analysis</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+
+	<!-- Font Awesome per le icone -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+		integrity="sha512-dyZt0r1OYs1RHJ/9dq0hXHO0k5DYRJld6r0bRTFY27YB4bb00P7z8mX2mKl0tjY4t+Un3UcXZp2fS3tMj/kGvA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<style>
+		/* Reset e base */
 		html,
 		body {
-			height: 100%;
 			margin: 0;
-			overflow-y: auto;
-			display: block;
-			position: relative;
+			padding: 0;
+			height: 100%;
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: #fff;
+			color: #003366;
+			overflow-y: auto;
+			/* abilita scroll verticale */
 		}
 
 		#wrapper {
-			text-align: center;
 			max-width: 960px;
-			width: 100%;
-			padding: 2em;
+			margin: 0 auto;
+			padding: 2em 1em;
+			text-align: center;
 		}
 
-		#header h1 {
+		/* Titolo principale */
+		h1 {
 			color: #f6b26b;
+			margin-bottom: 0.2em;
 		}
 
-		#header nav ul {
-			display: flex;
-			gap: 1.5em;
-			justify-content: center;
-			padding: 0;
-			margin-top: 1.5em;
-		}
-
-		#header nav ul li {
-			list-style: none;
-		}
-
-		#header nav ul li a {
+		/* Sottotitoli testuali separati da pallini */
+		#subtitles {
+			font-weight: bold;
+			margin-bottom: 1em;
+			font-size: 1.1em;
 			color: #003366;
-			font-size: 1.5em;
-			transition: color 0.3s ease;
-			text-decoration: none;
 		}
 
-		#header nav ul li a:hover {
+		/* Navigazione con icone e testo */
+		nav ul {
+			list-style: none;
+			padding: 0;
+			margin: 0 0 2em 0;
+			display: flex;
+			justify-content: center;
+			gap: 2.5em;
+		}
+
+		nav ul li {
+			text-align: center;
+		}
+
+		nav ul li a {
+			color: #003366;
+			font-size: 1.8em;
+			text-decoration: none;
+			display: inline-block;
+			transition: color 0.3s ease;
+		}
+
+		nav ul li a:hover {
 			color: #0055aa;
 		}
 
-		#header>p:first-of-type {
-			color: #003366;
+		/* Testo sotto le icone */
+		nav ul li a .label {
+			display: block;
+			font-size: 0.9em;
+			margin-top: 0.3em;
+			font-weight: 600;
+		}
+
+		/* Paragrafo descrittivo */
+		p.description {
+			max-width: 600px;
+			margin: 0 auto 3em auto;
 			font-weight: bold;
-		}
-
-		#header p.description {
+			font-size: 1.1em;
+			line-height: 1.4;
 			color: #003366;
 		}
 
-	</style>
+		/* Footer semplice */
+		footer {
+			font-size: 0.9em;
+			color: #666;
+			margin-bottom: 2em;
+		}
 
+		footer a {
+			color: #666;
+			text-decoration: none;
+		}
+
+		footer a:hover {
+			text-decoration: underline;
+		}
+	</style>
 </head>
 
-<body class="is-preload">
+<body>
 	<div id="wrapper">
-		<div id="bg"></div>
-		<div id="main">
+		<header>
+			<h1>Air quality analysis</h1>
 
-			<!-- Header -->
-			<header id="header">
-				<h1>Air quality analysis</h1>
-				<p>Methods &nbsp;&bull;&nbsp; Results &nbsp;&bull;&nbsp; Webmap &nbsp;&bull;&nbsp; Work team</p>
-				<nav>
-					<ul>
-						<li><a href="methods.html" class="icon solid fa-cogs"><span class="label">Methods</span></a>
-						</li>
-						<li><a href="results.html" class="icon fa-chart-bar"><span class="results">results</span></a>
-						</li>
-						<li><a href="webmap.html" class="icon fa-map"><span class="webmap">Facebook</span></a></li>
-						<li><a href="work_group.html" class="icon fa-user"><span class="workgroup">Email</span></a></li>
-					</ul>
-				</nav>
+			<p id="subtitles">Methods &bull; Results &bull; Webmap &bull; Work team</p>
 
-				<p class="description"
-					style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: bold;">
-					Mapping air quality in Czech Republic and exploring how it relates to land cover and population
-					exposure.
-				</p>
-			</header>
+			<nav>
+				<ul>
+					<li>
+						<a href="methods.html" title="Methods">
+							<i class="fas fa-cogs"></i>
+							<span class="label">Methods</span>
+						</a>
+					</li>
+					<li>
+						<a href="results.html" title="Results">
+							<i class="fas fa-chart-bar"></i>
+							<span class="label">Results</span>
+						</a>
+					</li>
+					<li>
+						<a href="webmap.html" title="Webmap">
+							<i class="fas fa-map"></i>
+							<span class="label">Webmap</span>
+						</a>
+					</li>
+					<li>
+						<a href="work_group.html" title="Work team">
+							<i class="fas fa-user"></i>
+							<span class="label">Work team</span>
+						</a>
+					</li>
+				</ul>
+			</nav>
 
-			<section>
-				<p style="height: 1500px;"></p>
-			</section>
+			<p class="description">
+				Mapping air quality in Czech Republic and exploring how it relates to land cover and population
+				exposure.
+			</p>
+		</header>
 
-			<!-- Footer -->
-			<footer id="footer">
-				<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-			</footer>
-
-		</div>
+		<footer>
+			<span>&copy; Untitled. Design: <a href="http://html5up.net" target="_blank" rel="noopener">HTML5
+					UP</a>.</span>
+		</footer>
 	</div>
-
-	<script src="assets/js/main.js"></script>
 </body>
 
 </html>
