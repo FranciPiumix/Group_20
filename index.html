@@ -19,18 +19,18 @@
 	<style>
 		html,
 		body {
-			height: 100%;
+			height: auto;
 			margin: 0;
-			overflow-y: scroll;
-			display: block;
+			padding: 0;
+			overflow-x: hidden;
 		}
-
 
 		#wrapper {
 			text-align: center;
 			max-width: 960px;
 			width: 100%;
 			padding: 2em;
+			margin: 0 auto;
 		}
 
 		#header h1 {
@@ -58,7 +58,6 @@
 
 		#header nav ul li a:hover {
 			color: #003366;
-			/* resta blu anche su hover */
 		}
 
 		#header>p:first-of-type {
@@ -69,9 +68,20 @@
 		#header p.description {
 			color: #003366;
 		}
+
+		.info-box {
+			background-color: rgba(255, 255, 255, 0.9);
+			border-radius: 1em;
+			padding: 2em;
+			margin: 3em auto;
+			max-width: 700px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			text-align: left;
+			color: #003366;
+			font-size: 1.05em;
+			line-height: 1.6;
+		}
 	</style>
-
-
 </head>
 
 <body class="is-preload">
@@ -82,7 +92,7 @@
 
 			<!-- Header -->
 			<header id="header">
-				<h1>Air Quality Analysis</h1>
+				<h1>Air quality analysis</h1>
 				<p>Methods &nbsp;&bull;&nbsp; Results &nbsp;&bull;&nbsp; Webmap &nbsp;&bull;&nbsp; Work team</p>
 				<nav>
 					<ul>
@@ -91,16 +101,43 @@
 						<li><a href="results.html" class="icon fa-chart-bar"><span class="results">results</span></a>
 						</li>
 						<li><a href="webmap.html" class="icon fa-map"><span class="webmap">Facebook</span></a></li>
-						<li><a href="work_group.html" class="icon fa-user"><span class="workgroup">Email</span></a>
-						</li>
+						<li><a href="work_group.html" class="icon fa-user"><span class="workgroup">Email</span></a></li>
 					</ul>
 				</nav>
 
 				<p class="description"
 					style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: bold;">
 					Mapping air quality in Czech Republic and exploring how it relates to land cover and population
-					exposure. </p>
+					exposure.
+				</p>
 			</header>
+
+			<!-- Info Box -->
+			<div class="info-box">
+				<p><strong>Why study the air quality?</strong><br>
+					Air pollution is a major global health issue, responsible for millions of premature deaths each
+					year. While national governments play a key role in implementing regulations and policies to address
+					pollution, the problem is <strong>urban in nature</strong>. In recent years, <strong>air
+						quality</strong> has gained increased attention and become a key component of governments’
+					agenda, as cities recognise its critical role in shaping <strong>public health</strong>,
+					<strong>livability</strong>, and <strong>environmental justice</strong>.
+				</p>
+
+				<p><strong>Where does air pollution come from?</strong><br>
+					The main sources include human activities such as <strong>industrial emissions</strong>,
+					<strong>vehicle exhaust</strong>, <strong>burning of fossil fuels</strong>, <strong>agricultural
+						activities</strong>, and natural events like <strong>wildfires</strong> and <strong>volcanic
+						eruptions</strong>. Consequently, <strong>environmental variables</strong> such as <strong>land
+						cover</strong> directly influence the pollution.
+				</p>
+
+				<p><strong>Which pollutants?</strong><br>
+					Pollutants with the strongest evidence for public health concern include <strong>particulate matter
+						(PM2.5)</strong>, <strong>nitrogen dioxide (NO₂)</strong>, and <strong>carbon monoxide
+						(CO)</strong>. Particulate matter with a diameter of 2.5µm or less is referred to as
+					<strong>PM2.5</strong>.
+				</p>
+			</div>
 
 			<!-- Footer -->
 			<footer id="footer">
@@ -109,10 +146,15 @@
 
 		</div>
 	</div>
+
 	<script>
-		window.onload = function () { document.body.classList.remove('is-preload'); }
-		window.ontouchmove = function () { return false; }
-		window.onorientationchange = function () { document.body.scrollTop = 0; }
+		window.onload = function () {
+			document.body.classList.remove('is-preload');
+		}
+		window.ontouchmove = null;
+		window.onorientationchange = function () {
+			document.body.scrollTop = 0;
+		}
 	</script>
 
 	<script src="assets/js/main.js"></script>
