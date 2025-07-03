@@ -1,10 +1,5 @@
 <!DOCTYPE HTML>
-<!--
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<html lang="it">
 
 <head>
 	<title>Czech Republic analysis</title>
@@ -71,19 +66,24 @@
 		}
 
 		#overlay {
-			position: absolute;
-			top: 80px;
-			/* esempio, parti più in basso */
+			position: fixed;
+			top: 0;
+			/* parte in alto della viewport */
 			left: 0;
-			width: 100%;
-			height: calc(100% - 80px);
-			/* tutto lo spazio da top fino a fine pagina */
+			width: 100vw;
+			height: 100vh;
 			background: rgba(255, 255, 255, 0.7);
 			z-index: 5;
 			pointer-events: none;
+			opacity: 0;
+			transition: opacity 0.5s ease;
+		}
+
+		#overlay.active {
+			opacity: 1;
+			pointer-events: auto;
 		}
 	</style>
-
 
 </head>
 
@@ -104,15 +104,15 @@
 						<li><a href="results.html" class="icon fa-chart-bar"><span class="results">results</span></a>
 						</li>
 						<li><a href="webmap.html" class="icon fa-map"><span class="webmap">Facebook</span></a></li>
-						<li><a href="work_group.html" class="icon fa-user"><span class="workgroup">Email</span></a>
-						</li>
+						<li><a href="work_group.html" class="icon fa-user"><span class="workgroup">Email</span></a></li>
 					</ul>
 				</nav>
 
 				<p class="description"
 					style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: bold;">
 					Mapping air quality in Czech Republic and exploring how it relates to land cover and population
-					exposure. </p>
+					exposure.
+				</p>
 			</header>
 
 			<section>
@@ -126,6 +126,7 @@
 
 		</div>
 	</div>
+
 	<script>
 		window.onload = function () {
 			document.body.classList.remove('is-preload');
@@ -133,23 +134,15 @@
 
 		window.addEventListener('scroll', function () {
 			const overlay = document.getElementById('overlay');
-			const overlayContent = document.getElementById('overlay-content');
-			const trigger = document.querySelector('.description');
+			const scrollY = window.scrollY || window.pageYOffset;
 
-			const triggerBottom = trigger.getBoundingClientRect().bottom;
-
-			if (triggerBottom < 0) {
+			// Attiva overlay dopo 200px di scroll
+			if (scrollY > 200) {
 				overlay.classList.add('active');
-				overlayContent.classList.add('active');
 			} else {
 				overlay.classList.remove('active');
-				overlayContent.classList.remove('active');
 			}
 		});
-
-		window.onorientationchange = function () {
-			document.body.scrollTop = 0;
-		};
 	</script>
 
 	<script src="assets/js/main.js"></script>
