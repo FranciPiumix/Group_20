@@ -71,21 +71,19 @@
 
 		#overlay {
 			position: fixed;
-			top: 0;
+			/* rimane fisso sullo schermo */
+			top: 100vh;
 			left: 0;
 			width: 100vw;
+			/* tutta la larghezza della viewport */
 			height: 100vh;
+			/* tutta l'altezza della viewport */
 			background: rgba(255, 255, 255, 0.7);
+			/* bianco semi-trasparente */
 			z-index: 5;
+			/* sopra il background (z-index: -1) e sotto #main (z-index: 10) */
 			pointer-events: none;
-			opacity: 0;
-			transition: opacity 0.4s ease;
-		}
-
-		#overlay.active {
-			opacity: 1;
-			pointer-events: auto;
-			/* opzionale, se vuoi bloccare interazioni */
+			/* lascia passare click e interazioni sotto */
 		}
 	</style>
 
@@ -100,7 +98,7 @@
 
 			<!-- Header -->
 			<header id="header">
-				<h1>Air Quality Analysis</h1>
+				<h1>Air quality analysis</h1>
 				<p>Methods &nbsp;&bull;&nbsp; Results &nbsp;&bull;&nbsp; Webmap &nbsp;&bull;&nbsp; Work team</p>
 				<nav>
 					<ul>
@@ -138,13 +136,17 @@
 
 		window.addEventListener('scroll', function () {
 			const overlay = document.getElementById('overlay');
-			const scrollPosition = window.scrollY || window.pageYOffset;
-			const viewportHeight = window.innerHeight;
+			const overlayContent = document.getElementById('overlay-content');
+			const trigger = document.querySelector('.description');
 
-			if (scrollPosition > viewportHeight) {
+			const triggerBottom = trigger.getBoundingClientRect().bottom;
+
+			if (triggerBottom < 0) {
 				overlay.classList.add('active');
+				overlayContent.classList.add('active');
 			} else {
 				overlay.classList.remove('active');
+				overlayContent.classList.remove('active');
 			}
 		});
 
@@ -152,7 +154,6 @@
 			document.body.scrollTop = 0;
 		};
 	</script>
-
 
 	<script src="assets/js/main.js"></script>
 </body>
