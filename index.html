@@ -23,6 +23,7 @@
 			margin: 0;
 			overflow-y: auto;
 			display: block;
+			position: relative;
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 		}
 
@@ -71,13 +72,12 @@
 
 		#overlay {
 			position: absolute;
-			/* non fixed */
 			top: 80px;
-			/* parte più in basso rispetto all'inizio della pagina */
+			/* esempio, parti più in basso */
 			left: 0;
 			width: 100%;
 			height: calc(100% - 80px);
-			/* occupa il resto della pagina */
+			/* tutto lo spazio da top fino a fine pagina */
 			background: rgba(255, 255, 255, 0.7);
 			z-index: 5;
 			pointer-events: none;
