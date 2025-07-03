@@ -66,11 +66,13 @@
 		}
 
 		#overlay {
-			position: fixed;
-			top: 0;
+			position: absolute;
+			top: 150px;
+			/* inizia a 150px dall'alto della pagina */
 			left: 0;
-			width: 100vw;
-			height: 100vh;
+			width: 100%;
+			height: calc(100% - 150px);
+			/* altezza rimanente */
 			background: rgba(255, 255, 255, 0.7);
 			z-index: 9999;
 			pointer-events: none;
@@ -130,7 +132,6 @@
 		window.addEventListener('scroll', function () {
 			const overlay = document.getElementById('overlay');
 			const trigger = document.querySelector('.description');
-
 			const triggerBottom = trigger.getBoundingClientRect().bottom;
 
 			if (triggerBottom < 0) {
