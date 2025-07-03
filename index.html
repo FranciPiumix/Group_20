@@ -68,15 +68,14 @@
 		#overlay {
 			position: fixed;
 			top: 0;
-			/* parte in alto della viewport */
 			left: 0;
 			width: 100vw;
 			height: 100vh;
 			background: rgba(255, 255, 255, 0.7);
-			z-index: 5;
+			z-index: 9999;
 			pointer-events: none;
 			opacity: 0;
-			transition: opacity 0.5s ease;
+			transition: opacity 0.3s ease;
 		}
 
 		#overlay.active {
@@ -128,21 +127,19 @@
 	</div>
 
 	<script>
-		window.onload = function () {
-			document.body.classList.remove('is-preload');
-		};
-
 		window.addEventListener('scroll', function () {
 			const overlay = document.getElementById('overlay');
-			const scrollY = window.scrollY || window.pageYOffset;
+			const trigger = document.querySelector('.description');
 
-			// Attiva overlay dopo 200px di scroll
-			if (scrollY > 200) {
+			const triggerBottom = trigger.getBoundingClientRect().bottom;
+
+			if (triggerBottom < 0) {
 				overlay.classList.add('active');
 			} else {
 				overlay.classList.remove('active');
 			}
 		});
+
 	</script>
 
 	<script src="assets/js/main.js"></script>
