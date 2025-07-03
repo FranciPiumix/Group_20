@@ -66,15 +66,15 @@
 		}
 
 		#overlay {
-			position: absolute;
-			top: 150px;
-			/* inizia a 150px dall'alto della pagina */
+			position: fixed;
+			/* rimane fisso, copre lo sfondo */
+			top: 0;
 			left: 0;
 			width: 100%;
-			height: calc(100% - 150px);
-			/* altezza rimanente */
+			height: 100%;
 			background: rgba(255, 255, 255, 0.7);
-			z-index: 5;
+			z-index: 2;
+			/* meno di main:10 */
 			pointer-events: none;
 			opacity: 0;
 			transition: opacity 0.3s ease;
@@ -82,7 +82,8 @@
 
 		#overlay.active {
 			opacity: 1;
-			pointer-events: auto;
+			pointer-events: none;
+			/* così non blocca click */
 		}
 	</style>
 
