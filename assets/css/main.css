@@ -607,6 +607,10 @@ body {
   animation-delay: 4.8s;
 }
 
+.info-box strong {
+	font-weight: bold;
+}
+
 #header {
 	-moz-animation: header 1s 2.25s forwards;
 	-webkit-animation: header 1s 2.25s forwards;
