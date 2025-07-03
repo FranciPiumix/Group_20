@@ -69,6 +69,22 @@
 			color: #003366;
 		}
 
+		#overlay {
+			position: fixed;
+			/* rimane fisso sullo schermo */
+			top: 0;
+			left: 0;
+			width: 100vw;
+			/* tutta la larghezza della viewport */
+			height: 100vh;
+			/* tutta l'altezza della viewport */
+			background: rgba(255, 255, 255, 0.7);
+			/* bianco semi-trasparente */
+			z-index: 5;
+			/* sopra il background (z-index: -1) e sotto #main (z-index: 10) */
+			pointer-events: none;
+			/* lascia passare click e interazioni sotto */
+		}
 	</style>
 
 
