@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 
 <head>
-	<title>Czech Republic analysis</title>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<title>Czech Republic Analysis</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<noscript>
@@ -14,10 +14,23 @@
 	<style>
 		html,
 		body {
-			height: auto;
 			margin: 0;
-			overflow-y: auto;
-			display: block;
+			padding: 0;
+			height: 100%;
+			overflow-y: auto !important;
+			/* forza lo scroll verticale */
+		}
+
+		#wrapper {
+			max-width: 960px;
+			width: 100%;
+			padding: 2em;
+			margin: 0 auto;
+		}
+
+		#main {
+			position: relative;
+			z-index: 1;
 		}
 
 		#bg,
@@ -29,19 +42,6 @@
 			height: 100%;
 			z-index: -1;
 			pointer-events: none;
-		}
-
-		#main {
-			position: relative;
-			z-index: 1;
-		}
-
-		#wrapper {
-			text-align: center;
-			max-width: 960px;
-			width: 100%;
-			padding: 2em;
-			margin: 0 auto;
 		}
 
 		#header h1 {
@@ -63,26 +63,20 @@
 		#header nav ul li a {
 			color: #003366;
 			font-size: 1.5em;
-			transition: color 0.3s ease;
 			text-decoration: none;
-		}
-
-		#header nav ul li a:hover {
-			color: #003366;
-		}
-
-		#header>p:first-of-type {
-			color: #003366;
-			font-weight: bold;
 		}
 
 		#header p.description {
 			color: #003366;
+			font-weight: bold;
+			max-width: 600px;
+			margin: 1.5em auto 0 auto;
 		}
 	</style>
 </head>
 
-<body class="is-preload">
+<body>
+
 	<div id="bg"></div>
 	<div id="overlay"></div>
 
@@ -91,29 +85,32 @@
 
 			<!-- Header -->
 			<header id="header">
-				<h1>Air Quality Analysis</h1>
+				<h1>Air quality analysis</h1>
 				<p>Methods &nbsp;&bull;&nbsp; Results &nbsp;&bull;&nbsp; Webmap &nbsp;&bull;&nbsp; Work team</p>
+
 				<nav>
 					<ul>
-						<li><a href="methods.html" class="icon solid fa-cogs"><span class="label">Methods</span></a>
-						</li>
-						<li><a href="results.html" class="icon fa-chart-bar"><span class="results">results</span></a>
-						</li>
-						<li><a href="webmap.html" class="icon fa-map"><span class="webmap">Facebook</span></a></li>
-						<li><a href="work_group.html" class="icon fa-user"><span class="workgroup">Email</span></a></li>
+						<li><a href="methods.html"><span class="label">Methods</span></a></li>
+						<li><a href="results.html"><span class="label">Results</span></a></li>
+						<li><a href="webmap.html"><span class="label">Webmap</span></a></li>
+						<li><a href="work_group.html"><span class="label">Work Team</span></a></li>
 					</ul>
 				</nav>
 
-				<p class="description"
-					style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: bold;">
+				<p class="description">
 					Mapping air quality in Czech Republic and exploring how it relates to land cover and population
 					exposure.
 				</p>
 			</header>
 
+			<!-- Add some dummy content to test scroll -->
+			<section>
+				<p style="height: 1200px;"></p>
+			</section>
+
 			<!-- Footer -->
 			<footer id="footer">
-				<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+				<span class="copyright">&copy; CZ Project. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
 			</footer>
 
 		</div>
@@ -123,7 +120,6 @@
 		window.onload = function () {
 			document.body.classList.remove('is-preload');
 		};
-		// window.ontouchmove = function () { return false; } // RIMOSSO per abilitare lo scroll
 		window.onorientationchange = function () {
 			document.body.scrollTop = 0;
 		};
