@@ -71,19 +71,21 @@
 
 		#overlay {
 			position: fixed;
-			/* rimane fisso sullo schermo */
 			top: 0;
 			left: 0;
 			width: 100vw;
-			/* tutta la larghezza della viewport */
 			height: 100vh;
-			/* tutta l'altezza della viewport */
 			background: rgba(255, 255, 255, 0.7);
-			/* bianco semi-trasparente */
 			z-index: 5;
-			/* sopra il background (z-index: -1) e sotto #main (z-index: 10) */
 			pointer-events: none;
-			/* lascia passare click e interazioni sotto */
+			opacity: 0;
+			transition: opacity 0.4s ease;
+		}
+
+		#overlay.active {
+			opacity: 1;
+			pointer-events: auto;
+			/* opzionale, se vuoi bloccare interazioni */
 		}
 	</style>
 
@@ -136,17 +138,13 @@
 
 		window.addEventListener('scroll', function () {
 			const overlay = document.getElementById('overlay');
-			const overlayContent = document.getElementById('overlay-content');
-			const trigger = document.querySelector('.description');
+			const scrollPosition = window.scrollY || window.pageYOffset;
+			const viewportHeight = window.innerHeight;
 
-			const triggerBottom = trigger.getBoundingClientRect().bottom;
-
-			if (triggerBottom < 0) {
+			if (scrollPosition > viewportHeight) {
 				overlay.classList.add('active');
-				overlayContent.classList.add('active');
 			} else {
 				overlay.classList.remove('active');
-				overlayContent.classList.remove('active');
 			}
 		});
 
@@ -154,6 +152,7 @@
 			document.body.scrollTop = 0;
 		};
 	</script>
+
 
 	<script src="assets/js/main.js"></script>
 </body>
