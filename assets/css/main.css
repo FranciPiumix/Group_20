@@ -601,6 +601,12 @@ body {
 	animation-delay: 1.5s;
 }
 
+.infobox {
+  opacity: 0;
+  animation: fadeUp 1s ease-out forwards;
+  animation-delay: 4.8s;
+}
+
 #header {
 	-moz-animation: header 1s 2.25s forwards;
 	-webkit-animation: header 1s 2.25s forwards;
