@@ -1,9 +1,4 @@
 <!DOCTYPE HTML>
-<!--
-	Aerial by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 <head>
@@ -19,18 +14,34 @@
 	<style>
 		html,
 		body {
-			height: 100%;
+			height: auto;
 			margin: 0;
 			overflow-y: auto;
 			display: block;
 		}
 
+		#bg,
+		#overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: -1;
+			pointer-events: none;
+		}
+
+		#main {
+			position: relative;
+			z-index: 1;
+		}
 
 		#wrapper {
 			text-align: center;
 			max-width: 960px;
 			width: 100%;
 			padding: 2em;
+			margin: 0 auto;
 		}
 
 		#header h1 {
@@ -58,7 +69,6 @@
 
 		#header nav ul li a:hover {
 			color: #003366;
-			/* resta blu anche su hover */
 		}
 
 		#header>p:first-of-type {
@@ -70,14 +80,13 @@
 			color: #003366;
 		}
 	</style>
-
-
 </head>
 
 <body class="is-preload">
+	<div id="bg"></div>
+	<div id="overlay"></div>
+
 	<div id="wrapper">
-		<div id="bg"></div>
-		<div id="overlay"></div>
 		<div id="main">
 
 			<!-- Header -->
@@ -91,15 +100,15 @@
 						<li><a href="results.html" class="icon fa-chart-bar"><span class="results">results</span></a>
 						</li>
 						<li><a href="webmap.html" class="icon fa-map"><span class="webmap">Facebook</span></a></li>
-						<li><a href="work_group.html" class="icon fa-user"><span class="workgroup">Email</span></a>
-						</li>
+						<li><a href="work_group.html" class="icon fa-user"><span class="workgroup">Email</span></a></li>
 					</ul>
 				</nav>
 
 				<p class="description"
 					style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: bold;">
 					Mapping air quality in Czech Republic and exploring how it relates to land cover and population
-					exposure. </p>
+					exposure.
+				</p>
 			</header>
 
 			<!-- Footer -->
@@ -109,10 +118,15 @@
 
 		</div>
 	</div>
+
 	<script>
-		window.onload = function () { document.body.classList.remove('is-preload'); }
-		window.ontouchmove = function () { return false; }
-		window.onorientationchange = function () { document.body.scrollTop = 0; }
+		window.onload = function () {
+			document.body.classList.remove('is-preload');
+		};
+		// window.ontouchmove = function () { return false; } // RIMOSSO per abilitare lo scroll
+		window.onorientationchange = function () {
+			document.body.scrollTop = 0;
+		};
 	</script>
 
 	<script src="assets/js/main.js"></script>
