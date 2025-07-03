@@ -1,12 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<!--
+	Aerial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
 
 <head>
+	<title>Czech Republic analysis</title>
 	<meta charset="utf-8" />
-	<title>Czech Republic Analysis</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes" />
 	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
@@ -14,44 +19,57 @@
 	<style>
 		html,
 		body {
-			margin: 0;
-			padding: 0;
 			height: 100%;
-			overflow-y: auto !important;
+			margin: 0;
+			overflow-y: auto;
+			display: block;
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-			/* tuo font sans-serif originale */
-			background-color: #003366;
-			color: #003366;
 		}
 
 		#wrapper {
+			text-align: center;
 			max-width: 960px;
 			width: 100%;
 			padding: 2em;
-			margin: 0 auto;
-			position: relative;
-			z-index: 10;
-			background: transparent;
 		}
 
-		#main {
-			position: relative;
-			z-index: 10;
+		#header h1 {
+			color: #f6b26b;
 		}
 
-		/* Sfondo mappa */
-		#bg {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			z-index: 0;
-			pointer-events: none;
-			background-color: #003366;
+		#header nav ul {
+			display: flex;
+			gap: 1.5em;
+			justify-content: center;
+			padding: 0;
+			margin-top: 1.5em;
 		}
 
-		/* Overlay bianco sopra bg */
+		#header nav ul li {
+			list-style: none;
+		}
+
+		#header nav ul li a {
+			color: #003366;
+			font-size: 1.5em;
+			transition: color 0.3s ease;
+			text-decoration: none;
+		}
+
+		#header nav ul li a:hover {
+			color: #0055aa;
+		}
+
+		#header>p:first-of-type {
+			color: #003366;
+			font-weight: bold;
+		}
+
+		#header p.description {
+			color: #003366;
+		}
+
+		/* Overlay styles */
 		#overlay {
 			position: fixed;
 			top: 0;
@@ -70,7 +88,6 @@
 			z-index: 1000;
 		}
 
-		/* Testo sopra l'overlay */
 		#overlay-content {
 			position: fixed;
 			top: 60px;
@@ -99,119 +116,77 @@
 			color: #0055aa;
 			font-weight: 900;
 		}
-
-		#header h1 {
-			color: #f6b26b;
-			text-align: center;
-		}
-
-		#header nav ul {
-			display: flex;
-			gap: 1.5em;
-			justify-content: center;
-			padding: 0;
-			margin-top: 1.5em;
-		}
-
-		#header nav ul li {
-			list-style: none;
-		}
-
-		#header nav ul li a {
-			color: #003366;
-			font-size: 1.5em;
-			text-decoration: none;
-			display: flex;
-			align-items: center;
-			gap: 0.5em;
-			transition: transform 0.3s ease, color 0.3s ease;
-		}
-
-		#header nav ul li a:hover {
-			color: #0055aa;
-			transform: scale(1.2);
-		}
-
-		#intro-description {
-			color: #003366;
-			font-weight: bold;
-			max-width: 600px;
-			margin: 1.5em auto 2em auto;
-			text-align: center;
-		}
 	</style>
+
+
 </head>
 
-<body>
-
-	<div id="bg"></div>
-	<div id="overlay"></div>
-
-	<div id="overlay-content">
-		<p><strong>Why study the air quality?</strong><br />
-			Air pollution is a major global health issue, responsible for millions of premature deaths each year. While
-			national governments play a key role in implementing regulations and policies to address pollution, the
-			problem
-			is urban in nature. In recent years, air quality has gained increased attention and become a key component
-			of
-			governments’ agenda, as cities recognise its critical role in shaping public health, livability, and
-			environmental justice.
-		</p>
-		<p><strong>Where does air pollution come from?</strong><br />
-			The main sources include human activities such as <strong>industrial emissions</strong>, <strong>vehicle
-				exhaust</strong>, burning of fossil fuels, agricultural activities, and natural events like wildfires
-			and volcanic eruptions. Consequently, environmental variables such as <strong>land cover</strong> directly
-			influence the pollution.
-		</p>
-		<p><strong>Which pollutants?</strong><br />
-			Pollutants with the strongest evidence for public health concern include particulate matter (<strong>PM
-				2.5</strong>), nitrogen dioxide (<strong>NO2</strong>), and carbon monoxide (<strong>CO</strong>).
-			Particulate matter with a diameter of 2.5µm or less is referred to as <strong>PM2.5</strong>.
-		</p>
-	</div>
-
+<body class="is-preload">
 	<div id="wrapper">
+		<div id="bg"></div>
+		<div id="overlay"></div>
+		<div id="overlay-content">
+			<p><strong>Why study the air quality?</strong><br />
+				Air pollution is a major global health issue, responsible for millions of premature deaths each year.
+				While
+				national governments play a key role in implementing regulations and policies to address pollution, the
+				problem
+				is urban in nature. In recent years, air quality has gained increased attention and become a key
+				component
+				of
+				governments’ agenda, as cities recognise its critical role in shaping public health, livability, and
+				environmental justice.
+			</p>
+			<p><strong>Where does air pollution come from?</strong><br />
+				The main sources include human activities such as <strong>industrial emissions</strong>, <strong>vehicle
+					exhaust</strong>, burning of fossil fuels, agricultural activities, and natural events like
+				wildfires
+				and volcanic eruptions. Consequently, environmental variables such as <strong>land cover</strong>
+				directly
+				influence the pollution.
+			</p>
+			<p><strong>Which pollutants?</strong><br />
+				Pollutants with the strongest evidence for public health concern include particulate matter (<strong>PM
+					2.5</strong>), nitrogen dioxide (<strong>NO2</strong>), and carbon monoxide (<strong>CO</strong>).
+				Particulate matter with a diameter of 2.5µm or less is referred to as <strong>PM2.5</strong>.
+			</p>
+		</div>
+
 		<div id="main">
 
 			<!-- Header -->
 			<header id="header">
-				<h1>Air quality analysis</h1>
-				<p style="color: #003366; font-weight: bold;">
-					Methods &nbsp;&bull;&nbsp; Results &nbsp;&bull;&nbsp; Webmap &nbsp;&bull;&nbsp; Work team
-				</p>
-
+				<h1>Air Quality Analysis</h1>
+				<p>Methods &nbsp;&bull;&nbsp; Results &nbsp;&bull;&nbsp; Webmap &nbsp;&bull;&nbsp; Work team</p>
 				<nav>
 					<ul>
-						<li><a href="methods.html"><i class="fas fa-cogs"></i><span class="label">Methods</span></a>
+						<li><a href="methods.html" class="icon solid fa-cogs"><span class="label">Methods</span></a>
 						</li>
-						<li><a href="results.html"><i class="fas fa-chart-bar"></i><span
-									class="label">Results</span></a></li>
-						<li><a href="webmap.html"><i class="fas fa-map"></i><span class="label">Webmap</span></a></li>
-						<li><a href="work_group.html"><i class="fas fa-user"></i><span class="label">Work
-									Team</span></a></li>
+						<li><a href="results.html" class="icon fa-chart-bar"><span class="results">results</span></a>
+						</li>
+						<li><a href="webmap.html" class="icon fa-map"><span class="webmap">Facebook</span></a></li>
+						<li><a href="work_group.html" class="icon fa-user"><span class="workgroup">Email</span></a>
+						</li>
 					</ul>
 				</nav>
 
-				<!-- Qui la frase da cui scatta l'overlay -->
-				<p id="intro-description">
+				<p class="description"
+					style="margin-top: 1.5em; max-width: 600px; margin-left: auto; margin-right: auto; font-weight: bold;">
 					Mapping air quality in Czech Republic and exploring how it relates to land cover and population
-					exposure.
-				</p>
+					exposure. </p>
 			</header>
 
-			<!-- Contenuto fittizio per test scroll -->
 			<section>
-				<p style="height: 1200px;"></p>
+				<p style="height: 1500px;"></p>
 			</section>
 
 			<!-- Footer -->
 			<footer id="footer">
-				<span class="copyright">&copy; CZ Project. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+				<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
 			</footer>
 
 		</div>
 	</div>
-
 	<script>
 		window.onload = function () {
 			document.body.classList.remove('is-preload');
@@ -220,12 +195,10 @@
 		window.addEventListener('scroll', function () {
 			const overlay = document.getElementById('overlay');
 			const overlayContent = document.getElementById('overlay-content');
-			const trigger = document.getElementById('intro-description');
+			const trigger = document.querySelector('.description');
 
-			// Ottieni la distanza dal top della fine della frase trigger
 			const triggerBottom = trigger.getBoundingClientRect().bottom;
 
-			// Se la fine della frase è sopra la top viewport, attiva overlay e testo
 			if (triggerBottom < 0) {
 				overlay.classList.add('active');
 				overlayContent.classList.add('active');
