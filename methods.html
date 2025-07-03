@@ -1,11 +1,10 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 
 <head>
-    <title>Methods</title>
     <meta charset="utf-8" />
+    <title>Methods</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css" />
@@ -26,31 +25,20 @@
             padding: 20px;
             box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
             background: rgba(255, 255, 255, 0.85);
-            /* bianco leggermente opacizzato */
             border-radius: 8px;
             color: #003366;
             text-align: left;
-            /* testo allineato a sinistra */
         }
 
         .box h2 {
-            display: flex;
-            align-items: center;
             font-weight: 900;
             color: #003366;
-            text-align: left;
-            /* assicurati che anche i titoli siano allineati a sinistra */
         }
 
-        .box h2 i {
-            margin-right: 10px;
-            color: #003366;
+        b {
+            font-weight: bold;
         }
-    </style>
 
-
-    <style>
-        /* Posizionamento della home icon in alto a destra */
         #top-right-nav {
             position: absolute;
             top: 1em;
@@ -91,7 +79,7 @@
             <nav id="top-right-nav">
                 <ul>
                     <li>
-                        <a href="index.html" class="icon solid fa-home" title="Back to Home">
+                        <a href="index.html" title="Back to Home">
                             <span class="label">Home</span>
                         </a>
                     </li>
@@ -101,9 +89,9 @@
             <!-- Header -->
             <header id="header">
                 <h1>Methods</h1>
-                <p>This section describes the methodology adopted in our GIS project focused on Czech Republic air
-                    quality monitoring.
-                    It includes data collection, preprocessing and spatial analysis techniques.</p>
+                <p>This section describes the <b>methodology</b> adopted in our GIS project focused on <b>air
+                        quality</b> monitoring in the Czech Republic. It includes data <b>collection</b>,
+                    <b>preprocessing</b>, and spatial <b>analysis</b> techniques.</p>
             </header>
 
             <!-- Main content -->
@@ -111,66 +99,48 @@
                 <div class="boxes-container">
 
                     <div class="box">
-                        <h2>
-                            <i class="fas fa-project-diagram"></i>
-                            1. Project Overview
-                        </h2>
+                        <h2>1. Project Overview</h2>
                         <p>
-                            This GIS laboratory project focused on analyzing air quality in Europe by integrating
-                            satellite-based air pollution data,
-                            land cover classifications, and population distributions. The goal was to assess the spatial
-                            and
-                            temporal patterns
-                            of pollutants (NO<sub>2</sub>, PM<sub>2.5</sub>, PM<sub>10</sub>) in relation to land use
-                            and
-                            human exposure,
-                            using open-access geospatial datasets.
+                            This GIS project analyzed <b>air quality</b> in the Czech Republic using satellite-based
+                            data and geospatial techniques. The goal was to understand spatial and temporal patterns of
+                            two pollutants: <b>NO₂</b> and <b>PM2.5</b>. We integrated pollution data with <b>land
+                                cover</b> and <b>population</b> data to explore links between <b>exposure</b> and land
+                            use.
                         </p>
                     </div>
 
                     <div class="box">
-                        <h2>
-                            <i class="fas fa-cogs"></i>
-                            2. Workflow and Methodology
-                        </h2>
+                        <h2>2. Workflow and Methodology</h2>
                         <ol>
-                            <li><strong>Data Acquisition:</strong> CAMS reanalysis data (NO<sub>2</sub>,
-                                PM<sub>2.5</sub>,
-                                PM<sub>10</sub>), ESA CCI Land Cover (2022), WorldPop population data (2020).</li>
-                            <li><strong>Preprocessing:</strong> Clipping to area of interest, reclassification of land
-                                cover
-                                types, projection harmonization.</li>
-                            <li><strong>Analysis:</strong> Time-series statistics (2013–2022) for pollutant levels by
-                                land
-                                cover class; population exposure calculation against WHO thresholds.</li>
-                            <li><strong>Visualization:</strong> Bivariate maps combining pollution and population data;
-                                publication through a WebGIS interface.</li>
+                            <li><b>Data Acquisition:</b> We used CAMS reanalysis data for <b>NO₂</b> and <b>PM2.5</b>,
+                                ESA CCI Land Cover (2022), and WorldPop population data (2020).</li>
+                            <li><b>Preprocessing:</b> Data were <b>clipped</b> to the Czech Republic, land cover was
+                                <b>reclassified</b>, and all layers were <b>harmonized</b> to the same projection.</li>
+                            <li><b>Analysis:</b> We performed <b>time-series</b> statistics from 2013 to 2022, examined
+                                <b>land use</b> correlations, and calculated <b>population exposure</b> based on WHO
+                                thresholds.</li>
+                            <li><b>Visualization:</b> Outputs included <b>bivariate maps</b>, annual average maps, and
+                                interactive <b>WebGIS</b> tools.</li>
                         </ol>
                     </div>
 
                     <div class="box">
-                        <h2>
-                            <i class="fas fa-wrench"></i>
-                            3. Tools Used
-                        </h2>
+                        <h2>3. Tools Used</h2>
                         <ul>
-                            <li>QGIS with GRASS/SAGA Processing Toolbox</li>
-                            <li>GeoServer and OpenLayers for WebGIS</li>
-                            <li>Copernicus Climate Data Store (CDS)</li>
+                            <li><b>QGIS</b> with GRASS and SAGA processing toolboxes</li>
+                            <li><b>GeoServer</b> and <b>OpenLayers</b> for WebGIS deployment</li>
+                            <li>Data sourced from the <b>Copernicus Climate Data Store (CDS)</b></li>
                         </ul>
                     </div>
 
                     <div class="box">
-                        <h2>
-                            <i class="fas fa-map"></i>
-                            4. Key Outputs
-                        </h2>
+                        <h2>4. Key Outputs</h2>
                         <ul>
-                            <li>Annual pollutant maps (2013–2022)</li>
-                            <li>Land cover correlation analysis</li>
-                            <li>Population exposure estimation</li>
-                            <li>Bivariate pollution-population maps</li>
-                            <li>Interactive WebGIS and project website</li>
+                            <li>Annual <b>NO₂</b> and <b>PM2.5</b> maps (2013–2022)</li>
+                            <li><b>Land cover</b> correlation analysis</li>
+                            <li><b>Population exposure</b> estimations</li>
+                            <li><b>Bivariate maps</b> of pollution and population</li>
+                            <li>Interactive <b>WebGIS</b> for public access</li>
                         </ul>
                     </div>
 
