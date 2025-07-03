@@ -72,6 +72,45 @@
 			max-width: 600px;
 			margin: 1.5em auto 0 auto;
 		}
+
+		/* Qui aggiungo il colore blu per i testi in cima */
+		#header>p {
+			color: #003366;
+			font-weight: bold;
+		}
+
+		/* Overlay bianco attivato dopo scroll */
+		#overlay {
+			background: transparent;
+			transition: background 0.5s ease;
+			pointer-events: none;
+		}
+
+		#overlay.active {
+			background: rgba(255, 255, 255, 0.9);
+			pointer-events: auto;
+			z-index: 10;
+		}
+
+		/* Testo di esempio sotto il sottotitolo */
+		#overlay-content {
+			position: fixed;
+			top: 150px;
+			/* sotto il sottotitolo */
+			left: 50%;
+			transform: translateX(-50%);
+			color: #003366;
+			font-size: 1.5em;
+			font-weight: bold;
+			z-index: 11;
+			display: none;
+			max-width: 90%;
+			text-align: center;
+		}
+
+		#overlay.active+#overlay-content {
+			display: block;
+		}
 	</style>
 </head>
 
@@ -79,6 +118,7 @@
 
 	<div id="bg"></div>
 	<div id="overlay"></div>
+	<div id="overlay-content">Questo è un testo blu che appare dopo lo scroll.</div>
 
 	<div id="wrapper">
 		<div id="main">
@@ -90,26 +130,10 @@
 
 				<nav>
 					<ul>
-						<li>
-							<a href="methods.html" class="icon solid fa-cogs">
-								<span class="label">Methods</span>
-							</a>
-						</li>
-						<li>
-							<a href="results.html" class="icon solid fa-chart-bar">
-								<span class="label">Results</span>
-							</a>
-						</li>
-						<li>
-							<a href="webmap.html" class="icon solid fa-map">
-								<span class="label">Webmap</span>
-							</a>
-						</li>
-						<li>
-							<a href="work_group.html" class="icon solid fa-user">
-								<span class="label">Work Team</span>
-							</a>
-						</li>
+						<li><a href="methods.html"><span class="label">Methods</span></a></li>
+						<li><a href="results.html"><span class="label">Results</span></a></li>
+						<li><a href="webmap.html"><span class="label">Webmap</span></a></li>
+						<li><a href="work_group.html"><span class="label">Work Team</span></a></li>
 					</ul>
 				</nav>
 
@@ -136,6 +160,17 @@
 		window.onload = function () {
 			document.body.classList.remove('is-preload');
 		};
+
+		// Funzione per attivare l'overlay dopo lo scroll
+		window.addEventListener('scroll', function () {
+			const overlay = document.getElementById('overlay');
+			if (window.scrollY > 50) {
+				overlay.classList.add('active');
+			} else {
+				overlay.classList.remove('active');
+			}
+		});
+
 		window.onorientationchange = function () {
 			document.body.scrollTop = 0;
 		};
