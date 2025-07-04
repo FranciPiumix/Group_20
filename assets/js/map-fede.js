@@ -32,7 +32,7 @@ const esriWorldImagery = new ol.layer.Tile({
 const basemapLayers = new ol.layer.Group({
     title: 'Basemaps',
     fold: 'open',
-    layers: [osm, stamenWatercolor, stamenToner, esriTopoBasemap, esriWorldImagery]
+    layers: [osm, esriTopoBasemap, esriWorldImagery]
 });
 
 // ==============================
