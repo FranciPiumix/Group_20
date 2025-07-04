@@ -9,20 +9,6 @@ const osm = new ol.layer.Tile({
     source: new ol.source.OSM()
 });
 
-const stamenWatercolor = new ol.layer.Tile({
-    title: 'Stamen Watercolor',
-    type: 'base',
-    visible: false,
-    source: new ol.source.StadiaMaps({ layer: 'stamen_watercolor' })
-});
-
-const stamenToner = new ol.layer.Tile({
-    title: 'Stamen Toner',
-    type: 'base',
-    visible: false,
-    source: new ol.source.StadiaMaps({ layer: 'stamen_toner' })
-});
-
 const esriTopoBasemap = new ol.layer.Tile({
     title: 'ESRI Topographic',
     type: 'base',

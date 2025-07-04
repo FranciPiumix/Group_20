@@ -931,14 +931,16 @@ body {
 	right: 0.5em;
 	background-color: white;
 	color: black;
-	border: 1px solid #ccc;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	border-radius: 6px;
+	border: 1px solid #ddd;
+	/* bordo leggero e uniforme */
+	border-radius: 4px;
 	min-width: 220px;
 	padding: 10px;
 	z-index: 1000;
 	font-size: 13px;
 	font-family: sans-serif;
+	box-shadow: none;
+	/* niente ombra */
 }
 
 .layer-switcher ul {
@@ -951,6 +953,7 @@ body {
 	margin: 6px 0;
 }
 
+/* Label e input ben allineati */
 .layer-switcher label {
 	display: flex;
 	align-items: center;
@@ -960,6 +963,7 @@ body {
 	font-size: 13px;
 }
 
+/* Input checkbox/radio */
 .layer-switcher input[type="radio"],
 .layer-switcher input[type="checkbox"] {
 	all: unset;
@@ -967,6 +971,18 @@ body {
 	width: 16px;
 	height: 16px;
 	cursor: pointer;
+}
+
+/* Nasconde le freccette di espansione gruppi */
+.layer-switcher .panel>ul>li.group>label::before {
+	display: none !important;
+	content: none !important;
+}
+
+/* Nasconde l’indicazione di gruppo (opzionale) */
+.layer-switcher .group {
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
 /* Header */
