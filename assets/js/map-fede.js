@@ -52,7 +52,7 @@ const basemapLayers = new ol.layer.Group({
 // ==============================
 // WMS LAYERS
 // ==============================
-// URL base GeoServer
+
 const geoServerURL = 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_20/wms';
 
 function createWMSLayer(title, layerName) {
@@ -108,87 +108,68 @@ const map = new ol.Map({
 // POPUP
 // ==============================
 
-// Elementi popup dal DOM
 const container = document.getElementById('popup');
 const content = document.getElementById('popup-content');
 const closer = document.getElementById('popup-closer');
 
-// Crea overlay popup
 const popup = new ol.Overlay({
     element: container,
-    autoPan: {
-        animation: {
-            duration: 250,
-        },
-    },
+    autoPan: { animation: { duration: 250 } }
 });
 map.addOverlay(popup);
 
-// Chiudi popup cliccando la "x"
 closer.onclick = function () {
     popup.setPosition(undefined);
     closer.blur();
     return false;
 };
 
-// Evento click mappa per GetFeatureInfo
 map.on('singleclick', function (evt) {
     const coordinate = evt.coordinate;
-    const view = map.getView();
-    const viewResolution = view.getResolution();
+    const resolution = map.getView().getResolution();
 
-    // Trova il primo layer visibile tra gli overlay che supporta GetFeatureInfo
-    let url = null;
-    overlayLayerList.some(layer => {
-        if (layer.getVisible()) {
-            const source = layer.getSource();
-            url = source.getFeatureInfoUrl(
-                coordinate,
-                viewResolution,
-                'EPSG:3857', // proiezione mappa (modifica se usi altra)
-                { 'INFO_FORMAT': 'application/json' }
-            );
-            return !!url; // ferma il ciclo se url valido
-        }
-        return false;
-    });
+    const visibleLayers = overlayLayerList.filter(layer => layer.getVisible());
+    const urls = visibleLayers.map(layer => {
+        const source = layer.getSource();
+        return source.getFeatureInfoUrl(coordinate, resolution, 'EPSG:3857', {
+            INFO_FORMAT: 'application/json'
+        });
+    }).filter(url => url);
 
-    if (url) {
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                let info = '';
-                if (data.features && data.features.length > 0) {
-                    // Prendi proprietà della prima feature (puoi personalizzare)
-                    const props = data.features[0].properties;
-                    info = '<ul>';
-                    for (const key in props) {
-                        info += `<li><strong>${key}:</strong> ${props[key]}</li>`;
-                    }
-                    info += '</ul>';
-                } else {
-                    info = '<p>No feature info found at this location.</p>';
-                }
-                content.innerHTML = info;
-                popup.setPosition(coordinate);
-            })
-            .catch(() => {
-                content.innerHTML = '<p>Error fetching feature info.</p>';
-                popup.setPosition(coordinate);
-            });
-    } else {
-        // Se nessun layer WMS visibile o nessuna info disponibile
-        popup.setPosition(undefined);
+    if (urls.length === 0) {
+        content.innerHTML = '<p>No visible layers.</p>';
+        popup.setPosition(coordinate);
+        return;
     }
-});
 
+    Promise.all(urls.map(url => fetch(url).then(r => r.json()).catch(() => null)))
+        .then(results => {
+            let html = '';
+            results.forEach(result => {
+                if (result && result.features.length > 0) {
+                    result.features.forEach(feature => {
+                        html += '<ul>';
+                        for (const key in feature.properties) {
+                            html += `<li><strong>${key}:</strong> ${feature.properties[key]}</li>`;
+                        }
+                        html += '</ul><hr>';
+                    });
+                }
+            });
+            content.innerHTML = html || '<p>No data found.</p>';
+            popup.setPosition(coordinate);
+        })
+        .catch(() => {
+            content.innerHTML = '<p>Error fetching data.</p>';
+            popup.setPosition(coordinate);
+        });
+});
 
 // ==============================
 // CONTROLS
 // ==============================
 
 map.addControl(new ol.control.ScaleLine());
-
 map.addControl(new ol.control.MousePosition({
     coordinateFormat: ol.coordinate.createStringXY(4),
     projection: 'EPSG:4326',
@@ -204,35 +185,62 @@ const layerSwitcher = new LayerSwitcher({
 });
 map.addControl(layerSwitcher);
 
-
 // ==============================
 // LEGENDA
 // ==============================
 
-function getLegendElement(title, color) {
-    return `<li><span class="legend-color" style="background-color:${color}"></span>${title}</li>`;
+function getLegendElement(title, color = '#cccccc') {
+    return `<li><span class="legend-color" style="background-color:${color}; display:inline-block; width:12px; height:12px; margin-right:5px; vertical-align:middle; border:1px solid #555;"></span>${title}</li>`;
 }
 
 function updateLegend() {
-    let legendHTML = '<ul>';
-    overlayLayerList.forEach(layer => {
-        if (layer.getVisible()) {
-            const title = layer.get('title');
-            legendHTML += getLegendElement(title, '#cccccc');
+    const steps = {
+        "Step 1 – December 2022 Pollutants": [
+            'NO₂ CAMS – December 2022',
+            'PM2.5 CAMS – December 2022'
+        ],
+        "Step 2 – Annual average 2022": [
+            'NO₂ – Annual average 2022',
+            'PM2.5 – Annual average 2022'
+        ],
+        "Step 3 – Concentration maps 2020": [
+            'NO₂ – Concentration map 2020',
+            'PM2.5 – Concentration map 2020'
+        ],
+        "Step 4 – AAD": [
+            'NO₂ AAD',
+            'PM2.5 AAD'
+        ]
+    };
+
+    let legendHTML = '';
+    for (const step in steps) {
+        const visibleLayers = overlayLayerList.filter(l =>
+            steps[step].includes(l.get('title')) && l.getVisible()
+        );
+        if (visibleLayers.length > 0) {
+            legendHTML += `<h4>${step}</h4><ul>`;
+            visibleLayers.forEach(layer => {
+                legendHTML += getLegendElement(layer.get('title'));
+            });
+            legendHTML += '</ul>';
         }
-    });
-    legendHTML += '</ul>';
+    }
     document.getElementById('legend-content').innerHTML = legendHTML;
 }
 
-// Inizializza legenda al caricamento
-updateLegend();
-
-// Aggiorna legenda ogni volta che cambia la visibilità di un layer
 overlayLayerList.forEach(layer => {
     layer.on('change:visible', updateLegend);
 });
+updateLegend();
 
+const style = document.createElement('style');
+style.innerHTML = `
+#legend-content ul { list-style: none; padding-left: 0; margin-bottom: 10px; }
+#legend-content h4 { margin: 10px 0 5px; font-size: 14px; font-weight: bold; }
+.legend-color { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: middle; border: 1px solid #333; }
+`;
+document.head.appendChild(style);
 
 // ==============================
 // FULLSCREEN
@@ -251,6 +259,7 @@ document.getElementById('fullscreen-toggle').addEventListener('click', function 
         });
     }
 });
+
 document.addEventListener('fullscreenchange', () => {
     if (!document.fullscreenElement) {
         document.getElementById('header').style.display = 'block';
