@@ -56,34 +56,47 @@ const basemapLayers = new ol.layer.Group({
 const geoServerURL = 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_20/wms';
 
 function createWMSLayer(title, layerName) {
-    return new ol.layer.Image({
+    const source = new ol.source.ImageWMS({
+        url: geoServerURL,
+        params: {
+            'LAYERS': layerName,
+            'TILED': true,
+            'STYLES': ''
+        },
+        ratio: 1,
+        serverType: 'geoserver'
+    });
+
+    const layer = new ol.layer.Image({
         title: title,
         visible: false,
-        source: new ol.source.ImageWMS({
-            url: geoServerURL,
-            params: {
-                'LAYERS': layerName,
-                'TILED': true,
-                'STYLES': ''
-            },
-            ratio: 1,
-            serverType: 'geoserver'
-        })
+        source: source
     });
+
+    // Aggiungi qui l'URL per la legenda
+    const legendUrl = `${geoServerURL}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&FORMAT=image/png&LAYER=${encodeURIComponent(layerName)}`;
+    layer.set('legendUrl', legendUrl);
+
+    return layer;
 }
+
 
 const overlayLayerList = [
     createWMSLayer('NO₂ CAMS – December 2022', 'gisgeoserver_20:CzechRepublic_CAMS_no2_2022_12'),
     createWMSLayer('PM2.5 CAMS – December 2022', 'gisgeoserver_20:CzechRepublic_CAMS_pm2p5_2022_12'),
     createWMSLayer('NO₂ – Annual average 2022', 'gisgeoserver_20:CzechRepublic_average_no2_2022'),
     createWMSLayer('PM2.5 – Annual average 2022', 'gisgeoserver_20:CzechRepublic_average_pm2p5_2022'),
-    createWMSLayer('NO₂ – Concentration map 2022', 'gisgeoserver_20:CZ_no2_concentration_map_2022'),
-    createWMSLayer('PM2.5 – Concentration map 2022', 'gisgeoserver_20:CZ_pm2p5_concentration_map_2022'),
-    createWMSLayer('PM2.5 AAD', 'gisgeoserver_20:pm2p5_AAD'),
-    createWMSLayer('NO₂ AAD', 'gisgeoserver_20:no2_AAD'),
     createWMSLayer('NO₂ – Concentration map 2020', 'gisgeoserver_20:CZ_no2_concentration_map_2020'),
     createWMSLayer('PM2.5 – Concentration map 2020', 'gisgeoserver_20:CZ_pm2p5_concentration_map_2020'),
+    createWMSLayer('PM2.5 – Concentration map 2022', 'gisgeoserver_20:CZ_pm2p5_concentration_map_2022'),
+    createWMSLayer('NO₂ – Concentration map 2022', 'gisgeoserver_20:CZ_no2_concentration_map_2022'),
+    createWMSLayer('NO₂ AAD', 'gisgeoserver_20:no2_AAD'),
+    createWMSLayer('PM2.5 AAD', 'gisgeoserver_20:pm2p5_AAD'),
+    createWMSLayer('NO₂ – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_no2_2020_bivariate'),
+    createWMSLayer('PM2.5 – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_pm2p5_bivariate_2020'),
+    createWMSLayer('Population – 5 Quantile Classes', 'gisgeoserver_20:CZ_population_quantile_5classes'),
 ];
+
 
 const overlayLayers = new ol.layer.Group({
     title: 'Overlay Layers',
@@ -194,40 +207,24 @@ function getLegendElement(title, color = '#cccccc') {
 }
 
 function updateLegend() {
-    const steps = {
-        "Step 1 – December 2022 Pollutants": [
-            'NO₂ CAMS – December 2022',
-            'PM2.5 CAMS – December 2022'
-        ],
-        "Step 2 – Annual average 2022": [
-            'NO₂ – Annual average 2022',
-            'PM2.5 – Annual average 2022'
-        ],
-        "Step 3 – Concentration maps 2020": [
-            'NO₂ – Concentration map 2020',
-            'PM2.5 – Concentration map 2020'
-        ],
-        "Step 4 – AAD": [
-            'NO₂ AAD',
-            'PM2.5 AAD'
-        ]
-    };
+    let legendHTML = '<ul>';
 
-    let legendHTML = '';
-    for (const step in steps) {
-        const visibleLayers = overlayLayerList.filter(l =>
-            steps[step].includes(l.get('title')) && l.getVisible()
-        );
-        if (visibleLayers.length > 0) {
-            legendHTML += `<h4>${step}</h4><ul>`;
-            visibleLayers.forEach(layer => {
-                legendHTML += getLegendElement(layer.get('title'));
-            });
-            legendHTML += '</ul>';
+    // Filtra tutti i layer visibili e aggiungi la loro legenda
+    overlayLayerList.forEach(layer => {
+        if (layer.getVisible()) {
+            const legendUrl = layer.get('legendUrl');
+            if (legendUrl) {
+                legendHTML += `<li><img src="${legendUrl}" alt="Legenda ${layer.get('title')}" style="vertical-align:middle; height:20px; margin-right:5px;">${layer.get('title')}</li>`;
+            } else {
+                legendHTML += `<li>${layer.get('title')}</li>`;
+            }
         }
-    }
+    });
+
+    legendHTML += '</ul>';
     document.getElementById('legend-content').innerHTML = legendHTML;
 }
+
 
 overlayLayerList.forEach(layer => {
     layer.on('change:visible', updateLegend);
