@@ -866,40 +866,43 @@ body {
 }
 
 /* Legend style */
-#legend {
+#legend-content {
 	position: absolute;
 	bottom: 1rem;
 	right: 1rem;
-	background: rgba(255, 255, 255, 0.9);
+	background: rgba(255, 255, 255, 0.8);
+	/* Sfondo opaco */
 	border-radius: 8px;
-	padding: 10px;
+	padding: 12px;
 	font-size: 14px;
-	max-width: 250px;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+	max-width: 300px;
+	max-height: 50vh;
+	overflow-y: auto;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+	z-index: 999;
 }
 
-#legend h4 {
-	margin: 0 0 5px 0;
-	font-size: 16px;
-}
-
-#legend ul {
+#legend-content ul {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
 
-#legend li {
+#legend-content li {
 	display: flex;
 	align-items: center;
-	margin-bottom: 4px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	color: #111;
+	/* Testo nero */
 }
 
-.legend-color {
-	width: 16px;
-	height: 16px;
-	margin-right: 8px;
-	border: 1px solid #333;
+#legend-content img {
+	height: 60px;
+	width: auto;
+	display: block;
+	margin-right: 10px;
+	border: 1px solid #ccc;
 }
 
 /* Mouse coordinates display */
