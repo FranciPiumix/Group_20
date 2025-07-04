@@ -217,14 +217,6 @@ overlayLayerList.forEach(layer => {
 });
 updateLegend();
 
-const style = document.createElement('style');
-style.innerHTML = `
-#legend-content ul { list-style: none; padding-left: 0; margin-bottom: 10px; }
-#legend-content h4 { margin: 10px 0 5px; font-size: 14px; font-weight: bold; }
-.legend-color { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: middle; border: 1px solid #333; }
-`;
-document.head.appendChild(style);
-
 // ==============================
 // FULLSCREEN
 // ==============================
