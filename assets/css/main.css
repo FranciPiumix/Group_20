@@ -865,13 +865,11 @@ body {
 	color: #000;
 }
 
-/* Legend style */
 #legend-content {
 	position: absolute;
 	bottom: 1rem;
 	right: 1rem;
-	background: rgba(255, 255, 255, 0.8);
-	/* Sfondo opaco */
+	background: rgba(255, 255, 255, 0.8); /* Sfondo opaco */
 	border-radius: 8px;
 	padding: 12px;
 	font-size: 14px;
@@ -890,20 +888,24 @@ body {
 
 #legend-content li {
 	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
+	flex-direction: column; /* Testo sopra, immagine sotto */
+	align-items: flex-start; /* Allinea a sinistra */
+	margin-bottom: 20px; /* Spazio maggiore tra elementi */
 	font-size: 14px;
 	color: #111;
-	/* Testo nero */
+}
+
+#legend-content label {
+	margin-bottom: 8px;
+	font-weight: bold;
 }
 
 #legend-content img {
-	height: 60px;
-	width: auto;
-	display: block;
-	margin-right: 10px;
-	border: 1px solid #ccc;
+	width: 100%; /* Occupa tutta la larghezza disponibile */
+	max-width: 260px; /* Limite massimo */
+	height: auto; /* Mantiene proporzioni */
 }
+
 
 /* Mouse coordinates display */
 .custom-control {
