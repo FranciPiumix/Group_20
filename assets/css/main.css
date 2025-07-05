@@ -1057,6 +1057,8 @@ body {
 
 .layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
+	margin-right: 8px;
+	/* spazio tra checkbox e testo */
 	opacity: 1 !important;
 	background-color: white !important;
 	border: 1px solid #555 !important;
@@ -1064,12 +1066,8 @@ body {
 	height: 16px;
 	cursor: pointer;
 	appearance: auto;
-	/* reset eventuali stili custom */
 	-webkit-appearance: checkbox;
-	/* safari/chrome */
 	-moz-appearance: checkbox;
-	/* firefox */
-}
 
 /* Header */
 
