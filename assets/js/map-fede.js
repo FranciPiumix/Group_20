@@ -261,30 +261,6 @@ const layerSwitcher = new LayerSwitcher({
 });
 map.addControl(layerSwitcher);
 
-// Impedisce che il LayerSwitcher venga collassato e rimuove il pulsante "»"
-setTimeout(() => {
-    const layerPanel = document.querySelector('.layer-switcher .panel');
-
-    if (layerPanel) {
-        // Mostra sempre il pannello
-        layerPanel.style.display = 'block';
-        layerPanel.parentElement.classList.remove('ol-collapsed');
-
-        // Rimuove il pulsante "Collapse legend"
-        const collapseBtn = document.querySelector('.layer-switcher button[title="Collapse legend"]');
-        if (collapseBtn) collapseBtn.remove();
-    }
-}, 100);
-
-// Osserva il LayerSwitcher e impedisce che venga ricollassato
-const panelWrapper = document.querySelector('.layer-switcher');
-const observer = new MutationObserver(() => {
-    panelWrapper.classList.remove('ol-collapsed');
-});
-if (panelWrapper) {
-    observer.observe(panelWrapper, { attributes: true, attributeFilter: ['class'] });
-}
-
 // ==============================
 // LEGENDA
 // ==============================
