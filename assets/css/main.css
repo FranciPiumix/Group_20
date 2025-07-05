@@ -1013,10 +1013,16 @@ body {
 	text-align: left;
 }
 
-/* Nasconde input nei titoli gruppo */
-.layer-switcher .group>label>input[type="checkbox"],
-.layer-switcher .group>label>input[type="radio"] {
+/* Nasconde solo checkbox/radio nelle label dei gruppi (non nei singoli layer) */
+.layer-switcher .group > label > input[type="checkbox"],
+.layer-switcher .group > label > input[type="radio"] {
 	display: none !important;
+}
+
+/* Mostra checkbox/radio nei singoli layer */
+.layer-switcher li.layer input[type="checkbox"],
+.layer-switcher li.layer input[type="radio"] {
+	display: inline-block !important;
 }
 
 /* Label dei singoli layer */
