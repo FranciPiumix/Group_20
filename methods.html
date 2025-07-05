@@ -11,6 +11,37 @@
         <link rel="stylesheet" href="assets/css/noscript.css" />
     </noscript>
     <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body.methods {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        /* Optional: migliora la distanza visiva */
+        #footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+        }
+
         body.methods #bg {
             filter: blur(6px);
             opacity: 0.9;
