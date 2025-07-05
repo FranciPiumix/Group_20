@@ -11,7 +11,34 @@
         <link rel="stylesheet" href="assets/css/noscript.css" />
     </noscript>
     <style>
-        html,
+        /* Link nella top-right icon (home) */
+        #top-right-nav a {
+            color: white !important;
+        }
+
+        /* Home icon top-right */
+        #top-right-nav {
+            position: absolute;
+            top: 1em;
+            right: 1em;
+            z-index: 1000;
+        }
+
+        #top-right-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #top-right-nav li {
+            display: inline-block;
+        }
+
+        #top-right-nav a {
+            color: white;
+            font-size: 1.5em;
+        }
+
         body {
             height: 100%;
             margin: 0;
@@ -91,28 +118,6 @@
         b {
             font-weight: bold;
         }
-
-        #top-right-nav {
-            position: absolute;
-            top: 1em;
-            right: 1em;
-            z-index: 1000;
-        }
-
-        #top-right-nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        #top-right-nav li {
-            display: inline-block;
-        }
-
-        #top-right-nav a {
-            color: white;
-            font-size: 1.5em;
-        }
     </style>
 </head>
 
@@ -123,11 +128,12 @@
         <div id="overlay"></div>
         <div id="main">
 
-            <nav id="top-right-nav">
+            <!-- Top-right Home Icon -->
+            <nav id="top-right-nav" aria-label="Home Navigation" class="cascade">
                 <ul>
-                    <li>
-                        <a href="index.html" title="Back to Home" style="color: white; font-size: 1.5em;">
-                            <i class="fas fa-home"></i> <!-- Icona Home -->
+                    <li class="cascade-item">
+                        <a href="index.html" class="icon solid fa-home" title="Back to Home">
+                            <span class="label">Home</span>
                         </a>
                     </li>
                 </ul>
