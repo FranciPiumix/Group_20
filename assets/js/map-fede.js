@@ -184,6 +184,19 @@ const layerSwitcher = new LayerSwitcher({
 });
 map.addControl(layerSwitcher);
 
+// Corregge la struttura HTML delle checkbox nel layer switcher
+setTimeout(() => {
+    document.querySelectorAll('.layer-switcher li.layer').forEach(li => {
+        const input = li.querySelector('input[type="checkbox"]');
+        const label = li.querySelector('label');
+
+        if (input && label && !label.contains(input)) {
+            label.textContent = label.textContent.trim(); // rimuove spazi extra
+            label.prepend(input); // sposta il checkbox dentro il label
+        }
+    });
+}, 100);
+
 // ==============================
 // LEGENDA
 // ==============================

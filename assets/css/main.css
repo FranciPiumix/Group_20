@@ -998,15 +998,20 @@ body {
 	text-align: left;
 }
 
-/* Etichette con checkbox/radio affiancati */
-.layer-switcher label {
-	display: flex;
-	align-items: center;
+.layer-switcher label,
+.layer-switcher .panel > ul > li.group > label {
+	display: flex !important;
+	flex-direction: row !important;
+	align-items: center !important;
+	justify-content: flex-start;
 	gap: 8px;
 	cursor: pointer;
 	color: #000;
 	font-size: 13px;
 	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 /* Anche per i gruppi */
@@ -1022,21 +1027,15 @@ body {
 }
 
 /* Checkbox */
-.layer-switcher input[type="checkbox"] {
-	appearance: auto;
-	width: 16px;
-	height: 16px;
-	cursor: pointer;
-	margin: 0;
-}
-
-/* Radio per base maps */
+.layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
-	appearance: auto;
+	display: inline-block;
 	width: 16px;
 	height: 16px;
 	cursor: pointer;
 	margin: 0;
+	vertical-align: middle;
+	appearance: auto;
 }
 
 /* Header */
