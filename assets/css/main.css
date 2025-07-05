@@ -975,33 +975,9 @@ body {
 	margin: 6px 0;
 }
 
-/* Gruppi (titoli) */
-.layer-switcher .group>label {
-	display: block !important;
-	font-weight: bold;
-	font-size: 14px;
-	color: #000;
-	margin: 1em 0 0.5em 0;
-	text-align: left;
-	cursor: default;
-}
-
-/* Nasconde solo input nei titoli dei gruppi */
-.layer-switcher .group>label>input[type="checkbox"],
-.layer-switcher .group>label>input[type="radio"] {
-	display: none !important;
-}
-
-/* Elimina frecce e pulsanti */
-.layer-switcher .group>button,
-.layer-switcher .panel>ul>li.group>label::before,
-.layer-switcher button[title="Collapse legend"] {
-	display: none !important;
-}
-
-/* Layer: checkbox + testo allineati */
-.layer-switcher li.layer label {
-	display: flex !important;
+/* Layer: allinea input e label */
+.layer-switcher li.layer {
+	display: flex;
 	align-items: center;
 	gap: 8px;
 	cursor: pointer;
@@ -1009,14 +985,29 @@ body {
 	font-size: 13px;
 }
 
-/* Checkbox/radio visibili e cliccabili */
+/* Label normale */
+.layer-switcher li.layer label {
+	cursor: pointer;
+}
+
+/* Checkbox e radio */
 .layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
 	width: 16px;
 	height: 16px;
 	margin: 0;
-	flex-shrink: 0;
 	cursor: pointer;
+}
+
+/* Titoli statici dei gruppi (NO group, solo testo) */
+.layer-switcher .group-title {
+	display: block;
+	font-weight: bold;
+	font-size: 14px;
+	color: #000;
+	margin: 1em 0 0.5em 0;
+	text-align: left;
+	cursor: default;
 }
 
 /* Header */
