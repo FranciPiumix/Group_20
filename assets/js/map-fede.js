@@ -261,44 +261,28 @@ const layerSwitcher = new LayerSwitcher({
 });
 map.addControl(layerSwitcher);
 
-// Fixa stili checkbox e aggiunge titoli statici ai gruppi
-function fixLayerSwitcherUI() {
-    const panel = document.querySelector('.layer-switcher .panel > ul');
-    if (!panel) return;
-
-    // Rimuove titoli vecchi
-    panel.querySelectorAll('li.group-title').forEach(el => el.remove());
-
-    panel.querySelectorAll('li.group').forEach(group => {
-        const label = group.querySelector('label');
-        const title = label?.textContent?.trim();
-        if (!title) return;
-
-        // Crea nuovo elemento titolo
-        const titleLi = document.createElement('li');
-        titleLi.className = 'group-title';
-        titleLi.textContent = title;
-
-        // Inserisce il titolo statico prima del gruppo
-        group.parentNode.insertBefore(titleLi, group);
-
-        // Rimuove il gruppo (nasconde label + ul)
-        group.remove();
-    });
-}
-
-// Richiama subito dopo il render iniziale
+// Impedisce che il LayerSwitcher venga collassato e rimuove il pulsante "»"
 setTimeout(() => {
-    fixLayerSwitcherUI();
+    const layerPanel = document.querySelector('.layer-switcher .panel');
+
+    if (layerPanel) {
+        // Mostra sempre il pannello
+        layerPanel.style.display = 'block';
+        layerPanel.parentElement.classList.remove('ol-collapsed');
+
+        // Rimuove il pulsante "Collapse legend"
+        const collapseBtn = document.querySelector('.layer-switcher button[title="Collapse legend"]');
+        if (collapseBtn) collapseBtn.remove();
+    }
 }, 100);
 
-// Osserva cambiamenti futuri
-const switcherPanel = document.querySelector('.layer-switcher .panel');
-if (switcherPanel) {
-    const observer = new MutationObserver(() => {
-        fixLayerSwitcherUI();
-    });
-    observer.observe(switcherPanel, { childList: true, subtree: true });
+// Osserva il LayerSwitcher e impedisce che venga ricollassato
+const panelWrapper = document.querySelector('.layer-switcher');
+const observer = new MutationObserver(() => {
+    panelWrapper.classList.remove('ol-collapsed');
+});
+if (panelWrapper) {
+    observer.observe(panelWrapper, { attributes: true, attributeFilter: ['class'] });
 }
 
 // ==============================

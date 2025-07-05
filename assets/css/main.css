@@ -1010,6 +1010,10 @@ body {
 	cursor: default;
 }
 
+.layer-switcher button[title="Collapse legend"] {
+	display: none !important;
+}
+
 /* Header */
 
 #header nav {
