@@ -193,29 +193,38 @@ function getLegendElement(title, color = '#cccccc') {
 }
 
 function updateLegend() {
+    const legendContainer = document.getElementById('legend-content');
     let legendHTML = '<ul>';
 
-    // Filtra tutti i layer visibili e aggiungi la loro legenda
+    let hasVisibleLayer = false;
+
     overlayLayerList.forEach(layer => {
         if (layer.getVisible()) {
+            hasVisibleLayer = true;
             const legendUrl = layer.get('legendUrl');
             if (legendUrl) {
-                legendHTML += `<li><img src="${legendUrl}" alt="Legenda ${layer.get('title')}" style="vertical-align:middle; height:20px; margin-right:5px;">${layer.get('title')}</li>`;
+                legendHTML += `
+					<li>
+						<label>${layer.get('title')}</label>
+						<img src="${legendUrl}" alt="Legenda ${layer.get('title')}">
+					</li>`;
             } else {
-                legendHTML += `<li>${layer.get('title')}</li>`;
+                legendHTML += `<li><label>${layer.get('title')}</label></li>`;
             }
         }
     });
 
     legendHTML += '</ul>';
-    document.getElementById('legend-content').innerHTML = legendHTML;
+
+    if (hasVisibleLayer) {
+        legendContainer.innerHTML = legendHTML;
+        legendContainer.style.display = 'block';
+    } else {
+        legendContainer.innerHTML = '';
+        legendContainer.style.display = 'none';
+    }
 }
 
-
-overlayLayerList.forEach(layer => {
-    layer.on('change:visible', updateLegend);
-});
-updateLegend();
 
 // ==============================
 // FULLSCREEN
