@@ -869,7 +869,7 @@ body {
 	position: absolute;
 	bottom: 1rem;
 	right: 1rem;
-	background: rgba(255, 255, 255, 0.8); /* Sfondo opaco */
+	background: rgba(255, 255, 255, 0.8);
 	border-radius: 8px;
 	padding: 12px;
 	font-size: 14px;
@@ -878,6 +878,7 @@ body {
 	overflow-y: auto;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	z-index: 999;
+	display: none; /* Nasconde la legenda di default */
 }
 
 #legend-content ul {
@@ -899,13 +900,6 @@ body {
 	margin-bottom: 8px;
 	font-weight: bold;
 }
-
-#legend-content img {
-	width: 100%; /* Occupa tutta la larghezza disponibile */
-	max-width: 260px; /* Limite massimo */
-	height: auto; /* Mantiene proporzioni */
-}
-
 
 /* Mouse coordinates display */
 .custom-control {
