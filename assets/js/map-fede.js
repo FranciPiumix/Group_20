@@ -30,7 +30,7 @@ const esriWorldImagery = new ol.layer.Tile({
 });
 
 const basemapLayers = new ol.layer.Group({
-    title: 'Basemaps',
+    title: 'Base maps',
     fold: 'open',
     layers: [osm, esriTopoBasemap, esriWorldImagery]
 });
@@ -98,9 +98,10 @@ const map = new ol.Map({
     target: 'map',
     layers: [basemapLayers, overlayLayers],
     view: new ol.View({
-        center: ol.proj.fromLonLat([15.4730, 49.8175]),
-        zoom: 7
-    })
+    projection: 'EPSG:4326',
+    center: [15.4730, 49.8175],
+    zoom: 6 // Zoom più basso, perché EPSG:4326 "copre meno"
+})
 });
 
 // ==============================
