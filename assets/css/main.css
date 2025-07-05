@@ -878,7 +878,6 @@ body {
 	overflow-y: auto;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
 	z-index: 999;
-	display: none; /* Nasconde la legenda di default */
 }
 
 #legend-content ul {
@@ -899,6 +898,14 @@ body {
 #legend-content label {
 	margin-bottom: 8px;
 	font-weight: bold;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #555;
+    margin-top: 4px;
 }
 
 /* Mouse coordinates display */

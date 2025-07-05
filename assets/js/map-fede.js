@@ -59,10 +59,6 @@ function createWMSLayer(title, layerName) {
         source: source
     });
 
-    // Aggiungi qui l'URL per la legenda
-    const legendUrl = `${geoServerURL}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&FORMAT=image/png&LAYER=${encodeURIComponent(layerName)}`;
-    layer.set('legendUrl', legendUrl);
-
     return layer;
 }
 
@@ -89,6 +85,12 @@ const overlayLayers = new ol.layer.Group({
     fold: 'open',
     layers: overlayLayerList
 });
+
+overlayLayerList.forEach(layer => {
+    layer.on('change:visible', updateLegend);
+});
+
+updateLegend();
 
 // ==============================
 // MAP
@@ -225,16 +227,16 @@ function updateLegend() {
     overlayLayerList.forEach(layer => {
         if (layer.getVisible()) {
             hasVisibleLayer = true;
-            const legendUrl = layer.get('legendUrl');
-            if (legendUrl) {
-                legendHTML += `
-                    <li>
-                        <label>${layer.get('title')}</label>
-                        <img src="${legendUrl}" alt="Legenda ${layer.get('title')}">
-                    </li>`;
-            } else {
-                legendHTML += `<li><label>${layer.get('title')}</label></li>`;
-            }
+
+            // Se vuoi puoi personalizzare il colore in base a qualche proprietà,
+            // qui metto colore fisso grigio chiaro, puoi cambiarlo
+            const color = '#88aaff';
+
+            legendHTML += `
+                <li>
+                    <label>${layer.get('title')}</label>
+                    <span class="legend-color" style="background-color:${color}; width:16px; height:16px; display:inline-block; border:1px solid #555; margin-top:4px;"></span>
+                </li>`;
         }
     });
 
