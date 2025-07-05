@@ -917,6 +917,12 @@ body {
 	vertical-align: middle !important;
 }
 
+#legend-content,
+#legend-content label,
+#legend-content li {
+    color: #000000 !important;
+}
+
 /* Mouse coordinates display */
 .custom-control {
 	background: rgba(255, 255, 255, 0.8);
