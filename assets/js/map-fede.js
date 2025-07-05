@@ -79,6 +79,81 @@ const overlayLayerList = [
     createWMSLayer('Population – 5 Quantile Classes', 'gisgeoserver_20:CZ_population_quantile_5classes'),
 ].reverse();
 
+const legendData = {
+    "NO₂ CAMS – December 2022": [
+        { color: "#0571b0", label: "6,8125" },
+        { color: "#92c5de", label: "10,7890" },
+        { color: "#f7f7f7", label: "14,7656" },
+        { color: "#f4a582", label: "18,7421" },
+        { color: "#ca0020", label: "22,7187" }
+    ],
+    "PM2.5 CAMS – December 2022": [
+        { color: "#0571b0", label: "7,5217" },
+        { color: "#92c5de", label: "13,1830" },
+        { color: "#f7f7f7", label: "18,8442" },
+        { color: "#f4a582", label: "24,5054" },
+        { color: "#ca0020", label: "30,1666" }
+    ],
+    "NO₂ – Annual average 2022": [
+        { color: "#fff5eb", label: "4,1826" },
+        { color: "#fee7cf", label: "5,8764" },
+        { color: "#fdd2a5", label: "6,4781" },
+        { color: "#fdb271", label: "7,0427" },
+        { color: "#fd9243", label: "7,6906" },
+        { color: "#f3701b", label: "8,3385" },
+        { color: "#df5005", label: "9,1437" },
+        { color: "#b13a03", label: "10,5043" },
+        { color: "#7f2704", label: "20,7782" }
+    ],
+    "PM2.5 – Annual average 2022": [
+        { color: "#fff5eb", label: "7,5217" },
+        { color: "#fee7cf", label: "8,9355" },
+        { color: "#fdd2a5", label: "10,5638" },
+        { color: "#fdb271", label: "11,2833" },
+        { color: "#fd9243", label: "11,8765" },
+        { color: "#f3701b", label: "12,3562" },
+        { color: "#df5005", label: "12,8863" },
+        { color: "#b13a03", label: "13,5553" },
+        { color: "#7f2704", label: "30,1540" }
+    ],
+    "NO₂ – Concentration map 2020": [
+        { color: "#003366", label: "1" },
+        { color: "#2c7bb6", label: "2" }
+    ],
+    "PM2.5 – Concentration map 2020": [
+        { color: "#2c7bb6", label: "2" },
+        { color: "#c7e6db", label: "3" }
+    ],
+    "PM2.5 – Concentration map 2022": [
+        { color: "#2c7bb6", label: "2" },
+        { color: "#c7e6db", label: "3" },
+        { color: "#fec980", label: "4" },
+        { color: "#d7191c", label: "5" }
+    ],
+    "NO₂ AAD": [
+        { color: "#003366", label: "<= -5,0000" },
+        { color: "#6f8ead", label: "-5,0000 - -2,0000" },
+        { color: "#abd0e3", label: "-2,0000 - 0,0000" },
+        { color: "#dcb8b4", label: "0,0000 - 2,0000" },
+        { color: "#ca6f7d", label: "2,0000 - 5,0000" },
+        { color: "#ca0020", label: "> 5,0000" }
+    ],
+    "PM2.5 AAD": [
+        { color: "#003366", label: "<= -3,0000" },
+        { color: "#6f8ead", label: "-3,0000 - -1,5000" },
+        { color: "#abd0e3", label: "-1,5000 - 0,0000" },
+        { color: "#dcb8b4", label: "0,0000 - 1,5000" },
+        { color: "#ca6f7d", label: "1,5000 - 3,0000" },
+        { color: "#ca0020", label: "> 3,0000" }
+    ],
+    "Population – 5 Quantile Classes": [
+        { color: "#fcfdbf", label: "1" },
+        { color: "#fb8761", label: "2" },
+        { color: "#b6367a", label: "3" },
+        { color: "#50127b", label: "4" },
+        { color: "#000004", label: "5" }
+    ]
+};
 
 const overlayLayers = new ol.layer.Group({
     title: 'Overlay Layers',
