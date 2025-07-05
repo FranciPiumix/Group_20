@@ -934,7 +934,7 @@ body {
 	position: absolute;
 	top: 3.5em;
 	right: 0.5em;
-	background-color: rgba(255, 255, 255, 0.95);
+	background-color: rgba(255, 255, 255, 0.95); /* bianco opaco */
 	color: black;
 	border: none;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -949,12 +949,14 @@ body {
 	text-align: left;
 }
 
+/* Lista */
 .layer-switcher ul {
 	list-style: none;
 	padding-left: 0;
 	margin: 0;
 }
 
+/* Ogni voce */
 .layer-switcher li {
 	margin: 6px 0;
 	white-space: nowrap;
@@ -962,10 +964,10 @@ body {
 	text-overflow: ellipsis;
 }
 
+/* Etichette con checkbox affiancati */
 .layer-switcher label {
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
 	gap: 8px;
 	cursor: pointer;
 	color: #000;
@@ -973,28 +975,29 @@ body {
 	text-align: left;
 }
 
-.layer-switcher input[type="radio"],
+/* Checkbox standard */
 .layer-switcher input[type="checkbox"] {
 	appearance: auto;
 	width: 16px;
 	height: 16px;
 	cursor: pointer;
 	margin: 0;
-	display: inline-block;
-	vertical-align: middle;
 }
 
-.layer-switcher .panel > label {
-	display: block;
+/* Radio solo per gruppi */
+.layer-switcher li.group input[type="checkbox"] {
+	border-radius: 50%;
+	appearance: radio; /* li trasforma visivamente in radio */
+}
+
+/* Titolo gruppo */
+.layer-switcher .panel > ul > li.group > label {
 	font-weight: 700;
 	font-size: 14px;
-	color: #000;
-	margin-bottom: 0.8em;
-	padding-left: 0;
-	text-align: left;
+	margin-top: 12px;
 }
 
-/* Scrollbar per touch */
+/* Scroll touch */
 .layer-switcher.touch ::-webkit-scrollbar {
 	width: 6px;
 }
@@ -1007,22 +1010,23 @@ body {
 	border-radius: 10px;
 }
 
-/* Separazione tra gruppi */
-.layer-switcher ul > li.group + li.group {
-	margin-top: 1.2em;
-}
-
-/* Nasconde le freccette di espansione dei gruppi */
-.layer-switcher .panel > ul > li.group > label::before {
-	content: none !important;
+/* Elimina freccette e bottoni gruppo */
+.layer-switcher .panel > ul > li.group > label::before,
+.layer-switcher .group > button,
+.layer-switcher button[title="Collapse legend"] {
 	display: none !important;
 }
 
-/* Nasconde i bottoni di espansione gruppi */
-.layer-switcher .group > button {
-	display: none;
+/* Titoli "Overlay" e "Base Maps" */
+.layer-switcher .panel > label {
+	display: block;
+	font-weight: bold;
+	font-size: 14px;
+	color: #000;
+	margin: 1em 0 0.5em 0;
+	padding-left: 0;
+	text-align: left;
 }
-
 
 /* Header */
 
