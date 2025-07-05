@@ -933,19 +933,18 @@ body {
 	top: 3.5em;
 	right: 0.5em;
 	background-color: rgba(255, 255, 255, 0.95);
-	/* bianco opacizzato */
 	color: black;
 	border: none;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 	border-radius: 6px;
 	min-width: 240px;
 	max-height: 70vh;
-	/* massimo altezza con scroll */
 	padding: 10px 15px;
 	overflow-y: auto;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	font-size: 13px;
 	z-index: 1000;
+	text-align: left;
 }
 
 .layer-switcher ul {
@@ -957,7 +956,6 @@ body {
 .layer-switcher li {
 	margin: 6px 0;
 	white-space: nowrap;
-	/* testo su una sola riga */
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -965,10 +963,12 @@ body {
 .layer-switcher label {
 	display: flex;
 	align-items: center;
+	justify-content: flex-start;
 	gap: 8px;
 	cursor: pointer;
 	color: #000;
 	font-size: 13px;
+	text-align: left;
 }
 
 .layer-switcher input[type="radio"],
@@ -977,9 +977,12 @@ body {
 	width: 16px;
 	height: 16px;
 	cursor: pointer;
+	margin: 0;
+	display: inline-block;
+	vertical-align: middle;
 }
 
-.layer-switcher .panel>label {
+.layer-switcher .panel > label {
 	display: block;
 	font-weight: 700;
 	font-size: 14px;
@@ -989,23 +992,35 @@ body {
 	text-align: left;
 }
 
+/* Scrollbar per touch */
 .layer-switcher.touch ::-webkit-scrollbar {
 	width: 6px;
 }
-
 .layer-switcher.touch ::-webkit-scrollbar-track {
 	background: rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 }
-
 .layer-switcher.touch ::-webkit-scrollbar-thumb {
 	background: rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 }
 
-.layer-switcher ul>li.group+li.group {
+/* Separazione tra gruppi */
+.layer-switcher ul > li.group + li.group {
 	margin-top: 1.2em;
 }
+
+/* Nasconde le freccette di espansione dei gruppi */
+.layer-switcher .panel > ul > li.group > label::before {
+	content: none !important;
+	display: none !important;
+}
+
+/* Nasconde i bottoni di espansione gruppi */
+.layer-switcher .group > button {
+	display: none;
+}
+
 
 /* Header */
 
