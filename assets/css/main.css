@@ -911,8 +911,8 @@ body {
 	margin-top: 4px;
 }
 
-/* Allineamento forzato per i layer switcher */
-.layer-switcher li,
+/* Solo i layer con input usano flex layout */
+.layer-switcher li:has(input),
 .layer-switcher li label {
 	display: flex !important;
 	align-items: center !important;
