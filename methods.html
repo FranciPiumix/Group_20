@@ -23,10 +23,12 @@
         }
 
         #wrapper {
+            position: relative;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
+
 
         #main {
             flex: 1;
@@ -35,11 +37,17 @@
             justify-content: flex-start;
         }
 
-        /* Optional: migliora la distanza visiva */
         #footer {
             margin-top: 40px;
             padding: 20px 0;
             text-align: center;
+            color: white;
+            background: transparent;
+        }
+
+        #footer a {
+            color: white;
+            text-decoration: underline;
         }
 
         body.methods #bg {
@@ -187,9 +195,9 @@
                 </div>
             </section>
 
-            <footer id="footer" style="margin-top: 60px; padding-top: 20px; text-align: center; color: #003366;">
+            <footer id="footer" style="margin-top: 60px; padding-top: 20px; text-align: center;">
                 <span class="copyright">
-                    &copy; CZ Project. Design: <a href="http://html5up.net" style="color: #003366;">HTML5 UP</a>.
+                    &copy; CZ Project. Design: <a href="http://html5up.net" ;">HTML5 UP</a>.
                 </span>
             </footer>
 
