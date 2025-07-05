@@ -950,11 +950,10 @@ body {
 	position: absolute;
 	top: 3.5em;
 	right: 0.5em;
-	background-color: rgba(255, 255, 255, 0.95) !important;
+	background-color: rgba(255, 255, 255, 0.95);
 	color: black;
-	border: none;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 	border-radius: 6px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 	min-width: 240px;
 	max-height: 70vh;
 	padding: 10px 15px;
@@ -965,61 +964,42 @@ body {
 	text-align: left;
 }
 
-/* Lista base */
+/* Liste annidate */
 .layer-switcher ul {
 	list-style: none;
 	padding-left: 0;
 	margin: 0;
 }
 
-/* Ogni voce */
 .layer-switcher li {
 	margin: 6px 0;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
-/* Scroll touch */
-.layer-switcher.touch ::-webkit-scrollbar {
-	width: 6px;
-}
-
-.layer-switcher.touch ::-webkit-scrollbar-track {
-	background: rgba(0, 0, 0, 0.1);
-	border-radius: 10px;
-}
-
-.layer-switcher.touch ::-webkit-scrollbar-thumb {
-	background: rgba(0, 0, 0, 0.3);
-	border-radius: 10px;
-}
-
-/* Elimina freccette e pulsanti gruppo */
-.layer-switcher .panel>ul>li.group>label::before,
-.layer-switcher .group>button,
-.layer-switcher button[title="Collapse legend"] {
-	display: none !important;
-}
-
-/* Titoli dei gruppi: stile blocco verticale */
+/* Gruppi (titoli) */
 .layer-switcher .group>label {
 	display: block !important;
 	font-weight: bold;
 	font-size: 14px;
 	color: #000;
 	margin: 1em 0 0.5em 0;
-	padding-left: 0;
 	text-align: left;
+	cursor: default;
 }
 
-/* Nasconde input nei titoli gruppo */
+/* Nasconde solo input nei titoli dei gruppi */
 .layer-switcher .group>label>input[type="checkbox"],
 .layer-switcher .group>label>input[type="radio"] {
 	display: none !important;
 }
 
-/* Label dei singoli layer */
+/* Elimina frecce e pulsanti */
+.layer-switcher .group>button,
+.layer-switcher .panel>ul>li.group>label::before,
+.layer-switcher button[title="Collapse legend"] {
+	display: none !important;
+}
+
+/* Layer: checkbox + testo allineati */
 .layer-switcher li.layer label {
 	display: flex !important;
 	align-items: center;
@@ -1027,26 +1007,16 @@ body {
 	cursor: pointer;
 	color: #000;
 	font-size: 13px;
-	text-align: left;
 }
 
-/* Checkbox/radio input */
+/* Checkbox/radio visibili e cliccabili */
 .layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
-	display: inline-block;
 	width: 16px;
 	height: 16px;
-	cursor: pointer;
 	margin: 0;
 	flex-shrink: 0;
-	vertical-align: middle;
-}
-
-/* Contenitori con input = flex layout */
-.layer-switcher li:has(input),
-.layer-switcher li label {
-	display: flex !important;
-	align-items: center !important;
+	cursor: pointer;
 }
 
 /* Header */
