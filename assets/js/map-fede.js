@@ -195,7 +195,6 @@ function getLegendElement(title, color = '#cccccc') {
 function updateLegend() {
     const legendContainer = document.getElementById('legend-content');
     let legendHTML = '<ul>';
-
     let hasVisibleLayer = false;
 
     overlayLayerList.forEach(layer => {
@@ -204,10 +203,10 @@ function updateLegend() {
             const legendUrl = layer.get('legendUrl');
             if (legendUrl) {
                 legendHTML += `
-					<li>
-						<label>${layer.get('title')}</label>
-						<img src="${legendUrl}" alt="Legenda ${layer.get('title')}">
-					</li>`;
+                    <li>
+                        <label>${layer.get('title')}</label>
+                        <img src="${legendUrl}" alt="Legenda ${layer.get('title')}">
+                    </li>`;
             } else {
                 legendHTML += `<li><label>${layer.get('title')}</label></li>`;
             }
@@ -224,7 +223,6 @@ function updateLegend() {
         legendContainer.style.display = 'none';
     }
 }
-
 
 // ==============================
 // FULLSCREEN
