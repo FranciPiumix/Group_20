@@ -1014,8 +1014,8 @@ body {
 }
 
 /* Nasconde solo checkbox/radio nelle label dei gruppi (non nei singoli layer) */
-.layer-switcher .group > label > input[type="checkbox"],
-.layer-switcher .group > label > input[type="radio"] {
+.layer-switcher .group>label>input[type="checkbox"],
+.layer-switcher .group>label>input[type="radio"] {
 	display: none !important;
 }
 
@@ -1053,6 +1053,22 @@ body {
 .layer-switcher li label {
 	display: flex !important;
 	align-items: center !important;
+}
+
+.layer-switcher input[type="checkbox"],
+.layer-switcher input[type="radio"] {
+	opacity: 1 !important;
+	background-color: white !important;
+	border: 1px solid #555 !important;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	appearance: auto;
+	/* reset eventuali stili custom */
+	-webkit-appearance: checkbox;
+	/* safari/chrome */
+	-moz-appearance: checkbox;
+	/* firefox */
 }
 
 /* Header */
