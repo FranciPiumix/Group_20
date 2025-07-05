@@ -958,39 +958,6 @@ body {
 	text-overflow: ellipsis;
 }
 
-/* Etichette con checkbox affiancati */
-.layer-switcher label {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	cursor: pointer;
-	color: #000;
-	font-size: 13px;
-	text-align: left;
-}
-
-/* Checkbox standard */
-.layer-switcher input[type="checkbox"] {
-	appearance: auto;
-	width: 16px;
-	height: 16px;
-	cursor: pointer;
-	margin: 0;
-}
-
-/* Radio solo per gruppi */
-.layer-switcher li.group input[type="checkbox"] {
-	border-radius: 50%;
-	appearance: radio; /* li trasforma visivamente in radio */
-}
-
-/* Titolo gruppo */
-.layer-switcher .panel > ul > li.group > label {
-	font-weight: 700;
-	font-size: 14px;
-	margin-top: 12px;
-}
-
 /* Scroll touch */
 .layer-switcher.touch ::-webkit-scrollbar {
 	width: 6px;
@@ -1020,6 +987,56 @@ body {
 	margin: 1em 0 0.5em 0;
 	padding-left: 0;
 	text-align: left;
+}
+/* Applica flex anche alle label dei gruppi */
+.layer-switcher .panel > ul > li.group > label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+	color: #000;
+	text-align: left;
+}
+
+/* Etichette con checkbox/radio affiancati */
+.layer-switcher label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+	color: #000;
+	font-size: 13px;
+	text-align: left;
+}
+
+/* Anche per i gruppi */
+.layer-switcher .panel > ul > li.group > label {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+	color: #000;
+	font-weight: 700;
+	font-size: 14px;
+	margin-top: 12px;
+}
+
+/* Checkbox */
+.layer-switcher input[type="checkbox"] {
+	appearance: auto;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	margin: 0;
+}
+
+/* Radio per base maps */
+.layer-switcher input[type="radio"] {
+	appearance: auto;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	margin: 0;
 }
 
 /* Header */
