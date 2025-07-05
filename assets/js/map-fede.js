@@ -186,13 +186,13 @@ map.addControl(layerSwitcher);
 
 // Corregge la struttura HTML delle checkbox nel layer switcher
 setTimeout(() => {
-    document.querySelectorAll('.layer-switcher li.layer').forEach(li => {
-        const input = li.querySelector('input[type="checkbox"]');
+    document.querySelectorAll('.layer-switcher li').forEach(li => {
+        const input = li.querySelector('input[type="checkbox"], input[type="radio"]');
         const label = li.querySelector('label');
 
         if (input && label && !label.contains(input)) {
-            label.textContent = label.textContent.trim(); // rimuove spazi extra
-            label.prepend(input); // sposta il checkbox dentro il label
+            label.textContent = label.textContent.trim();
+            label.prepend(input);
         }
     });
 }, 100);
