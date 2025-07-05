@@ -920,7 +920,7 @@ body {
 #legend-content,
 #legend-content label,
 #legend-content li {
-    color: #000000 !important;
+	color: #000000 !important;
 }
 
 /* Mouse coordinates display */
@@ -1024,20 +1024,27 @@ body {
 	text-align: left;
 }
 
-.layer-switcher label,
+/* Titoli generali sopra gruppi */
+.layer-switcher .panel>label {
+	display: block !important;
+	font-weight: bold;
+	font-size: 14px;
+	color: #000;
+	margin: 1em 0 0.5em 0;
+	padding-left: 0;
+	text-align: left;
+}
+
+/* Label dei gruppi (layers) */
 .layer-switcher .panel>ul>li.group>label {
 	display: flex !important;
-	flex-direction: row !important;
-	align-items: center !important;
-	justify-content: flex-start;
+	align-items: center;
 	gap: 8px;
 	cursor: pointer;
 	color: #000;
-	font-size: 13px;
-	text-align: left;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	font-weight: 700;
+	font-size: 14px;
+	margin-top: 12px;
 }
 
 /* Anche per i gruppi */
