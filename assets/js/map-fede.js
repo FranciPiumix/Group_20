@@ -301,17 +301,27 @@ function updateLegend() {
 
     overlayLayerList.forEach(layer => {
         if (layer.getVisible()) {
-            hasVisibleLayer = true;
+            const title = layer.get('title');
+            const items = legendData[title];
 
-            // Se vuoi puoi personalizzare il colore in base a qualche proprietà,
-            // qui metto colore fisso grigio chiaro, puoi cambiarlo
-            const color = '#88aaff';
-
-            legendHTML += `
-                <li>
-                    <label>${layer.get('title')}</label>
-                    <span class="legend-color" style="background-color:${color}; width:16px; height:16px; display:inline-block; border:1px solid #555; margin-top:4px;"></span>
-                </li>`;
+            if (items && items.length > 0) {
+                hasVisibleLayer = true;
+                legendHTML += `<li><label>${title}</label><ul style="margin-left: 10px;">`;
+                items.forEach(item => {
+                    legendHTML += `<li>
+                        <span class="legend-color" style="
+                            background-color: ${item.color};
+                            display: inline-block;
+                            width: 16px;
+                            height: 16px;
+                            margin-right: 5px;
+                            vertical-align: middle;
+                            border: 1px solid #555;"></span>
+                        ${item.label}
+                    </li>`;
+                });
+                legendHTML += `</ul></li>`;
+            }
         }
     });
 
