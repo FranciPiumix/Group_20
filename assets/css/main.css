@@ -888,9 +888,12 @@ body {
 
 #legend-content li {
 	display: flex;
-	flex-direction: column; /* Testo sopra, immagine sotto */
-	align-items: flex-start; /* Allinea a sinistra */
-	margin-bottom: 20px; /* Spazio maggiore tra elementi */
+	flex-direction: column;
+	/* Testo sopra, immagine sotto */
+	align-items: flex-start;
+	/* Allinea a sinistra */
+	margin-bottom: 20px;
+	/* Spazio maggiore tra elementi */
 	font-size: 14px;
 	color: #111;
 }
@@ -901,11 +904,24 @@ body {
 }
 
 .legend-color {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 1px solid #555;
-    margin-top: 4px;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #555;
+	margin-top: 4px;
+}
+
+/* Allineamento forzato per i layer switcher */
+.layer-switcher li,
+.layer-switcher li label {
+	display: flex !important;
+	align-items: center !important;
+}
+
+.layer-switcher li input[type="checkbox"],
+.layer-switcher li input[type="radio"] {
+	margin-right: 8px;
+	flex-shrink: 0;
 }
 
 /* Mouse coordinates display */
@@ -935,7 +951,8 @@ body {
 	position: absolute;
 	top: 3.5em;
 	right: 0.5em;
-	background-color: rgba(255, 255, 255, 0.95)!important; /* bianco opaco */
+	background-color: rgba(255, 255, 255, 0.95) !important;
+	/* bianco opaco */
 	color: black;
 	border: none;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -969,24 +986,26 @@ body {
 .layer-switcher.touch ::-webkit-scrollbar {
 	width: 6px;
 }
+
 .layer-switcher.touch ::-webkit-scrollbar-track {
 	background: rgba(0, 0, 0, 0.1);
 	border-radius: 10px;
 }
+
 .layer-switcher.touch ::-webkit-scrollbar-thumb {
 	background: rgba(0, 0, 0, 0.3);
 	border-radius: 10px;
 }
 
 /* Elimina freccette e bottoni gruppo */
-.layer-switcher .panel > ul > li.group > label::before,
-.layer-switcher .group > button,
+.layer-switcher .panel>ul>li.group>label::before,
+.layer-switcher .group>button,
 .layer-switcher button[title="Collapse legend"] {
 	display: none !important;
 }
 
 /* Titoli "Overlay" e "Base Maps" */
-.layer-switcher .panel > label {
+.layer-switcher .panel>label {
 	display: block;
 	font-weight: bold;
 	font-size: 14px;
@@ -995,8 +1014,9 @@ body {
 	padding-left: 0;
 	text-align: left;
 }
+
 /* Applica flex anche alle label dei gruppi */
-.layer-switcher .panel > ul > li.group > label {
+.layer-switcher .panel>ul>li.group>label {
 	display: flex;
 	align-items: center;
 	gap: 8px;
@@ -1006,7 +1026,7 @@ body {
 }
 
 .layer-switcher label,
-.layer-switcher .panel > ul > li.group > label {
+.layer-switcher .panel>ul>li.group>label {
 	display: flex !important;
 	flex-direction: row !important;
 	align-items: center !important;
@@ -1022,7 +1042,7 @@ body {
 }
 
 /* Anche per i gruppi */
-.layer-switcher .panel > ul > li.group > label {
+.layer-switcher .panel>ul>li.group>label {
 	display: flex;
 	align-items: center;
 	gap: 8px;

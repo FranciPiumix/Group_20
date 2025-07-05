@@ -186,7 +186,7 @@ const layerSwitcher = new LayerSwitcher({
 });
 map.addControl(layerSwitcher);
 
-// Funzione per correggere checkbox dentro label
+// Funzione per sistemare i checkbox e i label nel LayerSwitcher
 function fixCheckboxes() {
     document.querySelectorAll('.layer-switcher li').forEach(li => {
         const input = li.querySelector('input[type="checkbox"], input[type="radio"]');
@@ -198,18 +198,18 @@ function fixCheckboxes() {
     });
 }
 
-// Correggi subito all’avvio
-fixCheckboxes();
+// Applica subito dopo l'inizializzazione del LayerSwitcher
+setTimeout(fixCheckboxes, 100);
 
-// Osserva i cambiamenti nella layer-switcher e correggi dinamicamente
-const targetNode = document.querySelector('.layer-switcher .panel > ul');
-if (targetNode) {
-    const observer = new MutationObserver(() => {
-        fixCheckboxes();
+// Osserva il contenitore del pannello per modifiche future
+const switcherPanel = document.querySelector('.layer-switcher .panel');
+if (switcherPanel) {
+    const observer = new MutationObserver(fixCheckboxes);
+    observer.observe(switcherPanel, {
+        childList: true,
+        subtree: true
     });
-    observer.observe(targetNode, { childList: true, subtree: true });
 }
-
 
 // ==============================
 // LEGENDA
