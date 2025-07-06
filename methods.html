@@ -11,12 +11,10 @@
         <link rel="stylesheet" href="assets/css/noscript.css" />
     </noscript>
     <style>
-        /* Link nella top-right icon (home) */
         #top-right-nav a {
             color: white !important;
         }
 
-        /* Home icon top-right */
         #top-right-nav {
             position: absolute;
             top: 1em;
@@ -98,6 +96,11 @@
         b {
             font-weight: bold;
         }
+
+        .note-text {
+            margin-top: 20px;
+            font-style: italic;
+        }
     </style>
 </head>
 
@@ -144,21 +147,32 @@
 
                     <div class="box">
                         <h2>2. Workflow and Methodology</h2>
+
                         <p style="line-height: 1.6; margin-bottom: 1.2em;">
-                            <b>Data Acquisition:</b> We used CAMS reanalysis data for NO₂ and PM2.5 (2013–2022), ESA CCI Land Cover
-                            (2022), and WorldPop population data (2020).
+                            <b>Data Acquisition:</b> We used CAMS reanalysis data for NO₂ and PM2.5 (2013–2022), ESA CCI
+                            Land Cover (2022), and WorldPop unconstrained population data (2020).
                         </p>
+
                         <p style="line-height: 1.6; margin-bottom: 1.2em;">
-                            <b>Preprocessing:</b> Data were clipped to the Czech Republic, land cover was reclassified,
-                            and all layers were harmonized to the same projection.
+                            <b>Preprocessing:</b> All datasets were clipped to the Czech Republic boundaries. Land cover
+                            was reclassified into IPCC categories. All layers were projected to a common CRS
+                            (EPSG:4326).
                         </p>
+
                         <p style="line-height: 1.6; margin-bottom: 1.2em;">
-                            <b>Analysis:</b> We performed time-series statistics from 2013 to 2022, examined land use
-                            correlations, and calculated population exposure based on WHO thresholds.
+                            <b>Pollution Aggregation:</b> Monthly pollutant rasters were aggregated to annual averages.
+                            December 2022 was computed from daily NetCDF data.
                         </p>
+
+                        <p style="line-height: 1.6; margin-bottom: 1.2em;">
+                            <b>Analysis:</b> We calculated mean and maximum annual pollutant concentrations over
+                            built-up areas. We also evaluated the population exposed to pollutant levels exceeding WHO
+                            guidelines.
+                        </p>
+
                         <p style="line-height: 1.6;">
-                            <b>Visualization:</b> Outputs included bivariate maps, annual average maps, and interactive
-                            WebGIS tools.
+                            <b>Visualization:</b> The project generated bivariate maps (pollution × population),
+                            time-series charts, and an interactive WebGIS viewer.
                         </p>
                     </div>
 
@@ -180,14 +194,16 @@
                             <li><b>Bivariate pollution-population</b> maps</li>
                             <li>Interactive <b>WebGIS</b> for public access</li>
                         </ul>
-                        <p><i><b>Note:</b> Due to team constraints, the analysis of PM10 was not completed.</i></p>
+                        <p class="note-text">
+                            <b>Note:</b> Due to team constraints, the analysis of PM10 was not completed.
+                        </p>
                     </div>
 
                 </div>
             </section>
 
             <!-- Footer -->
-            <footer id="footer" style="margin-top: 60px; padding-top: 20px; text-align: center;">
+            <footer id="footer">
                 <span class="copyright">
                     &copy; CZ Project. Design: <a href="http://html5up.net">HTML5 UP</a>.
                 </span>
