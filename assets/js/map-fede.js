@@ -228,7 +228,8 @@ const map = new ol.Map({
     target: 'map',
     layers: [basemapLayers, overlayLayers],
     view: new ol.View({
-        center: ol.proj.fromLonLat([15.4730, 49.8175]),
+        projection: 'EPSG:4326',
+        center: [15.4730, 49.8175],
         zoom: 7
     })
 });
