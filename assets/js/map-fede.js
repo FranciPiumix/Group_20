@@ -189,10 +189,169 @@ const layerSwitcher = new LayerSwitcher({
 map.addControl(layerSwitcher);
 
 // ==============================
-// CURSORE INTERATTIVO
+// LEGENDA
 // ==============================
 
-map.on('pointermove', function (event) {
-    const hit = map.hasFeatureAtPixel(event.pixel);
-    map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+const legendData = {
+    "NO₂ CAMS – December 2022": {
+        type: "gradient",
+        minLabel: `${parseFloat("6.8125").toFixed(2)} μg/m³`,
+        maxLabel: `${parseFloat("22.7187").toFixed(2)} μg/m³`,
+        gradient: ["#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"]
+    },
+    "PM2.5 CAMS – December 2022": {
+        type: "gradient",
+        minLabel: `${parseFloat("7.5217").toFixed(2)} μg/m³`,
+        maxLabel: `${parseFloat("30.1666").toFixed(2)} μg/m³`,
+        gradient: ["#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"]
+    },
+    "NO₂ – Annual average 2022": {
+        type: "gradient",
+        minLabel: `${parseFloat("4.1826").toFixed(2)} μg/m³`,
+        maxLabel: `${parseFloat("20.7782").toFixed(2)} μg/m³`,
+        gradient: ["#7f2704", "#b13a03", "#df5005", "#f3701b", "#fd9243", "#fdb271", "#fdd2a5", "#fee7cf", "#fff5eb"]
+    },
+    "PM2.5 – Annual average 2022": {
+        type: "gradient",
+        minLabel: `${parseFloat("4.7921").toFixed(2)} μg/m³`,
+        maxLabel: `${parseFloat("14.5153").toFixed(2)} μg/m³`,
+        gradient: ["#7f2704", "#b13a03", "#df5005", "#f3701b", "#fd9243", "#fdb271", "#fdd2a5", "#fee7cf", "#fff5eb"]
+    },
+    "NO₂ – Concentration map 2020": {
+        type: "discrete",
+        items: [
+            { color: "#003366", label: "1" },
+            { color: "#2c7bb6", label: "2" }
+        ]
+    },
+    "PM2.5 – Concentration map 2020": {
+        type: "discrete",
+        items: [
+            { color: "#2c7bb6", label: "2" },
+            { color: "#c7e6db", label: "3" }
+        ]
+    },
+    "NO₂ – Concentration map 2022": {
+        type: "discrete",
+        items: [
+            { color: "#003366", label: "1" },
+            { color: "#2c7bb6", label: "2" }
+        ]
+    },
+    "PM2.5 – Concentration map 2022": {
+        type: "discrete",
+        items: [
+            { color: "#2c7bb6", label: "2" },
+            { color: "#c7e6db", label: "3" },
+            { color: "#fec980", label: "4" },
+            { color: "#d7191c", label: "5" }
+        ]
+    },
+    "NO₂ AAD": {
+        type: "discrete",
+        items: [
+            { color: "#003366", label: "<= -5.00 μg/m³" },
+            { color: "#6f8ead", label: "-5.00 – -2.00 μg/m³" },
+            { color: "#abd0e3", label: "-2.00 – 0.00 μg/m³" },
+            { color: "#dcb8b4", label: "0.00 – 2.00 μg/m³" },
+            { color: "#ca6f7d", label: "2.00 – 5.00 μg/m³" },
+            { color: "#ca0020", label: "> 5.00 μg/m³" }
+        ]
+    },
+    "PM2.5 AAD": {
+        type: "discrete",
+        items: [
+            { color: "#003366", label: "<= -3.00 μg/m³" },
+            { color: "#6f8ead", label: "-3.00 – -1.50 μg/m³" },
+            { color: "#abd0e3", label: "-1.50 – 0.00 μg/m³" },
+            { color: "#dcb8b4", label: "0.00 – 1.50 μg/m³" },
+            { color: "#ca6f7d", label: "1.50 – 3.00 μg/m³" },
+            { color: "#ca0020", label: "> 3.00 μg/m³" }
+        ]
+    },
+    "Population – 5 Quantile Classes": {
+        type: "discrete",
+        items: [
+            { color: "#fcfdbf", label: "1" },
+            { color: "#fb8761", label: "2" },
+            { color: "#b6367a", label: "3" },
+            { color: "#50127b", label: "4" },
+            { color: "#000004", label: "5" }
+        ]
+    },
+    "NO₂ – Bivariate 2020": {
+        type: "bivariate",
+        title: "Pollution × Popolation",
+        rows: 5,
+        cols: 5,
+        colors: [
+            ["#fffffe", "#ffe8ee", "#ffcbd7", "#ffaec0", "#ff88a6"],
+            ["#ddfffd", "#cde6e5", "#c3c6cb", "#bb68b4", "#b08ea6"],
+            ["#b9fffc", "#a4dfdd", "#95b6c3", "#8a9cad", "#7d8ba1"],
+            ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
+            ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
+        ],
+        xLabel: "Population",
+        yLabel: "Pollution"
+    },
+    "PM2.5 – Bivariate 2020": {
+        type: "bivariate",
+        title: "Pollution × Popolation",
+        rows: 5,
+        cols: 5,
+        colors: [
+            ["#fffffe", "#ffe8ee", "#ffcbd7", "#ffaec0", "#ff88a6"],
+            ["#ddfffd", "#cde6e5", "#c3c6cb", "#bb68b4", "#b08ea6"],
+            ["#b9fffc", "#a4dfdd", "#95b6c3", "#8a9cad", "#7d8ba1"],
+            ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
+            ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
+        ],
+        xLabel: "Population",
+        yLabel: "Pollution"
+    }
+};
+
+// Funzione per recuperare tutti i layer foglia
+function getAllLeafLayers(layerGroup) {
+    const layers = [];
+    layerGroup.getLayers().forEach(layer => {
+        if (layer instanceof ol.layer.Group) {
+            layers.push(...getAllLeafLayers(layer));
+        } else {
+            layers.push(layer);
+        }
+    });
+    return layers;
+}
+
+// Listener su tutti i layer foglia per aggiornare la legenda
+getAllLeafLayers(overlayLayers).forEach(layer => {
+    layer.on('change:visible', updateLegend);
 });
+
+// Funzione principale di aggiornamento della legenda
+function updateLegend() {
+    const legendContainer = document.getElementById('legend-content');
+    let legendHTML = '<ul>';
+    let hasVisibleLayer = false;
+
+    getAllLeafLayers(overlayLayers).forEach(layer => {
+        if (layer.getVisible()) {
+            const title = layer.get('title');
+            const items = legendData[title];
+            if (items) {
+                hasVisibleLayer = true;
+                legendHTML += `<li><label>${title}</label><ul style="margin-left: 10px;">`;
+
+                if (items.type === 'gradient') {
+                    const gradientSquares = items.gradient.map(color => `
+                        <div style="width: 20px; height: 10px; background-color: ${
+
+                        // ==============================
+                        // CURSORE INTERATTIVO
+                        // ==============================
+
+                        map.on('pointermove', function (event) {
+                            const hit = map.hasFeatureAtPixel(event.pixel);
+                            map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+                        });
