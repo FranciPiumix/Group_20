@@ -187,8 +187,8 @@ const legendData = {
             ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
             ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
         ],
-        xLabelMin: "Population →",
-        yLabelMin: "Pollution ↑"
+        xLabel: "Population",
+        yLabel: "Pollution"
     },
     "PM2.5 – Bivariate 2020": {
         type: "bivariate",
@@ -202,8 +202,8 @@ const legendData = {
             ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
             ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
         ],
-        xLabelMin: "Population →",
-        yLabelMin: "Pollution ↑"
+        xLabel: "Population",
+        yLabel: "Pollution"
     }
 };
 
@@ -355,11 +355,11 @@ function updateLegend() {
         </li>`;
                 }
                 else if (items.type === 'bivariate') {
-                    const { rows, cols, colors, xLabelMin, xLabelMax, yLabelMin, yLabelMax } = items;
+                    const { rows, cols, colors, xLabel, yLabel } = items;
 
-                    // Costruisci griglia
+                    // Costruisci griglia (invertendo le righe)
                     let gridHTML = '<table style="border-collapse: collapse; margin: 10px 0;">';
-                    for (let r = 0; r < rows; r++) {
+                    for (let r = rows - 1; r >= 0; r--) {
                         gridHTML += '<tr>';
                         for (let c = 0; c < cols; c++) {
                             const color = colors[r][c];
@@ -371,20 +371,21 @@ function updateLegend() {
 
                     legendHTML += `
         <li style="display: flex; flex-direction: column; align-items: center;">
-            <strong>${items.title}</strong>
+            <strong>${items.title || ""}</strong>
             <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
-                <!-- Y axis label -->
-                <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; margin-right: 10px; font-size: 12px;">
-                    ${yLabelMax}<br><br>${yLabelMin}
-                </div>
                 
-                <!-- Grid -->
-                <div>
+                <!-- Y axis label with arrow up -->
+                <div style="display: flex; flex-direction: column; align-items: center; margin-right: 10px; font-size: 12px;">
+                    <div style="writing-mode: vertical-rl; transform: rotate(180deg);">
+                        ${yLabel || "Pollution"} ↑
+                    </div>
+                </div>
+
+                <!-- Grid and x-axis -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
                     ${gridHTML}
-                    <!-- X axis label -->
-                    <div style="display: flex; justify-content: space-between; font-size: 12px;">
-                        <span>${xLabelMin}</span>
-                        <span>${xLabelMax}</span>
+                    <div style="font-size: 12px; margin-top: 4px;">
+                        ${xLabel || "Population"} →
                     </div>
                 </div>
             </div>
