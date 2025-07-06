@@ -93,7 +93,7 @@ const legendData = {
         minLabel: `${parseFloat("7.5217").toFixed(2)} μg/m³`,
         maxLabel: `${parseFloat("30.1666").toFixed(2)} μg/m³`,
         gradient: [
-             "#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"
+            "#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"
         ]
     },
     "NO₂ – Annual average 2022": {
@@ -125,6 +125,13 @@ const legendData = {
         items: [
             { color: "#2c7bb6", label: "2" },
             { color: "#c7e6db", label: "3" }
+        ]
+    },
+    "NO₂ – Concentration map 2022": {
+        type: "discrete",
+        items: [
+            { color: "#003366", label: "1" },
+            { color: "#2c7bb6", label: "2" },
         ]
     },
     "PM2.5 – Concentration map 2022": {
@@ -167,8 +174,43 @@ const legendData = {
             { color: "#50127b", label: "4" },
             { color: "#000004", label: "5" }
         ]
+    },
+    "NO₂ – Bivariate 2020": {
+        type: "bivariate",
+        title: "Inquinamento × Popolazione",
+        rows: 5,
+        cols: 5,
+        colors: [
+            ["#fffffe", "#ffe8ee", "#ffcbd7", "#ffaec0", "#ff88a6"],
+            ["#ddfffd", "#cde6e5", "#c3c6cb", "#bb68b4", "#b08ea6"],
+            ["#b9fffc", "#a4dfdd", "#95b6c3", "#8a9cad", "#7d8ba1"],
+            ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
+            ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
+        ],
+        xLabelMin: "Low Population Count",
+        xLabelMax: "High Population Count",
+        yLabelMin: "Low Pollutant Concentration",
+        yLabelMax: "High Pollutant Concentration"
+    },
+    "PM2.5 – Bivariate 2020": {
+        type: "bivariate",
+        title: "Inquinamento × Popolazione",
+        rows: 5,
+        cols: 5,
+        colors: [
+            ["#fffffe", "#ffe8ee", "#ffcbd7", "#ffaec0", "#ff88a6"],
+            ["#ddfffd", "#cde6e5", "#c3c6cb", "#bb68b4", "#b08ea6"],
+            ["#b9fffc", "#a4dfdd", "#95b6c3", "#8a9cad", "#7d8ba1"],
+            ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
+            ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
+        ],
+        xLabelMin: "Low Population Count",
+        xLabelMax: "High Population Count",
+        yLabelMin: "Low Pollutant Concentration",
+        yLabelMax: "High Pollutant Concentration"
     }
 };
+
 
 const overlayLayers = new ol.layer.Group({
     title: 'Overlay Layers',
@@ -312,6 +354,42 @@ function updateLegend() {
                     <span>${items.maxLabel}</span>
                     <div style="flex-grow: 1;"></div>
                     <span>${items.minLabel}</span>
+                </div>
+            </div>
+        </li>`;
+                }
+                else if (items.type === 'bivariate') {
+                    const { rows, cols, colors, xLabelMin, xLabelMax, yLabelMin, yLabelMax } = items;
+
+                    // Costruisci griglia
+                    let gridHTML = '<table style="border-collapse: collapse; margin: 10px 0;">';
+                    for (let r = 0; r < rows; r++) {
+                        gridHTML += '<tr>';
+                        for (let c = 0; c < cols; c++) {
+                            const color = colors[r][c];
+                            gridHTML += `<td style="width: 20px; height: 20px; background-color: ${color}; border: 1px solid #ccc;"></td>`;
+                        }
+                        gridHTML += '</tr>';
+                    }
+                    gridHTML += '</table>';
+
+                    legendHTML += `
+        <li style="display: flex; flex-direction: column; align-items: center;">
+            <strong>${items.title}</strong>
+            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
+                <!-- Y axis label -->
+                <div style="writing-mode: vertical-rl; transform: rotate(180deg); text-align: center; margin-right: 10px; font-size: 12px;">
+                    ${yLabelMax}<br><br>${yLabelMin}
+                </div>
+                
+                <!-- Grid -->
+                <div>
+                    ${gridHTML}
+                    <!-- X axis label -->
+                    <div style="display: flex; justify-content: space-between; font-size: 12px;">
+                        <span>${xLabelMin}</span>
+                        <span>${xLabelMax}</span>
+                    </div>
                 </div>
             </div>
         </li>`;
