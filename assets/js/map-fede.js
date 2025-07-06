@@ -187,10 +187,8 @@ const legendData = {
             ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
             ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
         ],
-        xLabelMin: "Low pop. count",
-        xLabelMax: "High pop. count",
-        yLabelMin: "Low pol. density",
-        yLabelMax: "High pol. density"
+        xLabelMin: "Population →",
+        yLabelMin: "Pollution ↑"
     },
     "PM2.5 – Bivariate 2020": {
         type: "bivariate",
@@ -204,10 +202,8 @@ const legendData = {
             ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
             ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
         ],
-        xLabelMin: "Low pop. count",
-        xLabelMax: "High pop. count",
-        yLabelMin: "Low pol. density",
-        yLabelMax: "High pol. density"
+        xLabelMin: "Population →",
+        yLabelMin: "Pollution ↑"
     }
 };
 
