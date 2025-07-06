@@ -300,22 +300,25 @@ function updateLegend() {
                 legendHTML += `<li><label>${title}</label><ul style="margin-left: 10px;">`;
 
                 if (items.type === 'gradient') {
-                    const gradientColors = items.gradient.join(', ');
+                    const gradientSquares = items.gradient.map(color => `
+        <div style="width: 20px; height: 10px; background-color: ${color}; margin: 0; padding: 0;"></div>
+    `).join('');
+
                     legendHTML += `
-                        <li>
-                            <div style="display: flex; align-items: center;">
-                                <span>${items.minLabel}</span>
-                                <div style="
-                                    height: 16px;
-                                    flex-grow: 1;
-                                    margin: 0 10px;
-                                    background: linear-gradient(to right, ${gradientColors});
-                                    border: 1px solid #555;
-                                "></div>
-                                <span>${items.maxLabel}</span>
-                            </div>
-                        </li>`;
-                } else if (items.type === 'discrete') {
+        <li>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="display: flex; flex-direction: column;">
+                    ${gradientSquares}
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: flex-start; font-size: 12px;">
+                    <span>${items.maxLabel}</span>
+                    <div style="flex-grow: 1;"></div>
+                    <span>${items.minLabel}</span>
+                </div>
+            </div>
+        </li>`;
+                }
+                else if (items.type === 'discrete') {
                     items.items.forEach(item => {
                         legendHTML += `<li>
                             <span class="legend-color" style="
