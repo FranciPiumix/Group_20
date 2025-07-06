@@ -1048,11 +1048,11 @@ body {
 	vertical-align: middle;
 }
 
-/* Contenitori con input = flex layout */
-.layer-switcher li:has(input),
-.layer-switcher li label {
+/* Solo i layer (non i gruppi) devono usare il layout orizzontale */
+.layer-switcher li.layer label {
 	display: flex !important;
 	align-items: center !important;
+	gap: 8px;
 }
 
 .layer-switcher input[type="checkbox"],
@@ -1069,8 +1069,8 @@ body {
 	-webkit-appearance: checkbox;
 	-moz-appearance: checkbox;
 
-/* Header */
+	/* Header */
 
-#header nav {
-	padding: 0 1em;
-}
+	#header nav {
+		padding: 0 1em;
+	}
