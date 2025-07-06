@@ -42,24 +42,28 @@ const basemapLayers = new ol.layer.Group({
 const geoServerURL = 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver_20/wms';
 
 function createWMSLayer(title, layerName) {
-    return new ol.layer.Image({
+    const source = new ol.source.ImageWMS({
+        url: geoServerURL,
+        params: {
+            'LAYERS': layerName,
+            'TILED': true,
+            'STYLES': ''
+        },
+        ratio: 1,
+        serverType: 'geoserver'
+    });
+
+    const layer = new ol.layer.Image({
         title: title,
         visible: false,
-        source: new ol.source.ImageWMS({
-            url: geoServerURL,
-            params: {
-                'LAYERS': layerName,
-                'TILED': true,
-                'STYLES': ''
-            },
-            ratio: 1,
-            serverType: 'geoserver'
-        })
+        source: source
     });
+
+    return layer;
 }
 
-// === Pollution Concentration Layers ===
-const pollutionLayers = [
+
+const overlayLayerList = [
     createWMSLayer('NO₂ CAMS – December 2022', 'gisgeoserver_20:CzechRepublic_CAMS_no2_2022_12'),
     createWMSLayer('PM2.5 CAMS – December 2022', 'gisgeoserver_20:CzechRepublic_CAMS_pm2p5_2022_12'),
     createWMSLayer('NO₂ – Annual average 2022', 'gisgeoserver_20:CzechRepublic_average_no2_2022'),
@@ -70,41 +74,10 @@ const pollutionLayers = [
     createWMSLayer('NO₂ – Concentration map 2022', 'gisgeoserver_20:CZ_no2_concentration_map_2022'),
     createWMSLayer('NO₂ AAD', 'gisgeoserver_20:no2_AAD'),
     createWMSLayer('PM2.5 AAD', 'gisgeoserver_20:pm2p5_AAD'),
-];
-
-// === Population Exposure Layers ===
-const exposureLayers = [
     createWMSLayer('NO₂ – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_no2_2020_bivariate'),
     createWMSLayer('PM2.5 – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_pm2p5_bivariate_2020'),
     createWMSLayer('Population – 5 Quantile Classes', 'gisgeoserver_20:CZ_population_quantile_5classes'),
-];
-
-// === Grouped Layer Containers ===
-const pollutionGroup = new ol.layer.Group({
-    title: 'Pollution Concentration',
-    fold: 'open',
-    layers: pollutionLayers
-});
-
-const exposureGroup = new ol.layer.Group({
-    title: 'Population Exposure',
-    fold: 'open',
-    layers: exposureLayers
-});
-
-const overlayGroup = new ol.layer.Group({
-    title: 'Overlay Layers',
-    fold: 'open',
-    layers: [pollutionGroup, exposureGroup]
-});
-
-// Aggiorna event listener sui singoli layers
-pollutionLayers.concat(exposureLayers).forEach(layer => {
-    layer.on('change:visible', updateLegend);
-});
-
-// Aggiorna legenda iniziale
-updateLegend();
+].reverse();
 
 const legendData = {
     "NO₂ CAMS – December 2022": {
@@ -234,6 +207,19 @@ const legendData = {
     }
 };
 
+
+const overlayLayers = new ol.layer.Group({
+    title: 'Overlay Layers',
+    fold: 'open',
+    layers: overlayLayerList
+});
+
+overlayLayerList.forEach(layer => {
+    layer.on('change:visible', updateLegend);
+});
+
+updateLegend();
+
 // ==============================
 // MAP
 // ==============================
@@ -242,12 +228,10 @@ const map = new ol.Map({
     target: 'map',
     layers: [basemapLayers, overlayLayers],
     view: new ol.View({
-        projection: 'EPSG:4326',  // Cambiar la proyección a EPSG:4326
-        center: [15.4730, 49.8175],  // Coordenadas en lon, lat sin transformar
+        center: ol.proj.fromLonLat([15.4730, 49.8175]),
         zoom: 7
     })
 });
-
 
 // ==============================
 // POPUP
