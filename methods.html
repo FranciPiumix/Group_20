@@ -44,8 +44,6 @@
             margin: 0;
         }
 
-
-
         #footer {
             margin-top: 40px;
             padding: 20px 0;
@@ -121,11 +119,10 @@
                 </ul>
             </nav>
 
-
             <!-- Header -->
             <header id="header">
                 <h1>Methods</h1>
-                <p class="section-links"><b>How to build the analysis </b></p>
+                <p class="section-links"><b>How to build the analysis</b></p>
             </header>
 
             <!-- Main content -->
@@ -135,37 +132,42 @@
                     <div class="box">
                         <h2>1. Project Overview</h2>
                         <p>
-                            This GIS project analyzed <b>air quality</b> in the Czech Republic using satellite-based
-                            data and geospatial techniques. The goal was to understand spatial and temporal patterns of
-                            two pollutants: <b>NO₂</b> and <b>PM2.5</b>. We integrated pollution data with <b>land
-                                cover</b> and <b>population</b> data to explore links between <b>exposure</b> and land
-                            use.
+                            This GIS project analyzed <b>air quality</b> in the <b>Czech Republic</b> using
+                            satellite-based data and geospatial techniques.
+                            The objective was to explore spatial and temporal trends in <b>NO₂</b> and <b>PM2.5</b>
+                            concentrations and their correlation
+                            with <b>land cover</b> and <b>population distribution</b>. The study aimed to estimate
+                            <b>population exposure</b> to air pollution
+                            and identify critical zones exceeding <b>WHO health thresholds</b>.
                         </p>
                     </div>
 
                     <div class="box">
                         <h2>2. Workflow and Methodology</h2>
-                        <ol>
-                            <li><b>Data Acquisition:</b> We used CAMS reanalysis data for <b>NO₂</b> and <b>PM2.5</b>,
-                                ESA CCI Land Cover (2022), and WorldPop population data (2020).</li>
-                            <li><b>Preprocessing:</b> Data were <b>clipped</b> to the Czech Republic, land cover was
-                                <b>reclassified</b>, and all layers were <b>harmonized</b> to the same projection.
-                            </li>
-                            <li><b>Analysis:</b> We performed <b>time-series</b> statistics from 2013 to 2022, examined
-                                <b>land use</b> correlations, and calculated <b>population exposure</b> based on WHO
-                                thresholds.
-                            </li>
-                            <li><b>Visualization:</b> Outputs included <b>bivariate maps</b>, annual average maps, and
-                                interactive <b>WebGIS</b> tools.</li>
-                        </ol>
+                        <p style="line-height: 1.6; margin-bottom: 1.2em;">
+                            <b>Data Acquisition:</b> We used CAMS reanalysis data for NO₂ and PM2.5, ESA CCI Land Cover
+                            (2022), and WorldPop population data (2020).
+                        </p>
+                        <p style="line-height: 1.6; margin-bottom: 1.2em;">
+                            <b>Preprocessing:</b> Data were clipped to the Czech Republic, land cover was reclassified,
+                            and all layers were harmonized to the same projection.
+                        </p>
+                        <p style="line-height: 1.6; margin-bottom: 1.2em;">
+                            <b>Analysis:</b> We performed time-series statistics from 2013 to 2022, examined land use
+                            correlations, and calculated population exposure based on WHO thresholds.
+                        </p>
+                        <p style="line-height: 1.6;">
+                            <b>Visualization:</b> Outputs included bivariate maps, annual average maps, and interactive
+                            WebGIS tools.
+                        </p>
                     </div>
 
                     <div class="box">
                         <h2>3. Tools Used</h2>
                         <ul>
-                            <li><b>QGIS</b> with GRASS and SAGA processing toolboxes</li>
-                            <li><b>GeoServer</b> and <b>OpenLayers</b> for WebGIS deployment</li>
-                            <li>Data sourced from the <b>Copernicus Climate Data Store (CDS)</b></li>
+                            <li><b>QGIS</b> with GRASS and SAGA GIS processing toolboxes</li>
+                            <li><b>GeoServer</b> and <b>OpenLayers</b> for interactive WebGIS</li>
+                            <li><b>Data sources:</b> Copernicus Climate Data Store (CAMS, ESA CCI), WorldPop</li>
                         </ul>
                     </div>
 
@@ -173,22 +175,23 @@
                         <h2>4. Key Outputs</h2>
                         <ul>
                             <li>Annual <b>NO₂</b> and <b>PM2.5</b> maps (2013–2022)</li>
-                            <li><b>Land cover</b> correlation analysis</li>
-                            <li><b>Population exposure</b> estimations</li>
-                            <li><b>Bivariate maps</b> of pollution and population</li>
+                            <li><b>Land cover</b> correlation analysis with pollution trends</li>
+                            <li><b>Population exposure</b> statistics relative to WHO thresholds</li>
+                            <li><b>Bivariate pollution-population</b> maps</li>
                             <li>Interactive <b>WebGIS</b> for public access</li>
                         </ul>
+                        <p><i><b>Note:</b> Due to team constraints, the analysis of PM10 was not completed.</i></p>
                     </div>
 
                 </div>
             </section>
 
+            <!-- Footer -->
             <footer id="footer" style="margin-top: 60px; padding-top: 20px; text-align: center;">
                 <span class="copyright">
-                    &copy; CZ Project. Design: <a href="http://html5up.net" ;">HTML5 UP</a>.
+                    &copy; CZ Project. Design: <a href="http://html5up.net">HTML5 UP</a>.
                 </span>
             </footer>
-
 
         </div>
     </div>
