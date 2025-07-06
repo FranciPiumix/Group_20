@@ -1028,7 +1028,7 @@ body {
 /* Label dei singoli layer */
 .layer-switcher li.layer label {
 	display: flex !important;
-	align-items: center;
+	align-items: baseline !important;
 	gap: 8px;
 	cursor: pointer;
 	color: #000;
@@ -1039,13 +1039,13 @@ body {
 /* Checkbox/radio input */
 .layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
+	margin: 0 8px 0 0; /* solo margine a destra */
+    vertical-align: middle;
 	display: inline-block;
 	width: 16px;
 	height: 16px;
 	cursor: pointer;
-	margin: 0;
 	flex-shrink: 0;
-	vertical-align: middle;
 }
 
 /* Solo i layer (non i gruppi) devono usare il layout orizzontale */
