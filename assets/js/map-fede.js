@@ -117,15 +117,15 @@ const populationExposureGroup = new ol.layer.Group({
   layers: filterLayersByTitles(populationExposureTitles)
 });
 
-// Infine, il gruppo principale Overlay Layers con i due gruppi dentro
 const overlayLayers = new ol.layer.Group({
   title: 'Overlay Layers',
   fold: 'open',
   layers: [
-    pollutantConcentrationGroup,
-    populationExposureGroup
+    populationExposureGroup,
+    pollutantConcentrationGroup
   ]
 });
+
 
 const legendData = {
     "NO₂ CAMS – December 2022": {
