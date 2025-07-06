@@ -177,15 +177,15 @@ const legendData = {
     },
     "NO₂ – Bivariate 2020": {
         type: "bivariate",
-        title: "Inquinamento × Popolazione",
+        title: "Pollution × Popolation",
         rows: 5,
         cols: 5,
         colors: [
-            ["#fffffe", "#ffe8ee", "#ffcbd7", "#ffaec0", "#ff88a6"],
-            ["#ddfffd", "#cde6e5", "#c3c6cb", "#bb68b4", "#b08ea6"],
-            ["#b9fffc", "#a4dfdd", "#95b6c3", "#8a9cad", "#7d8ba1"],
-            ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
             ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
+            ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
+            ["#b9fffc", "#a4dfdd", "#95b6c3", "#8a9cad", "#7d8ba1"],
+            ["#ddfffd", "#cde6e5", "#c3c6cb", "#bb68b4", "#b08ea6"],
+            ["#fffffe", "#ffe8ee", "#ffcbd7", "#ffaec0", "#ff88a6"]
         ],
         xLabelMin: "Low pop. count",
         xLabelMax: "High pop. count",
@@ -194,15 +194,15 @@ const legendData = {
     },
     "PM2.5 – Bivariate 2020": {
         type: "bivariate",
-        title: "Inquinamento × Popolazione",
+        title: "Pollution × Popolation",
         rows: 5,
         cols: 5,
         colors: [
-            ["#fffffe", "#ffe8ee", "#ffcbd7", "#ffaec0", "#ff88a6"],
-            ["#ddfffd", "#cde6e5", "#c3c6cb", "#bb68b4", "#b08ea6"],
-            ["#b9fffc", "#a4dfdd", "#95b6c3", "#8a9cad", "#7d8ba1"],
-            ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
             ["#50fffd", "#44d6d4", "#3c9fad", "#32788f", "#2a6682"]
+            ["#7cfdfd", "#64dbdc", "#54b5bd", "#4591a0", "#397e8d"],
+            ["#b9fffc", "#a4dfdd", "#95b6c3", "#8a9cad", "#7d8ba1"],
+            ["#ddfffd", "#cde6e5", "#c3c6cb", "#bb68b4", "#b08ea6"],
+            ["#fffffe", "#ffe8ee", "#ffcbd7", "#ffaec0", "#ff88a6"]
         ],
         xLabelMin: "Low pop. count",
         xLabelMax: "High pop. count",
