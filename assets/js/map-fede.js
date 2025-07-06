@@ -94,17 +94,41 @@ const legendData = {
         { color: "#f4a582", label: "24,5054" },
         { color: "#ca0020", label: "30,1666" }
     ],
-    "NO₂ – Annual average 2022": [
-        { color: "#fff5eb", label: "4,1826" },
-        { color: "#fee7cf", label: "5,8764" },
-        { color: "#fdd2a5", label: "6,4781" },
-        { color: "#fdb271", label: "7,0427" },
-        { color: "#fd9243", label: "7,6906" },
-        { color: "#f3701b", label: "8,3385" },
-        { color: "#df5005", label: "9,1437" },
-        { color: "#b13a03", label: "10,5043" },
-        { color: "#7f2704", label: "20,7782" }
-    ],
+
+    "NO₂ – Annual average 2022": {
+        type: "gradient",
+        minLabel: "4,1826",
+        maxLabel: "20,7782",
+        gradient: [
+            "#fff5eb",
+            "#fee7cf",
+            "#fdd2a5",
+            "#fdb271",
+            "#fd9243",
+            "#f3701b",
+            "#df5005",
+            "#b13a03",
+            "#7f2704"
+        ]
+    },
+
+    "PM2.5 – Annual average 2022": {
+        type: "gradient",
+        minLabel: "4,7921",
+        maxLabel: "14,5153",
+        gradient: [
+            "#f7fcf5",
+            "#e5f5e0",
+            "#c7e9c0",
+            "#a1d99b",
+            "#74c476",
+            "#41ab5d",
+            "#238b45",
+            "#006d2c",
+            "#00441b"
+        ]
+    }
+
     "PM2.5 – Annual average 2022": [
         { color: "#fff5eb", label: "7,5217" },
         { color: "#fee7cf", label: "8,9355" },
@@ -278,32 +302,49 @@ function updateLegend() {
         if (layer.getVisible()) {
             const title = layer.get('title');
             const items = legendData[title];
-
-            if (items && items.length > 0) {
+            if (items) {
                 hasVisibleLayer = true;
                 legendHTML += `<li><label>${title}</label><ul style="margin-left: 10px;">`;
-                items.forEach(item => {
-                    legendHTML += `<li>
-                        <span class="legend-color" style="
-                            background-color: ${item.color};
-                            display: inline-block;
-                            width: 16px;
-                            height: 16px;
-                            margin-right: 5px;
-                            vertical-align: middle;
-                            border: 1px solid #555;"></span>
-                        ${item.label}
-                    </li>`;
-                });
+
+                if (items.type === 'gradient') {
+                    const gradientColors = items.gradient.join(', ');
+                    legendHTML += `
+                        <li>
+                            <div style="display: flex; align-items: center;">
+                                <span>${items.minLabel}</span>
+                                <div style="
+                                    height: 16px;
+                                    flex-grow: 1;
+                                    margin: 0 10px;
+                                    background: linear-gradient(to right, ${gradientColors});
+                                    border: 1px solid #555;
+                                "></div>
+                                <span>${items.maxLabel}</span>
+                            </div>
+                        </li>`;
+                } else if (items.type === 'discrete') {
+                    items.items.forEach(item => {
+                        legendHTML += `<li>
+                            <span class="legend-color" style="
+                                background-color: ${item.color};
+                                display: inline-block;
+                                width: 16px;
+                                height: 16px;
+                                margin-right: 5px;
+                                vertical-align: middle;
+                                border: 1px solid #555;"></span>
+                            ${item.label}
+                        </li>`;
+                    });
+                }
+
                 legendHTML += `</ul></li>`;
             }
         }
     });
 
-    legendHTML += '</ul>';
-
     if (hasVisibleLayer) {
-        legendContainer.innerHTML = legendHTML;
+        legendContainer.innerHTML = legendHTML + '</ul>';
         legendContainer.style.display = 'block';
     } else {
         legendContainer.innerHTML = '';
