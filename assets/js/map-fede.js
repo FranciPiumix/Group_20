@@ -85,7 +85,7 @@ const legendData = {
         minLabel: `${parseFloat("6.8125").toFixed(2)} μg/m³`,
         maxLabel: `${parseFloat("22.7187").toFixed(2)} μg/m³`,
         gradient: [
-            "#0571b0", "#92c5de", "#f7f7f7", "#f4a582", "#ca0020"
+            "#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"
         ]
     },
     "PM2.5 CAMS – December 2022": {
@@ -93,7 +93,7 @@ const legendData = {
         minLabel: `${parseFloat("7.5217").toFixed(2)} μg/m³`,
         maxLabel: `${parseFloat("30.1666").toFixed(2)} μg/m³`,
         gradient: [
-            "#0571b0", "#92c5de", "#f7f7f7", "#f4a582", "#ca0020"
+             "#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"
         ]
     },
     "NO₂ – Annual average 2022": {
@@ -101,8 +101,7 @@ const legendData = {
         minLabel: `${parseFloat("4.1826").toFixed(2)} μg/m³`,
         maxLabel: `${parseFloat("20.7782").toFixed(2)} μg/m³`,
         gradient: [
-            "#fff5eb", "#fee7cf", "#fdd2a5", "#fdb271", "#fd9243",
-            "#f3701b", "#df5005", "#b13a03", "#7f2704"
+            "#7f2704", "#b13a03", "#df5005", "#f3701b", "#fd9243", "#fdb271", "#fdd2a5", "#fee7cf", "#fff5eb"
         ]
     },
     "PM2.5 – Annual average 2022": {
@@ -110,8 +109,7 @@ const legendData = {
         minLabel: `${parseFloat("4.7921").toFixed(2)} μg/m³`,
         maxLabel: `${parseFloat("14.5153").toFixed(2)} μg/m³`,
         gradient: [
-            "#f7fcf5", "#e5f5e0", "#c7e9c0", "#a1d99b",
-            "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"
+            "#7f2704", "#b13a03", "#df5005", "#f3701b", "#fd9243", "#fdb271", "#fdd2a5", "#fee7cf", "#fff5eb"
         ]
     },
 
