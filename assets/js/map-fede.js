@@ -82,60 +82,39 @@ const overlayLayerList = [
 const legendData = {
     "NO₂ CAMS – December 2022": {
         type: "gradient",
-        minLabel: "6,8125",
-        maxLabel: "22,7187",
+        minLabel: `${parseFloat("6.8125").toFixed(2)} μg/m³`,
+        maxLabel: `${parseFloat("22.7187").toFixed(2)} μg/m³`,
         gradient: [
-            "#0571b0",
-            "#92c5de",
-            "#f7f7f7",
-            "#f4a582",
-            "#ca0020"
+            "#0571b0", "#92c5de", "#f7f7f7", "#f4a582", "#ca0020"
         ]
     },
     "PM2.5 CAMS – December 2022": {
         type: "gradient",
-        minLabel: "7,5217",
-        maxLabel: "30,1666",
+        minLabel: `${parseFloat("7.5217").toFixed(2)} μg/m³`,
+        maxLabel: `${parseFloat("30.1666").toFixed(2)} μg/m³`,
         gradient: [
-            "#0571b0",
-            "#92c5de",
-            "#f7f7f7",
-            "#f4a582",
-            "#ca0020"
+            "#0571b0", "#92c5de", "#f7f7f7", "#f4a582", "#ca0020"
         ]
     },
     "NO₂ – Annual average 2022": {
         type: "gradient",
-        minLabel: "4,1826",
-        maxLabel: "20,7782",
+        minLabel: `${parseFloat("4.1826").toFixed(2)} μg/m³`,
+        maxLabel: `${parseFloat("20.7782").toFixed(2)} μg/m³`,
         gradient: [
-            "#fff5eb",
-            "#fee7cf",
-            "#fdd2a5",
-            "#fdb271",
-            "#fd9243",
-            "#f3701b",
-            "#df5005",
-            "#b13a03",
-            "#7f2704"
+            "#fff5eb", "#fee7cf", "#fdd2a5", "#fdb271", "#fd9243",
+            "#f3701b", "#df5005", "#b13a03", "#7f2704"
         ]
     },
     "PM2.5 – Annual average 2022": {
         type: "gradient",
-        minLabel: "4,7921",
-        maxLabel: "14,5153",
+        minLabel: `${parseFloat("4.7921").toFixed(2)} μg/m³`,
+        maxLabel: `${parseFloat("14.5153").toFixed(2)} μg/m³`,
         gradient: [
-            "#f7fcf5",
-            "#e5f5e0",
-            "#c7e9c0",
-            "#a1d99b",
-            "#74c476",
-            "#41ab5d",
-            "#238b45",
-            "#006d2c",
-            "#00441b"
+            "#f7fcf5", "#e5f5e0", "#c7e9c0", "#a1d99b",
+            "#74c476", "#41ab5d", "#238b45", "#006d2c", "#00441b"
         ]
     },
+
     "NO₂ – Concentration map 2020": {
         type: "discrete",
         items: [
@@ -162,23 +141,23 @@ const legendData = {
     "NO₂ AAD": {
         type: "discrete",
         items: [
-            { color: "#003366", label: "<= -5,0000" },
-            { color: "#6f8ead", label: "-5,0000 - -2,0000" },
-            { color: "#abd0e3", label: "-2,0000 - 0,0000" },
-            { color: "#dcb8b4", label: "0,0000 - 2,0000" },
-            { color: "#ca6f7d", label: "2,0000 - 5,0000" },
-            { color: "#ca0020", label: "> 5,0000" }
+            { color: "#003366", label: "<= -5.00 μg/m³" },
+            { color: "#6f8ead", label: "-5.00 – -2.00 μg/m³" },
+            { color: "#abd0e3", label: "-2.00 – 0.00 μg/m³" },
+            { color: "#dcb8b4", label: "0.00 – 2.00 μg/m³" },
+            { color: "#ca6f7d", label: "2.00 – 5.00 μg/m³" },
+            { color: "#ca0020", label: "> 5.00 μg/m³" }
         ]
     },
     "PM2.5 AAD": {
         type: "discrete",
         items: [
-            { color: "#003366", label: "<= -3,0000" },
-            { color: "#6f8ead", label: "-3,0000 - -1,5000" },
-            { color: "#abd0e3", label: "-1,5000 - 0,0000" },
-            { color: "#dcb8b4", label: "0,0000 - 1,5000" },
-            { color: "#ca6f7d", label: "1,5000 - 3,0000" },
-            { color: "#ca0020", label: "> 3,0000" }
+            { color: "#003366", label: "<= -3.00 μg/m³" },
+            { color: "#6f8ead", label: "-3.00 – -1.50 μg/m³" },
+            { color: "#abd0e3", label: "-1.50 – 0.00 μg/m³" },
+            { color: "#dcb8b4", label: "0.00 – 1.50 μg/m³" },
+            { color: "#ca6f7d", label: "1.50 – 3.00 μg/m³" },
+            { color: "#ca0020", label: "> 3.00 μg/m³" }
         ]
     },
     "Population – 5 Quantile Classes": {
