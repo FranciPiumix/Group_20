@@ -30,7 +30,7 @@ const esriWorldImagery = new ol.layer.Tile({
 });
 
 const basemapLayers = new ol.layer.Group({
-    title: 'Basemap Layers',
+    title: 'Base maps',
     fold: 'open',
     layers: [osm, esriTopoBasemap, esriWorldImagery]
 });
@@ -43,18 +43,22 @@ const geoServerURL = 'https://www.gis-geoserver.polimi.it/geoserver/gisgeoserver
 
 function createWMSLayer(title, layerName) {
     return new ol.layer.Image({
-        title,
+        title: title,
         visible: false,
         source: new ol.source.ImageWMS({
             url: geoServerURL,
-            params: { 'LAYERS': layerName, 'TILED': true, 'STYLES': '' },
+            params: {
+                'LAYERS': layerName,
+                'TILED': true,
+                'STYLES': ''
+            },
             ratio: 1,
             serverType: 'geoserver'
         })
     });
 }
 
-// Pollution layers
+// === Pollution Concentration Layers ===
 const pollutionLayers = [
     createWMSLayer('NO₂ CAMS – December 2022', 'gisgeoserver_20:CzechRepublic_CAMS_no2_2022_12'),
     createWMSLayer('PM2.5 CAMS – December 2022', 'gisgeoserver_20:CzechRepublic_CAMS_pm2p5_2022_12'),
@@ -65,158 +69,77 @@ const pollutionLayers = [
     createWMSLayer('PM2.5 – Concentration map 2022', 'gisgeoserver_20:CZ_pm2p5_concentration_map_2022'),
     createWMSLayer('NO₂ – Concentration map 2022', 'gisgeoserver_20:CZ_no2_concentration_map_2022'),
     createWMSLayer('NO₂ AAD', 'gisgeoserver_20:no2_AAD'),
-    createWMSLayer('PM2.5 AAD', 'gisgeoserver_20:pm2p5_AAD')
+    createWMSLayer('PM2.5 AAD', 'gisgeoserver_20:pm2p5_AAD'),
 ];
+
+// === Population Exposure Layers ===
+const exposureLayers = [
+    createWMSLayer('NO₂ – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_no2_2020_bivariate'),
+    createWMSLayer('PM2.5 – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_pm2p5_bivariate_2020'),
+    createWMSLayer('Population – 5 Quantile Classes', 'gisgeoserver_20:CZ_population_quantile_5classes'),
+];
+
+// === Grouped Layer Containers ===
 const pollutionGroup = new ol.layer.Group({
     title: 'Pollution Concentration',
     fold: 'open',
     layers: pollutionLayers
 });
 
-// Exposure layers
-const exposureLayers = [
-    createWMSLayer('NO₂ – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_no2_2020_bivariate'),
-    createWMSLayer('PM2.5 – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_pm2p5_bivariate_2020'),
-    createWMSLayer('Population – 5 Quantile Classes', 'gisgeoserver_20:CZ_population_quantile_5classes')
-];
 const exposureGroup = new ol.layer.Group({
     title: 'Population Exposure',
     fold: 'open',
     layers: exposureLayers
 });
 
-// All WMS layers in a main overlay group
-const overlayLayers = new ol.layer.Group({
+const overlayGroup = new ol.layer.Group({
     title: 'Overlay Layers',
     fold: 'open',
     layers: [pollutionGroup, exposureGroup]
 });
 
-// ==============================
-// MAP
-// ==============================
-
-const map = new ol.Map({
-    target: 'map',
-    layers: [basemapLayers, overlayLayers],
-    view: new ol.View({
-        projection: 'EPSG:4326',
-        center: [15.4730, 49.8175], // Lon, Lat directly (EPSG:4326)
-        zoom: 7
-    })
+// Aggiorna event listener sui singoli layers
+pollutionLayers.concat(exposureLayers).forEach(layer => {
+    layer.on('change:visible', updateLegend);
 });
 
-// ==============================
-// POPUP
-// ==============================
-
-const container = document.getElementById('popup');
-const content = document.getElementById('popup-content');
-const closer = document.getElementById('popup-closer');
-
-const popup = new ol.Overlay({
-    element: container,
-    autoPan: { animation: { duration: 250 } }
-});
-map.addOverlay(popup);
-
-closer.onclick = () => {
-    popup.setPosition(undefined);
-    closer.blur();
-    return false;
-};
-
-const overlayLayerList = [...pollutionLayers, ...exposureLayers];
-
-map.on('singleclick', evt => {
-    const coordinate = evt.coordinate;
-    const resolution = map.getView().getResolution();
-
-    const visibleLayers = overlayLayerList.filter(layer => layer.getVisible());
-    const urls = visibleLayers.map(layer => {
-        return layer.getSource().getFeatureInfoUrl(coordinate, resolution, 'EPSG:4326', {
-            INFO_FORMAT: 'application/json'
-        });
-    }).filter(Boolean);
-
-    if (urls.length === 0) {
-        content.innerHTML = '<p>No visible layers.</p>';
-        popup.setPosition(coordinate);
-        return;
-    }
-
-    Promise.all(urls.map(url =>
-        fetch(url).then(r => r.json()).catch(() => null)
-    )).then(results => {
-        let html = '';
-        results.forEach(result => {
-            if (result?.features.length) {
-                result.features.forEach(feature => {
-                    html += '<ul>';
-                    for (const key in feature.properties) {
-                        html += `<li><strong>${key}:</strong> ${feature.properties[key]}</li>`;
-                    }
-                    html += '</ul><hr>';
-                });
-            }
-        });
-        content.innerHTML = html || '<p>No data found.</p>';
-        popup.setPosition(coordinate);
-    }).catch(() => {
-        content.innerHTML = '<p>Error fetching data.</p>';
-        popup.setPosition(coordinate);
-    });
-});
-
-// ==============================
-// CONTROLS
-// ==============================
-
-map.addControl(new ol.control.ScaleLine());
-map.addControl(new ol.control.MousePosition({
-    coordinateFormat: ol.coordinate.createStringXY(4),
-    projection: 'EPSG:4326',
-    className: 'custom-control',
-    placeholder: '0.0000, 0.0000'
-}));
-
-const layerSwitcher = new LayerSwitcher({
-    activationMode: 'click',
-    startActive: true,
-    tipLabel: 'Layers',
-    groupSelectStyle: 'children'
-});
-map.addControl(layerSwitcher);
-
-// ==============================
-// LEGENDA
-// ==============================
+// Aggiorna legenda iniziale
+updateLegend();
 
 const legendData = {
     "NO₂ CAMS – December 2022": {
         type: "gradient",
         minLabel: `${parseFloat("6.8125").toFixed(2)} μg/m³`,
         maxLabel: `${parseFloat("22.7187").toFixed(2)} μg/m³`,
-        gradient: ["#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"]
+        gradient: [
+            "#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"
+        ]
     },
     "PM2.5 CAMS – December 2022": {
         type: "gradient",
         minLabel: `${parseFloat("7.5217").toFixed(2)} μg/m³`,
         maxLabel: `${parseFloat("30.1666").toFixed(2)} μg/m³`,
-        gradient: ["#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"]
+        gradient: [
+            "#ca0020", "#f4a582", "#f7f7f7", "#92c5de", "#0571b0"
+        ]
     },
     "NO₂ – Annual average 2022": {
         type: "gradient",
         minLabel: `${parseFloat("4.1826").toFixed(2)} μg/m³`,
         maxLabel: `${parseFloat("20.7782").toFixed(2)} μg/m³`,
-        gradient: ["#7f2704", "#b13a03", "#df5005", "#f3701b", "#fd9243", "#fdb271", "#fdd2a5", "#fee7cf", "#fff5eb"]
+        gradient: [
+            "#7f2704", "#b13a03", "#df5005", "#f3701b", "#fd9243", "#fdb271", "#fdd2a5", "#fee7cf", "#fff5eb"
+        ]
     },
     "PM2.5 – Annual average 2022": {
         type: "gradient",
         minLabel: `${parseFloat("4.7921").toFixed(2)} μg/m³`,
         maxLabel: `${parseFloat("14.5153").toFixed(2)} μg/m³`,
-        gradient: ["#7f2704", "#b13a03", "#df5005", "#f3701b", "#fd9243", "#fdb271", "#fdd2a5", "#fee7cf", "#fff5eb"]
+        gradient: [
+            "#7f2704", "#b13a03", "#df5005", "#f3701b", "#fd9243", "#fdb271", "#fdd2a5", "#fee7cf", "#fff5eb"
+        ]
     },
+
     "NO₂ – Concentration map 2020": {
         type: "discrete",
         items: [
@@ -235,7 +158,7 @@ const legendData = {
         type: "discrete",
         items: [
             { color: "#003366", label: "1" },
-            { color: "#2c7bb6", label: "2" }
+            { color: "#2c7bb6", label: "2" },
         ]
     },
     "PM2.5 – Concentration map 2022": {
@@ -311,31 +234,116 @@ const legendData = {
     }
 };
 
-// Funzione per recuperare tutti i layer foglia
-function getAllLeafLayers(layerGroup) {
-    const layers = [];
-    layerGroup.getLayers().forEach(layer => {
-        if (layer instanceof ol.layer.Group) {
-            layers.push(...getAllLeafLayers(layer));
-        } else {
-            layers.push(layer);
-        }
-    });
-    return layers;
-}
+// ==============================
+// MAP
+// ==============================
 
-// Listener su tutti i layer foglia per aggiornare la legenda
-getAllLeafLayers(overlayLayers).forEach(layer => {
-    layer.on('change:visible', updateLegend);
+const map = new ol.Map({
+    target: 'map',
+    layers: [basemapLayers, overlayLayers],
+    view: new ol.View({
+        projection: 'EPSG:4326',  // Cambiar la proyección a EPSG:4326
+        center: [15.4730, 49.8175],  // Coordenadas en lon, lat sin transformar
+        zoom: 7
+    })
 });
 
-// Funzione principale di aggiornamento della legenda
+
+// ==============================
+// POPUP
+// ==============================
+
+const container = document.getElementById('popup');
+const content = document.getElementById('popup-content');
+const closer = document.getElementById('popup-closer');
+
+const popup = new ol.Overlay({
+    element: container,
+    autoPan: { animation: { duration: 250 } }
+});
+map.addOverlay(popup);
+
+closer.onclick = function () {
+    popup.setPosition(undefined);
+    closer.blur();
+    return false;
+};
+
+map.on('singleclick', function (evt) {
+    const coordinate = evt.coordinate;
+    const resolution = map.getView().getResolution();
+
+    const visibleLayers = overlayLayerList.filter(layer => layer.getVisible());
+    const urls = visibleLayers.map(layer => {
+        const source = layer.getSource();
+        return source.getFeatureInfoUrl(coordinate, resolution, 'EPSG:3857', {
+            INFO_FORMAT: 'application/json'
+        });
+    }).filter(url => url);
+
+    if (urls.length === 0) {
+        content.innerHTML = '<p>No visible layers.</p>';
+        popup.setPosition(coordinate);
+        return;
+    }
+
+    Promise.all(urls.map(url => fetch(url).then(r => r.json()).catch(() => null)))
+        .then(results => {
+            let html = '';
+            results.forEach(result => {
+                if (result && result.features.length > 0) {
+                    result.features.forEach(feature => {
+                        html += '<ul>';
+                        for (const key in feature.properties) {
+                            html += `<li><strong>${key}:</strong> ${feature.properties[key]}</li>`;
+                        }
+                        html += '</ul><hr>';
+                    });
+                }
+            });
+            content.innerHTML = html || '<p>No data found.</p>';
+            popup.setPosition(coordinate);
+        })
+        .catch(() => {
+            content.innerHTML = '<p>Error fetching data.</p>';
+            popup.setPosition(coordinate);
+        });
+});
+
+// ==============================
+// CONTROLS
+// ==============================
+
+map.addControl(new ol.control.ScaleLine());
+map.addControl(new ol.control.MousePosition({
+    coordinateFormat: ol.coordinate.createStringXY(4),
+    projection: 'EPSG:4326',
+    className: 'custom-control',
+    placeholder: '0.0000, 0.0000'
+}));
+
+const layerSwitcher = new LayerSwitcher({
+    activationMode: 'click',
+    startActive: true,
+    tipLabel: 'Layers',
+    groupSelectStyle: 'children'
+});
+map.addControl(layerSwitcher);
+
+// ==============================
+// LEGENDA
+// ==============================
+
+function getLegendElement(title, color = '#cccccc') {
+    return `<li><span class="legend-color" style="background-color:${color}; display:inline-block; width:12px; height:12px; margin-right:5px; vertical-align:middle; border:1px solid #555;"></span>${title}</li>`;
+}
+
 function updateLegend() {
     const legendContainer = document.getElementById('legend-content');
     let legendHTML = '<ul>';
     let hasVisibleLayer = false;
 
-    getAllLeafLayers(overlayLayers).forEach(layer => {
+    overlayLayerList.forEach(layer => {
         if (layer.getVisible()) {
             const title = layer.get('title');
             const items = legendData[title];
@@ -345,13 +353,119 @@ function updateLegend() {
 
                 if (items.type === 'gradient') {
                     const gradientSquares = items.gradient.map(color => `
-                        <div style="width: 20px; height: 10px; background-color: ${
+        <div style="width: 20px; height: 10px; background-color: ${color}; margin: 0; padding: 0;"></div>
+    `).join('');
 
-                        // ==============================
-                        // CURSORE INTERATTIVO
-                        // ==============================
+                    legendHTML += `
+        <li>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="display: flex; flex-direction: column;">
+                    ${gradientSquares}
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: flex-start; font-size: 12px;">
+                    <span>${items.maxLabel}</span>
+                    <div style="flex-grow: 1;"></div>
+                    <span>${items.minLabel}</span>
+                </div>
+            </div>
+        </li>`;
+                }
+                else if (items.type === 'bivariate') {
+                    const { rows, cols, colors, xLabel, yLabel } = items;
 
-                        map.on('pointermove', function (event) {
-                            const hit = map.hasFeatureAtPixel(event.pixel);
-                            map.getTargetElement().style.cursor = hit ? 'pointer' : '';
-                        });
+                    // Costruisci griglia (invertendo le righe)
+                    let gridHTML = '<table style="border-collapse: collapse; margin: 10px 0;">';
+                    for (let r = rows - 1; r >= 0; r--) {
+                        gridHTML += '<tr>';
+                        for (let c = 0; c < cols; c++) {
+                            const color = colors[r][c];
+                            gridHTML += `<td style="width: 20px; height: 20px; background-color: ${color}; border: 1px solid #ccc;"></td>`;
+                        }
+                        gridHTML += '</tr>';
+                    }
+                    gridHTML += '</table>';
+
+                    legendHTML += `
+        <li style="display: flex; flex-direction: column; align-items: center;">
+            <strong>${items.title || ""}</strong>
+            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
+                
+                <!-- Y axis label with arrow up -->
+                <div style="display: flex; flex-direction: column; align-items: center; margin-right: 10px; font-size: 12px;">
+                    <div style="display: flex; flex-direction: column; align-items: center; writing-mode: vertical-rl;">
+    <span style="transform: rotate(180deg);">${yLabel || "Pollution"}</span>
+    <span style="margin-top: 4px;">↑</span>
+                </div>
+
+                <!-- Grid and x-axis -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    ${gridHTML}
+                    <div style="font-size: 12px; margin-top: 4px;">
+                        ${xLabel || "Population"} →
+                    </div>
+                </div>
+            </div>
+        </li>`;
+                }
+                else if (items.type === 'discrete') {
+                    items.items.forEach(item => {
+                        legendHTML += `<li>
+                            <span class="legend-color" style="
+                                background-color: ${item.color};
+                                display: inline-block;
+                                width: 16px;
+                                height: 16px;
+                                margin-right: 5px;
+                                vertical-align: middle;
+                                border: 1px solid #555;"></span>
+                            ${item.label}
+                        </li>`;
+                    });
+                }
+
+                legendHTML += `</ul></li>`;
+            }
+        }
+    });
+
+    if (hasVisibleLayer) {
+        legendContainer.innerHTML = legendHTML + '</ul>';
+        legendContainer.style.display = 'block';
+    } else {
+        legendContainer.innerHTML = '';
+        legendContainer.style.display = 'none';
+    }
+}
+
+// ==============================
+// FULLSCREEN
+// ==============================
+
+document.getElementById('fullscreen-toggle').addEventListener('click', function (e) {
+    e.preventDefault();
+    const header = document.getElementById('header');
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().then(() => {
+            header.style.display = 'none';
+        });
+    } else {
+        document.exitFullscreen().then(() => {
+            header.style.display = 'block';
+        });
+    }
+});
+
+document.addEventListener('fullscreenchange', () => {
+    if (!document.fullscreenElement) {
+        document.getElementById('header').style.display = 'block';
+    }
+});
+
+// ==============================
+// CURSORE INTERATTIVO
+// ==============================
+
+map.on('pointermove', function (event) {
+    const hit = map.hasFeatureAtPixel(event.pixel);
+    map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+});
