@@ -376,9 +376,9 @@ function updateLegend() {
                 
                 <!-- Y axis label with arrow up -->
                 <div style="display: flex; flex-direction: column; align-items: center; margin-right: 10px; font-size: 12px;">
-                    <div style="writing-mode: vertical-rl; transform: rotate(180deg);">
-                        ${yLabel || "Pollution"} ↑
-                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; writing-mode: vertical-rl;">
+    <span style="transform: rotate(180deg);">${yLabel || "Pollution"}</span>
+    <span style="margin-top: 4px;">↑</span>
                 </div>
 
                 <!-- Grid and x-axis -->
