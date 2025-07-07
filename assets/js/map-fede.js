@@ -81,49 +81,49 @@ const overlayLayerList = [
 
 // Raggruppiamo i layer in base alle tue liste
 const pollutantConcentrationTitles = [
-  "NO₂ CAMS – December 2022",
-  "PM2.5 CAMS – December 2022",
-  "NO₂ – Annual average 2022",
-  "PM2.5 – Annual average 2022",
-  "NO₂ – Concentration map 2020",
-  "PM2.5 – Concentration map 2020",
-  "PM2.5 – Concentration map 2022",
-  "NO₂ – Concentration map 2022",
-  "NO₂ AAD",
-  "PM2.5 AAD"
+    "NO₂ CAMS – December 2022",
+    "PM2.5 CAMS – December 2022",
+    "NO₂ – Annual average 2022",
+    "PM2.5 – Annual average 2022",
+    "NO₂ – Concentration map 2020",
+    "PM2.5 – Concentration map 2020",
+    "PM2.5 – Concentration map 2022",
+    "NO₂ – Concentration map 2022",
+    "NO₂ AAD",
+    "PM2.5 AAD"
 ];
 
 const populationExposureTitles = [
-  "NO₂ – Bivariate 2020",
-  "PM2.5 – Bivariate 2020",
-  "Population – 5 Quantile Classes"
+    "NO₂ – Bivariate 2020",
+    "PM2.5 – Bivariate 2020",
+    "Population – 5 Quantile Classes"
 ];
 
 // Funzione per filtrare i layer per titolo
 function filterLayersByTitles(titles) {
-  return overlayLayerList.filter(layer => titles.includes(layer.get('title')));
+    return overlayLayerList.filter(layer => titles.includes(layer.get('title')));
 }
 
 // Creiamo i due gruppi
 const pollutantConcentrationGroup = new ol.layer.Group({
-  title: 'Pollutant concentration',
-  fold: 'open',
-  layers: filterLayersByTitles(pollutantConcentrationTitles)
+    title: 'Pollutant concentration',
+    fold: 'open',
+    layers: filterLayersByTitles(pollutantConcentrationTitles)
 });
 
 const populationExposureGroup = new ol.layer.Group({
-  title: 'Population exposure',
-  fold: 'open',
-  layers: filterLayersByTitles(populationExposureTitles)
+    title: 'Population exposure',
+    fold: 'open',
+    layers: filterLayersByTitles(populationExposureTitles)
 });
 
 const overlayLayers = new ol.layer.Group({
-  title: 'Overlay Layers',
-  fold: 'open',
-  layers: [
-    populationExposureGroup,
-    pollutantConcentrationGroup
-  ]
+    title: 'Overlay Layers',
+    fold: 'open',
+    layers: [
+        populationExposureGroup,
+        pollutantConcentrationGroup
+    ]
 });
 
 
@@ -257,15 +257,15 @@ const legendData = {
 
 // Funzione ricorsiva per aggiungere listener a tutti i layer figli
 function addVisibilityListenerToAllLayers(layerGroup) {
-  layerGroup.getLayers().forEach(layer => {
-    if (layer instanceof ol.layer.Group) {
-      // Se è un gruppo, ricorsivamente aggiungi listener ai figli
-      addVisibilityListenerToAllLayers(layer);
-    } else {
-      // Layer singolo: aggiungi listener sul cambio di visibilità
-      layer.on('change:visible', updateLegend);
-    }
-  });
+    layerGroup.getLayers().forEach(layer => {
+        if (layer instanceof ol.layer.Group) {
+            // Se è un gruppo, ricorsivamente aggiungi listener ai figli
+            addVisibilityListenerToAllLayers(layer);
+        } else {
+            // Layer singolo: aggiungi listener sul cambio di visibilità
+            layer.on('change:visible', updateLegend);
+        }
+    });
 }
 
 // Applichiamo ai gruppi overlay
@@ -392,89 +392,26 @@ function updateLegend() {
                 legendHTML += `<li><label>${title}</label><ul style="margin-left: 10px;">`;
 
                 if (items.type === 'gradient') {
-                    const gradientSquares = items.gradient.map(color => `
-        <div style="width: 20px; height: 10px; background-color: ${color}; margin: 0; padding: 0;"></div>
-    `).join('');
-
-                    legendHTML += `
-        <li>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="display: flex; flex-direction: column;">
-                    ${gradientSquares}
-                </div>
-                <div style="display: flex; flex-direction: column; align-items: flex-start; font-size: 12px;">
-                    <span>${items.maxLabel}</span>
-                    <div style="flex-grow: 1;"></div>
-                    <span>${items.minLabel}</span>
-                </div>
-            </div>
-        </li>`;
-                }
+                    ...
+        legendHTML += `</li>`; // chiude gradient
+}
                 else if (items.type === 'bivariate') {
-                    const { rows, cols, colors, xLabel, yLabel } = items;
+                    ...
+    legendHTML += `</li>`; // chiude bivariate
+}
+else if (items.type === 'discrete') {
+    items.items.forEach(i => {
+        legendHTML += getLegendElement(i.label, i.color);
+    });
+}
 
-                    // Costruisci griglia (invertendo le righe)
-                    let gridHTML = '<table style="border-collapse: collapse; margin: 10px 0;">';
-                    for (let r = rows - 1; r >= 0; r--) {
-                        gridHTML += '<tr>';
-                        for (let c = 0; c < cols; c++) {
-                            const color = colors[r][c];
-                            gridHTML += `<td style="width: 20px; height: 20px; background-color: ${color}; border: 1px solid #ccc;"></td>`;
-                        }
-                        gridHTML += '</tr>';
-                    }
-                    gridHTML += '</table>';
-
-                    legendHTML += `
-        <li style="display: flex; flex-direction: column; align-items: center;">
-            <strong>${items.title || ""}</strong>
-            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
-                
-                <!-- Y axis label with arrow up -->
-                <div style="display: flex; flex-direction: column; align-items: center; margin-right: 10px; font-size: 12px;">
-                    <div style="display: flex; flex-direction: column; align-items: center; writing-mode: vertical-rl;">
-    <span style="transform: rotate(180deg);">${yLabel || "Pollution"}</span>
-    <span style="margin-top: 4px;">↑</span>
-                </div>
-
-                <!-- Grid and x-axis -->
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    ${gridHTML}
-                    <div style="font-size: 12px; margin-top: 4px;">
-                        ${xLabel || "Population"} →
-                    </div>
-                </div>
-            </div>
-        </li>`;
-                }
-                else if (items.type === 'discrete') {
-                    items.items.forEach(item => {
-                        legendHTML += `<li>
-                            <span class="legend-color" style="
-                                background-color: ${item.color};
-                                display: inline-block;
-                                width: 16px;
-                                height: 16px;
-                                margin-right: 5px;
-                                vertical-align: middle;
-                                border: 1px solid #555;"></span>
-                            ${item.label}
-                        </li>`;
-                    });
-                }
-
-                legendHTML += `</ul></li>`;
+legendHTML += `</ul></li>`; // chiude sottolista e list item esterno
             }
         }
     });
 
-    if (hasVisibleLayer) {
-        legendContainer.innerHTML = legendHTML + '</ul>';
-        legendContainer.style.display = 'block';
-    } else {
-        legendContainer.innerHTML = '';
-        legendContainer.style.display = 'none';
-    }
+legendHTML += '</ul>';
+legendContainer.innerHTML = hasVisibleLayer ? legendHTML : '<p>No visible legend available</p>';
 }
 
 // ==============================
