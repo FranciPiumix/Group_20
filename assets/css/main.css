@@ -1008,14 +1008,30 @@ body {
 	flex-direction: column;
 	/* ramificazione verticale */
 	margin-bottom: 1em;
+	position: relative;
 }
 
-/* Checkbox + label del gruppo allineati orizzontalmente */
-.layer-switcher li.group>input[type="checkbox"],
+/* Checkbox del gruppo */
+.layer-switcher li.group>input[type="checkbox"] {
+	position: relative;
+	top: 2px;
+	/* aggiustamento verticale */
+	margin-right: 8px;
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+	background-color: white !important;
+	border: 1px solid #555 !important;
+	appearance: auto;
+	-webkit-appearance: checkbox;
+	-moz-appearance: checkbox;
+}
+
+/* Label del gruppo, allineata orizzontalmente col checkbox */
 .layer-switcher li.group>label {
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
 	cursor: pointer;
 	font-weight: bold;
 	font-size: 14px;
@@ -1023,9 +1039,11 @@ body {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	vertical-align: middle;
+	margin-left: 0;
+	/* niente indentazione */
 }
 
+/* Wrapper flex per checkbox + label gruppo (usiamo flex container virtuale tramite :before e :after non possibile, quindi posizioniamo checkbox e label inline con margini) */
 /* Lista layer dentro gruppo con indentazione */
 .layer-switcher li.group>ul {
 	margin-left: 20px;
@@ -1047,7 +1065,6 @@ body {
 .layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
 	margin: 0 8px 0 0;
-	/* margine solo a destra */
 	vertical-align: middle;
 	display: inline-block;
 	width: 16px;
