@@ -430,7 +430,7 @@ function updateLegend() {
             <strong>${items.title || ""}</strong>
             <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
                 
-               <!-- Y axis label with arrow up -->
+                <!-- Y axis label with arrow up -->
         <div 
             style="
                 display: flex; 
@@ -439,18 +439,19 @@ function updateLegend() {
                 justify-content: center; 
                 margin-right: 10px; 
                 font-size: 12px;
-              height: ${20 * rows}px;  
+                height: ${20 * rows}px; /* 📍MODIFICA: stessa altezza della griglia */
             "
         >
             <div 
                 style="
                     writing-mode: vertical-rl; 
                     text-align: center;
-                    transform: rotate(180deg); 
                 "
             >
-                ${yLabel || "Pollution"} 
-                <div style="margin-top: 4px;">↑</div> <!-- 📍MODIFICA QUI: Sposta la freccia sotto -->
+                <!-- 📍MODIFICA: ruota solo il testo -->
+                <span style="transform: rotate(180deg); display: inline-block;">${yLabel || "Pollution"}</span>
+                <!-- 📍MODIFICA: freccia separata, non ruotata -->
+                <span style="display: block; margin-top: 4px;">↑</span>
             </div>
         </div>
 
