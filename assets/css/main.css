@@ -1027,20 +1027,25 @@ body {
 
 /* Label dei singoli layer */
 .layer-switcher li.layer label {
-	display: flex !important;
-	align-items: baseline !important;
-	gap: 8px;
+	display: block !important;
+	/* Cambiato da flex a block */
+	flex: 1;
+	/* Per occupare lo spazio rimanente */
 	cursor: pointer;
 	color: #000;
 	font-size: 13px;
 	text-align: left;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 /* Checkbox/radio input */
 .layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
-	margin: 0 8px 0 0; /* solo margine a destra */
-    vertical-align: middle;
+	margin: 0 8px 0 0;
+	/* solo margine a destra */
+	vertical-align: middle;
 	display: inline-block;
 	width: 16px;
 	height: 16px;
@@ -1049,22 +1054,31 @@ body {
 }
 
 /* Solo i layer (non i gruppi) devono usare il layout orizzontale */
-.layer-switcher li.layer label {
-	display: flex !important;
-	align-items: center !important;
+.layer-switcher li.layer {
+	display: flex;
+	/* Aggiunto */
+	align-items: center;
+	/* Aggiunto per allineare verticalmente */
 	gap: 8px;
+	/* Mantieni lo spazio tra checkbox e testo */
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
-	margin-right: 8px;
-	/* spazio tra checkbox e testo */
-	opacity: 1 !important;
-	background-color: white !important;
-	border: 1px solid #555 !important;
+	margin: 0 8px 0 0;
+	/* solo margine a destra */
+	vertical-align: middle;
+	display: inline-block;
 	width: 16px;
 	height: 16px;
 	cursor: pointer;
+	flex-shrink: 0;
+	opacity: 1 !important;
+	background-color: white !important;
+	border: 1px solid #555 !important;
 	appearance: auto;
 	-webkit-appearance: checkbox;
 	-moz-appearance: checkbox;
