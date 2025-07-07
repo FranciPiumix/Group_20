@@ -406,19 +406,19 @@ function updateLegend() {
                         <div style="width: 20px; height: 10px; background-color: ${color}; margin: 0;"></div>
                     `).join('');
 
-                    legendHTML += `
-                        <li>
-                            <div style="display: flex; align-items: center; gap: 10px;">
-                                <div style="display: flex; flex-direction: column;">
-                                    ${gradientSquares}
-                                </div>
-                                <div style="display: flex; flex-direction: column; align-items: flex-start; font-size: 12px;">
-                                    <span>${items.maxLabel}</span>
-                                    <div style="flex-grow: 1;"></div>
-                                    <span>${items.minLabel}</span>
-                                </div>
-                            </div>
-                        </li>`;
+                    legendHTML +=
+                        `<li>
+        <div style="display: flex; gap: 10px; align-items: flex-start;">
+            <div style="display: flex; flex-direction: column;">
+                ${gradientSquares}
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: space-between; font-size: 12px; height: ${items.gradient.length * 10}px;">
+                <span>${items.maxLabel}</span>
+                <span>${items.minLabel}</span>
+            </div>
+        </div>
+    </li>`;
+
                 }
 
                 else if (items.type === 'bivariate') {
