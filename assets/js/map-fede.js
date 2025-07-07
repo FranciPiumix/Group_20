@@ -430,7 +430,7 @@ function updateLegend() {
             <strong>${items.title || ""}</strong>
             <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
                 
-                <!-- Y axis label with arrow up -->
+              <!-- 📍MODIFICA: Y axis label + arrow (NO ROTATION) -->
         <div 
             style="
                 display: flex; 
@@ -439,36 +439,36 @@ function updateLegend() {
                 justify-content: center; 
                 margin-right: 10px; 
                 font-size: 12px;
-                height: ${20 * rows}px; /* 📍MODIFICA: stessa altezza della griglia */
             "
         >
-            <div 
-                style="
-                    writing-mode: vertical-rl; 
-                    text-align: center;
-                "
-            >
-                <!-- 📍MODIFICA: ruota solo il testo -->
-                <span style="transform: rotate(180deg); display: inline-block;">${yLabel || "Pollution"}</span>
-                <!-- 📍MODIFICA: freccia separata, non ruotata -->
-                <span style="display: block; margin-top: 4px;">↑</span>
-            </div>
+            <span style="margin-bottom: 4px;">↑</span>
+            <span>${yLabel || "Pollution"}</span>
         </div>
 
-                <!-- Grid and x-axis -->
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    ${gridHTML}
-                    <div style="font-size: 12px; margin-top: 4px;">
-                        ${xLabel || "Population"} →
-                    </div>
-                </div>
+        <!-- Grid and x-axis -->
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            ${gridHTML}
+            <div style="font-size: 12px; margin-top: 4px;">
+                ${xLabel || "Population"} →
             </div>
-        </li>`;
+        </div>
+    </div>
+</li>`;
+                }
+                < !--Grid and x - axis-- >
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        ${gridHTML}
+                        <div style="font-size: 12px; margin-top: 4px;">
+                            ${xLabel || "Population"} →
+                        </div>
+                    </div>
+            </div >
+        </li > `;
                 }
                 else if (items.type === 'discrete') {
                     items.items.forEach(item => {
-                        legendHTML += `<li>
-                            <span class="legend-color" style="
+                        legendHTML += `< li >
+                    <span class="legend-color" style="
                                 background-color: ${item.color};
                                 display: inline-block;
                                 width: 16px;
@@ -476,12 +476,12 @@ function updateLegend() {
                                 margin-right: 5px;
                                 vertical-align: middle;
                                 border: 1px solid #555;"></span>
-                            ${item.label}
-                        </li>`;
+                            ${ item.label }
+                        </li > `;
                     });
                 }
 
-                legendHTML += `</ul></li>`;
+                legendHTML += `</ul ></li > `;
             }
         }
     });
