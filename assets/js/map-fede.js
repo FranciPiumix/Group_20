@@ -430,7 +430,7 @@ function updateLegend() {
             <strong>${items.title || ""}</strong>
             <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
                 
-              <!-- 📍MODIFICA: Y axis label + arrow (NO ROTATION) -->
+              <!-- Y axis label with arrow up -->
         <div 
             style="
                 display: flex; 
@@ -439,21 +439,20 @@ function updateLegend() {
                 justify-content: center; 
                 margin-right: 10px; 
                 font-size: 12px;
+                height: ${20 * rows}px;  /* 📍MODIFICA QUI: Assicura altezza pari alla griglia */
             "
         >
-            <span style="margin-bottom: 4px;">↑</span>
-            <span>${yLabel || "Pollution"}</span>
-        </div>
-
-        <!-- Grid and x-axis -->
-        <div style="display: flex; flex-direction: column; align-items: center;">
-            ${gridHTML}
-            <div style="font-size: 12px; margin-top: 4px;">
-                ${xLabel || "Population"} →
+            <div 
+                style="
+                    writing-mode: vertical-rl; 
+                    text-align: center;
+                    transform: rotate(180deg); /* 📍MODIFICA QUI: Ruota il testo per leggerlo dal basso verso l’alto */
+                "
+            >
+                ${yLabel || "Pollution"} 
+                <div style="margin-top: 4px;">↑</div> <!-- 📍MODIFICA QUI: Sposta la freccia sotto -->
             </div>
         </div>
-    </div>
-</li>`;
                 }
                 < !--Grid and x - axis-- >
                     <div style="display: flex; flex-direction: column; align-items: center;">
@@ -476,7 +475,7 @@ function updateLegend() {
                                 margin-right: 5px;
                                 vertical-align: middle;
                                 border: 1px solid #555;"></span>
-                            ${ item.label }
+                            ${item.label}
                         </li > `;
                     });
                 }
