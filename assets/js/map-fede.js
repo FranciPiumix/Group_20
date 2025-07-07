@@ -75,7 +75,7 @@ const overlayLayerList = [
     createWMSLayer('NO₂ AAD', 'gisgeoserver_20:no2_AAD'),
     createWMSLayer('PM2.5 AAD', 'gisgeoserver_20:pm2p5_AAD'),
     createWMSLayer('NO₂ – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_no2_2020_bivariate'),
-    createWMSLayer('PM2.5 – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_pm2p5_bivariate_2020'),
+    createWMSLayer('PM2.5 – Bivariate 2020', 'gisgeoserver_20:CzechRepublic_pm2p5_2020_bivariate'),
     createWMSLayer('Population – 5 Quantile Classes', 'gisgeoserver_20:CZ_population_quantile_5classes'),
 ].reverse();
 
