@@ -1002,13 +1002,37 @@ body {
 	display: none !important;
 }
 
-/* Titoli dei gruppi: stile blocco verticale */
-.layer-switcher .group>label {
-	display: block !important;
+/* --- GRUPPI CON CHECKBOX --- */
+.layer-switcher li.group {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.layer-switcher li.group>input[type="checkbox"] {
+	display: inline-block !important;
+	width: 16px;
+	height: 16px;
+	margin: 0;
+	cursor: pointer;
+	flex-shrink: 0;
+	opacity: 1 !important;
+	background-color: white !important;
+	border: 1px solid #555 !important;
+	appearance: auto;
+	-webkit-appearance: checkbox;
+	-moz-appearance: checkbox;
+}
+
+.layer-switcher li.group>label {
+	flex: 1;
+	cursor: pointer;
 	font-weight: bold;
 	font-size: 14px;
 	color: #000;
-	margin: 1em 0 0.5em 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	padding-left: 0;
 	text-align: left;
 }
@@ -1026,11 +1050,17 @@ body {
 }
 
 /* Label dei singoli layer */
+.layer-switcher li.layer {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .layer-switcher li.layer label {
-	display: block !important;
-	/* Cambiato da flex a block */
 	flex: 1;
-	/* Per occupare lo spazio rimanente */
 	cursor: pointer;
 	color: #000;
 	font-size: 13px;
@@ -1044,32 +1074,7 @@ body {
 .layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
 	margin: 0 8px 0 0;
-	/* solo margine a destra */
-	vertical-align: middle;
-	display: inline-block;
-	width: 16px;
-	height: 16px;
-	cursor: pointer;
-	flex-shrink: 0;
-}
-
-/* Solo i layer (non i gruppi) devono usare il layout orizzontale */
-.layer-switcher li.layer {
-	display: flex;
-	/* Aggiunto */
-	align-items: center;
-	/* Aggiunto per allineare verticalmente */
-	gap: 8px;
-	/* Mantieni lo spazio tra checkbox e testo */
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.layer-switcher input[type="checkbox"],
-.layer-switcher input[type="radio"] {
-	margin: 0 8px 0 0;
-	/* solo margine a destra */
+	/* margine a destra */
 	vertical-align: middle;
 	display: inline-block;
 	width: 16px;
@@ -1082,9 +1087,10 @@ body {
 	appearance: auto;
 	-webkit-appearance: checkbox;
 	-moz-appearance: checkbox;
+}
 
-	/* Header */
+/* Header */
 
-	#header nav {
-		padding: 0 1em;
-	}
+#header nav {
+	padding: 0 1em;
+}
