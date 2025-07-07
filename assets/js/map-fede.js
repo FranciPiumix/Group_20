@@ -374,8 +374,18 @@ map.addControl(layerSwitcher);
 // LEGENDA
 // ==============================
 
-function getLegendElement(title, color = '#cccccc') {
-    return `<li><span class="legend-color" style="background-color:${color}; display:inline-block; width:12px; height:12px; margin-right:5px; vertical-align:middle; border:1px solid #555;"></span>${title}</li>`;
+function getLegendElement(label, color) {
+    return `<li>
+        <span class="legend-color" style="
+            background-color: ${color};
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            vertical-align: middle;
+            border: 1px solid #555;"></span>
+        ${label}
+    </li>`;
 }
 
 function updateLegend() {
@@ -393,27 +403,27 @@ function updateLegend() {
 
                 if (items.type === 'gradient') {
                     const gradientSquares = items.gradient.map(color => `
-        <div style="width: 20px; height: 10px; background-color: ${color}; margin: 0; padding: 0;"></div>
-    `).join('');
+                        <div style="width: 20px; height: 10px; background-color: ${color}; margin: 0;"></div>
+                    `).join('');
 
                     legendHTML += `
-        <li>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <div style="display: flex; flex-direction: column;">
-                    ${gradientSquares}
-                </div>
-                <div style="display: flex; flex-direction: column; align-items: flex-start; font-size: 12px;">
-                    <span>${items.maxLabel}</span>
-                    <div style="flex-grow: 1;"></div>
-                    <span>${items.minLabel}</span>
-                </div>
-            </div>
-        </li>`;
+                        <li>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <div style="display: flex; flex-direction: column;">
+                                    ${gradientSquares}
+                                </div>
+                                <div style="display: flex; flex-direction: column; align-items: flex-start; font-size: 12px;">
+                                    <span>${items.maxLabel}</span>
+                                    <div style="flex-grow: 1;"></div>
+                                    <span>${items.minLabel}</span>
+                                </div>
+                            </div>
+                        </li>`;
                 }
+
                 else if (items.type === 'bivariate') {
                     const { rows, cols, colors, xLabel, yLabel } = items;
 
-                    // Costruisci griglia (invertendo le righe)
                     let gridHTML = '<table style="border-collapse: collapse; margin: 10px 0;">';
                     for (let r = rows - 1; r >= 0; r--) {
                         gridHTML += '<tr>';
@@ -429,7 +439,6 @@ function updateLegend() {
                         <li style="display: flex; flex-direction: column; align-items: center;">
                             <strong>${items.title || ""}</strong>
                             <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
-                                <!-- Y axis label with arrow up (arrow not rotated) -->
                                 <div 
                                     style="
                                         display: flex; 
@@ -451,48 +460,33 @@ function updateLegend() {
                                             align-items: center;
                                         "
                                     >
-                                        ${yLabel || "Pollution"}
+                                        ${yLabel || "Y"}
                                     </div>
                                     <div style="margin-top: 4px; font-size: 14px;">&#8593;</div>
                                 </div>
-                                <!-- Grid and x-axis -->
                                 <div style="display: flex; flex-direction: column; align-items: center;">
                                     ${gridHTML}
                                     <div style="font-size: 12px; margin-top: 4px;">
-                                        ${xLabel || "Population"} →
+                                        ${xLabel || "X"} →
                                     </div>
                                 </div>
                             </div>
                         </li>`;
                 }
+
                 else if (items.type === 'discrete') {
-                    items.items.forEach(item => {
-                        legendHTML += `< li >
-                    <span class="legend-color" style="
-                                background-color: ${item.color};
-                                display: inline-block;
-                                width: 16px;
-                                height: 16px;
-                                margin-right: 5px;
-                                vertical-align: middle;
-                                border: 1px solid #555;"></span>
-                            ${item.label}
-                        </li > `;
+                    items.items.forEach(i => {
+                        legendHTML += getLegendElement(i.label, i.color);
                     });
                 }
 
-                legendHTML += `</ul ></li > `;
+                legendHTML += `</ul></li>`;
             }
         }
     });
 
-    if (hasVisibleLayer) {
-        legendContainer.innerHTML = legendHTML + '</ul>';
-        legendContainer.style.display = 'block';
-    } else {
-        legendContainer.innerHTML = '';
-        legendContainer.style.display = 'none';
-    }
+    legendHTML += '</ul>';
+    legendContainer.innerHTML = hasVisibleLayer ? legendHTML : '<p>No visible legend available</p>';
 }
 
 // ==============================
