@@ -995,29 +995,32 @@ body {
 	border-radius: 10px;
 }
 
-/* Elimina freccette e pulsanti gruppo */
-.layer-switcher .panel>ul>li.group>label::before,
-.layer-switcher .group>button,
-.layer-switcher button[title="Collapse legend"] {
-	display: none !important;
-}
+/* --- Modifica per non nascondere button e allinearli --- */
 
-/* Titoli dei gruppi: container verticale */
+/* Titoli dei gruppi: container orizzontale */
 .layer-switcher li.group {
 	display: flex;
-	flex-direction: column;
-	/* ramificazione verticale */
+	flex-direction: row;
+	/* linea orizzontale */
+	align-items: center;
+	/* vertical align */
 	margin-bottom: 1em;
 	position: relative;
+	gap: 8px;
+}
+
+/* Button del gruppo */
+.layer-switcher li.group>button {
+	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
 }
 
 /* Checkbox del gruppo */
 .layer-switcher li.group>input[type="checkbox"] {
-	position: relative;
-	top: 2px;
-	/* aggiustamento verticale */
-	margin-right: 8px;
-	vertical-align: middle;
 	width: 16px;
 	height: 16px;
 	cursor: pointer;
@@ -1026,12 +1029,12 @@ body {
 	appearance: auto;
 	-webkit-appearance: checkbox;
 	-moz-appearance: checkbox;
+	flex-shrink: 0;
+	margin: 0;
 }
 
-/* Label del gruppo, allineata orizzontalmente col checkbox */
+/* Label del gruppo */
 .layer-switcher li.group>label {
-	display: inline-flex;
-	align-items: center;
 	cursor: pointer;
 	font-weight: bold;
 	font-size: 14px;
@@ -1039,16 +1042,18 @@ body {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	margin-left: 0;
-	/* niente indentazione */
+	flex-grow: 1;
+	margin: 0;
+	display: inline-flex;
+	align-items: center;
 }
 
-/* Wrapper flex per checkbox + label gruppo (usiamo flex container virtuale tramite :before e :after non possibile, quindi posizioniamo checkbox e label inline con margini) */
 /* Lista layer dentro gruppo con indentazione */
 .layer-switcher li.group>ul {
 	margin-left: 20px;
 	padding-left: 0;
 	list-style: none;
+	width: 100%;
 }
 
 /* Layer singoli (li.layer) */
