@@ -426,43 +426,44 @@ function updateLegend() {
                     gridHTML += '</table>';
 
                     legendHTML += `
-        <li style="display: flex; flex-direction: column; align-items: center;">
-            <strong>${items.title || ""}</strong>
-            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
-                
-              <!-- Y axis label with arrow up -->
-        <div 
-            style="
-                display: flex; 
-                flex-direction: column; 
-                align-items: center; 
-                justify-content: center; 
-                margin-right: 10px; 
-                font-size: 12px;
-                height: ${20 * rows}px;  /* 📍MODIFICA QUI: Assicura altezza pari alla griglia */
-            "
-        >
-            <div 
-                style="
-                    writing-mode: vertical-rl; 
-                    text-align: center;
-                    transform: rotate(180deg); /* 📍MODIFICA QUI: Ruota il testo per leggerlo dal basso verso l’alto */
-                "
-            >
-                ${yLabel || "Pollution"} 
-                <div style="margin-top: 4px;">↑</div> <!-- 📍MODIFICA QUI: Sposta la freccia sotto -->
-            </div>
-        </div>
-                }
-                < !--Grid and x - axis-- >
-                    <div style="display: flex; flex-direction: column; align-items: center;">
-                        ${gridHTML}
-                        <div style="font-size: 12px; margin-top: 4px;">
-                            ${xLabel || "Population"} →
-                        </div>
-                    </div>
-            </div >
-        </li > `;
+                        <li style="display: flex; flex-direction: column; align-items: center;">
+                            <strong>${items.title || ""}</strong>
+                            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
+                                <!-- Y axis label with arrow up (arrow not rotated) -->
+                                <div 
+                                    style="
+                                        display: flex; 
+                                        flex-direction: column; 
+                                        align-items: center; 
+                                        justify-content: center; 
+                                        margin-right: 10px; 
+                                        font-size: 12px;
+                                        height: ${20 * rows}px;
+                                    "
+                                >
+                                    <div 
+                                        style="
+                                            writing-mode: vertical-rl; 
+                                            text-align: center;
+                                            transform: rotate(180deg);
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                        "
+                                    >
+                                        ${yLabel || "Pollution"}
+                                    </div>
+                                    <div style="margin-top: 4px; font-size: 14px;">&#8593;</div>
+                                </div>
+                                <!-- Grid and x-axis -->
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    ${gridHTML}
+                                    <div style="font-size: 12px; margin-top: 4px;">
+                                        ${xLabel || "Population"} →
+                                    </div>
+                                </div>
+                            </div>
+                        </li>`;
                 }
                 else if (items.type === 'discrete') {
                     items.items.forEach(item => {
