@@ -392,26 +392,107 @@ function updateLegend() {
                 legendHTML += `<li><label>${title}</label><ul style="margin-left: 10px;">`;
 
                 if (items.type === 'gradient') {
-                    ...
-        legendHTML += `</li>`; // chiude gradient
-}
-                else if (items.type === 'bivariate') {
-                    ...
-    legendHTML += `</li>`; // chiude bivariate
-}
-else if (items.type === 'discrete') {
-    items.items.forEach(i => {
-        legendHTML += getLegendElement(i.label, i.color);
-    });
-}
+                    const gradientSquares = items.gradient.map(color => `
+        <div style="width: 20px; height: 10px; background-color: ${color}; margin: 0; padding: 0;"></div>
+    `).join('');
 
-legendHTML += `</ul></li>`; // chiude sottolista e list item esterno
+                    legendHTML += `
+        <li>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="display: flex; flex-direction: column;">
+                    ${gradientSquares}
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: flex-start; font-size: 12px;">
+                    <span>${items.maxLabel}</span>
+                    <div style="flex-grow: 1;"></div>
+                    <span>${items.minLabel}</span>
+                </div>
+            </div>
+        </li>`;
+                }
+                else if (items.type === 'bivariate') {
+                    const { rows, cols, colors, xLabel, yLabel } = items;
+
+                    // Costruisci griglia (invertendo le righe)
+                    let gridHTML = '<table style="border-collapse: collapse; margin: 10px 0;">';
+                    for (let r = rows - 1; r >= 0; r--) {
+                        gridHTML += '<tr>';
+                        for (let c = 0; c < cols; c++) {
+                            const color = colors[r][c];
+                            gridHTML += `<td style="width: 20px; height: 20px; background-color: ${color}; border: 1px solid #ccc;"></td>`;
+                        }
+                        gridHTML += '</tr>';
+                    }
+                    gridHTML += '</table>';
+
+                    legendHTML += `
+                        <li style="display: flex; flex-direction: column; align-items: center;">
+                            <strong>${items.title || ""}</strong>
+                            <div style="display: flex; flex-direction: row; align-items: center; margin-top: 8px;">
+                                <!-- Y axis label with arrow up (arrow not rotated) -->
+                                <div 
+                                    style="
+                                        display: flex; 
+                                        flex-direction: column; 
+                                        align-items: center; 
+                                        justify-content: center; 
+                                        margin-right: 10px; 
+                                        font-size: 12px;
+                                        height: ${20 * rows}px;
+                                    "
+                                >
+                                    <div 
+                                        style="
+                                            writing-mode: vertical-rl; 
+                                            text-align: center;
+                                            transform: rotate(180deg);
+                                            display: flex;
+                                            flex-direction: column;
+                                            align-items: center;
+                                        "
+                                    >
+                                        ${yLabel || "Pollution"}
+                                    </div>
+                                    <div style="margin-top: 4px; font-size: 14px;">&#8593;</div>
+                                </div>
+                                <!-- Grid and x-axis -->
+                                <div style="display: flex; flex-direction: column; align-items: center;">
+                                    ${gridHTML}
+                                    <div style="font-size: 12px; margin-top: 4px;">
+                                        ${xLabel || "Population"} →
+                                    </div>
+                                </div>
+                            </div>
+                        </li>`;
+                }
+                else if (items.type === 'discrete') {
+                    items.items.forEach(item => {
+                        legendHTML += `< li >
+                    <span class="legend-color" style="
+                                background-color: ${item.color};
+                                display: inline-block;
+                                width: 16px;
+                                height: 16px;
+                                margin-right: 5px;
+                                vertical-align: middle;
+                                border: 1px solid #555;"></span>
+                            ${item.label}
+                        </li > `;
+                    });
+                }
+
+                legendHTML += `</ul ></li > `;
             }
         }
     });
 
-legendHTML += '</ul>';
-legendContainer.innerHTML = hasVisibleLayer ? legendHTML : '<p>No visible legend available</p>';
+    if (hasVisibleLayer) {
+        legendContainer.innerHTML = legendHTML + '</ul>';
+        legendContainer.style.display = 'block';
+    } else {
+        legendContainer.innerHTML = '';
+        legendContainer.style.display = 'none';
+    }
 }
 
 // ==============================
