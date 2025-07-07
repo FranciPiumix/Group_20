@@ -1023,6 +1023,7 @@ body {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	vertical-align: middle;
 }
 
 /* Lista layer dentro gruppo con indentazione */
@@ -1042,7 +1043,7 @@ body {
 	text-overflow: ellipsis;
 }
 
-/* Checkbox/radio input */
+/* Checkbox/radio input per gruppi e layer */
 .layer-switcher input[type="checkbox"],
 .layer-switcher input[type="radio"] {
 	margin: 0 8px 0 0;
