@@ -995,21 +995,30 @@ body {
 	border-radius: 10px;
 }
 
-/* --- Modifica per non nascondere button e allinearli --- */
-
-/* Titoli dei gruppi: container orizzontale */
-.layer-switcher li.group {
-	display: flex;
-	flex-direction: row;
-	/* linea orizzontale */
-	align-items: center;
-	/* vertical align */
-	margin-bottom: 1em;
-	position: relative;
-	gap: 8px;
+/* Elimina freccette e pulsanti gruppo (tranne il button che vuoi mostrare) */
+.layer-switcher .panel>ul>li.group>label::before,
+.layer-switcher button[title="Collapse legend"] {
+	display: none !important;
 }
 
-/* Button del gruppo */
+/* Titoli dei gruppi: container verticale */
+.layer-switcher li.group {
+	display: flex;
+	flex-direction: column;
+	/* verticale per mantenere struttura ad albero */
+	margin-bottom: 1em;
+	position: relative;
+}
+
+/* Wrapper per button + checkbox + label: li facciamo inline-flex */
+.layer-switcher li.group>button,
+.layer-switcher li.group>input[type="checkbox"],
+.layer-switcher li.group>label {
+	display: inline-flex;
+	align-items: center;
+}
+
+/* Spaziatura tra button e checkbox e label */
 .layer-switcher li.group>button {
 	flex-shrink: 0;
 	width: 20px;
@@ -1017,9 +1026,9 @@ body {
 	cursor: pointer;
 	background: transparent;
 	border: none;
+	margin-right: 8px;
 }
 
-/* Checkbox del gruppo */
 .layer-switcher li.group>input[type="checkbox"] {
 	width: 16px;
 	height: 16px;
@@ -1030,10 +1039,11 @@ body {
 	-webkit-appearance: checkbox;
 	-moz-appearance: checkbox;
 	flex-shrink: 0;
-	margin: 0;
+	margin-right: 8px;
+	vertical-align: middle;
 }
 
-/* Label del gruppo */
+/* Label gruppo */
 .layer-switcher li.group>label {
 	cursor: pointer;
 	font-weight: bold;
@@ -1044,13 +1054,12 @@ body {
 	text-overflow: ellipsis;
 	flex-grow: 1;
 	margin: 0;
-	display: inline-flex;
-	align-items: center;
 }
 
 /* Lista layer dentro gruppo con indentazione */
 .layer-switcher li.group>ul {
-	margin-left: 20px;
+	margin-left: 24px;
+	/* indentazione per la lista interna */
 	padding-left: 0;
 	list-style: none;
 	width: 100%;
