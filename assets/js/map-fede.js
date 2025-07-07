@@ -316,7 +316,7 @@ map.on('singleclick', function (evt) {
     const visibleLayers = overlayLayerList.filter(layer => layer.getVisible());
     const urls = visibleLayers.map(layer => {
         const source = layer.getSource();
-        return source.getFeatureInfoUrl(coordinate, resolution, 'EPSG:3857', {
+        return source.getFeatureInfoUrl(coordinate, resolution, 'EPSG:4326', {
             INFO_FORMAT: 'application/json'
         });
     }).filter(url => url);
